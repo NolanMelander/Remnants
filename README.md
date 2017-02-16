@@ -12,7 +12,7 @@ Other Info:
   This project was done for **CS246** at **BYU-I**.  
   To be able to create this program in the time alloated we started with the open source code for Bludbourne.  
   Some of these changes included new menus, party system, and battle UI for an entierly diffrent game.  
-  Bludbourne is open source as indicated on page 418 of Mastering LibGDX GameDevelopment.  
+  Bludbourne is open source as indicated on page **418** of Mastering LibGDX GameDevelopment.  
   The original BludBourne code can be found on PatrickHoey's offical github [here](https://github.com/patrickhoey/BludBourne)
   
 More Info:  
