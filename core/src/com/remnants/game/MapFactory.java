@@ -9,12 +9,19 @@ public class MapFactory {
     public static enum MapType{
         TOP_WORLD,
         TOWN,
-        CASTLE_OF_DOOM
+        CASTLE_OF_DOOM,
+        WORLD_MAP
     }
 
     static public Map getMap(MapType mapType){
         Map map = null;
         switch(mapType){
+            case WORLD_MAP:
+                map = _mapTable.get(MapType.WORLD_MAP);
+                if(map == null) {
+                    map = new WorldMap();
+                    _mapTable.put(MapType.WORLD_MAP, map);
+                }
             case TOP_WORLD:
                 map = _mapTable.get(MapType.TOP_WORLD);
                 if( map == null ){
