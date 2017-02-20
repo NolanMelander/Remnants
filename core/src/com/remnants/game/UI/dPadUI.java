@@ -37,8 +37,6 @@ public class dPadUI {
         _touchpadKnob = _skin.getDrawable("touchpad-knob");
         _style.background = _touchpadBackground;
         _style.knob = _touchpadKnob;
-        _style.background.setMinHeight(500);
-        _style.background.setMinWidth(500);
         _touchpad = new Touchpad(10, _style);
         _touchpad.setBounds(15,15,200,200);
 
@@ -50,6 +48,7 @@ public class dPadUI {
     }
 
     public WidgetGroup getGroup() { return _group;}
+    public Touchpad.TouchpadStyle getStyle() { return _style; }
     public Touchpad getTouchpad() { return _touchpad; }
 
     public boolean isUp() {
