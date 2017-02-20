@@ -20,8 +20,13 @@ public abstract class InputComponent extends ComponentSubject implements Compone
         SELECT, DOACTION
     }
 
+    protected enum dPad {
+        LEFT, RIGHT, UP, DOWN
+    }
+
     protected static Map<Keys, Boolean> keys = new HashMap<Keys, Boolean>();
     protected static Map<Mouse, Boolean> mouseButtons = new HashMap<Mouse, Boolean>();
+    protected static Map<dPad, Boolean> dPadButtons = new HashMap<dPad, Boolean>();
 
     //initialize the hashmap for inputs
     static {
@@ -36,6 +41,13 @@ public abstract class InputComponent extends ComponentSubject implements Compone
     static {
         mouseButtons.put(Mouse.SELECT, false);
         mouseButtons.put(Mouse.DOACTION, false);
+    };
+
+    static {
+        dPadButtons.put(dPad.LEFT, false);
+        dPadButtons.put(dPad.RIGHT, false);
+        dPadButtons.put(dPad.UP, false);
+        dPadButtons.put(dPad.DOWN, false);
     };
 
     InputComponent(){

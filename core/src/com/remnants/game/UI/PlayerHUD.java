@@ -1,5 +1,6 @@
 package com.remnants.game.UI;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
@@ -9,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -37,7 +40,7 @@ import com.remnants.game.sfx.ScreenTransitionAction;
 import com.remnants.game.sfx.ScreenTransitionActor;
 import com.remnants.game.sfx.ShakeCamera;
 
-public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,ComponentObserver,ConversationGraphObserver,StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver {
+public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,ComponentObserver,ConversationGraphObserver,StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
     private Stage _stage;
@@ -51,6 +54,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
     private StoreInventoryUI _storeInventoryUI;
     private QuestUI _questUI;
     private BattleUI _battleUI;
+    private dPadUI _padUI;
 
     private Dialog _messageBoxUI;
     private Json _json;
@@ -137,13 +141,17 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _battleUI.clearListeners();
         _battleUI.setVisible(false);
 
-        _stage.addActor(_battleUI);
-        _stage.addActor(_questUI);
-        _stage.addActor(_storeInventoryUI);
+        _padUI = new dPadUI();
+        _padUI.getGroup().setPosition(_stage.getWidth() / 2, 300);
+
+        //_stage.addActor(_battleUI);
+        //_stage.addActor(_questUI);
+        //_stage.addActor(_storeInventoryUI);
         _stage.addActor(_conversationUI);
         _stage.addActor(_messageBoxUI);
-        _stage.addActor(_statusUI);
-        _stage.addActor(_inventoryUI);
+        //_stage.addActor(_statusUI);
+        //_stage.addActor(_inventoryUI);
+        _stage.addActor(_padUI.getGroup());
         _stage.addActor(_clock);
 
         _battleUI.validate();
@@ -153,6 +161,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _messageBoxUI.validate();
         _statusUI.validate();
         _inventoryUI.validate();
+        _padUI.getGroup().validate();
         _clock.validate();
 
         //add tooltips to the stage
@@ -176,6 +185,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _inventoryUI.addObserver(_battleUI.getCurrentState());
         _inventoryUI.addObserver(this);
         _battleUI.getCurrentState().addObserver(this);
+        //currently, the observer isn't doing anything
+        //_padUI.addObserver(this);
         this.addObserver(AudioManager.getInstance());
 
         //Listeners
@@ -190,6 +201,62 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         questButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 _questUI.setVisible(_questUI.isVisible() ? false : true);
+            }
+        });
+
+        //this line shouldn't be necessary
+        _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.IDLE));
+
+        _padUI.getTouchpad().addListener(new DragListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                //Gdx.app.log(TAG, "touchpad touchDown");
+                //Gdx.app.log(TAG, "knob percentages: " + _padUI.getTouchpad().getKnobPercentX()
+                //        + ", " + _padUI.getTouchpad().getKnobPercentX());
+                return true;
+            }
+
+            @Override
+            public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                //Gdx.app.log(TAG, "touchpad touchDragged");
+                //Gdx.app.log(TAG, "knob percentages: " + _padUI.getTouchpad().getKnobPercentX()
+                //        + ", " + _padUI.getTouchpad().getKnobPercentX());
+
+                /*
+                if (_padUI.isUp())
+                    Gdx.app.log(TAG, "touchpad is up");
+                if (_padUI.isDown())
+                    Gdx.app.log(TAG, "touchpad is down");
+                if (_padUI.isLeft())
+                    Gdx.app.log(TAG, "touchpad is left");
+                if (_padUI.isRight())
+                    Gdx.app.log(TAG, "touchpad is right");
+                */
+
+                //dPad input
+                if(_padUI.isLeft()){
+                    _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
+                    _player.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.LEFT));
+                }else if(_padUI.isRight()){
+                    _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
+                    _player.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.RIGHT));
+                }else if(_padUI.isUp()){
+                    _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
+                    _player.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.UP));
+                }else if(_padUI.isDown()){
+                    _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
+                    _player.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.DOWN));
+                }
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                //Gdx.app.log(TAG, "touchpad touchUp");
+                //Gdx.app.log(TAG, "knob percentages: " + _padUI.getTouchpad().getKnobPercentX()
+                //        + ", " + _padUI.getTouchpad().getKnobPercentX());
+
+                _player.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.IDLE));
+                _player.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.DOWN));
             }
         });
 
@@ -548,6 +615,22 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
                 break;
             case LEVELED_UP:
                 notify(AudioObserver.AudioCommand.MUSIC_PLAY_ONCE, AudioObserver.AudioTypeEvent.MUSIC_LEVEL_UP_FANFARE);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNotify(int value, dPadEvent event) {
+        switch(event) {
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+            case UP:
+                break;
+            case DOWN:
                 break;
             default:
                 break;
