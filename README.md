@@ -1,5 +1,6 @@
 # Remnants
 
+Version 0.1.2
 Team: 
 + Nolan Melander
 + Brian Evans
@@ -8,9 +9,11 @@ Team:
 Sponsors:
 + Luke Powell
 
-Current Update (2/16/2017):
-  We have begun modifying of the BludBourne code to be compatible with Remnant. Over the next few days we will begin to remove/change the code so that it
-  works how we want it for Remnant.
+Current Update (2/20/2017):
+  Added a new world map, and UI Gamepad.
+  
+Known Bugs:
+  Player Sprite continues to walk in place when no action is being taken (Temporary fix put in place)
 
 Other Info:  
   This project was done for **CS246** at **BYU-I**.
