@@ -9,11 +9,12 @@ Team:
 Sponsors:
 + Luke Powell
 
-Current Update (2/20/2017):
+Current Update (2/20/2017):  
   Added a new world map, and UI Gamepad.
   
-Known Bugs:
-  Player Sprite continues to walk in place when no action is being taken (Temporary fix put in place)
+Known Bugs:  
+  Player Sprite continues to walk in place when no action is being taken (Temporary fix put in place)  
+  Graphics issue on WorldMap causes towns to be surounded by Green blocks (Working on fix)
 
 Other Info:  
   This project was done for **CS246** at **BYU-I**.
