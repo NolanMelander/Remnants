@@ -1,3 +1,14 @@
+Music Used in Remnant:
+
+Title: The Adventure Begins
+Author: Bart
+Website: http://opengameart.org/content/adventure-begins
+Date: Thursday, May 13, 2010 - 22:37
+License: CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+FileName: The Adventure Begins.wav
+
+UnUsed Music (Needs to be removed eventually) :
+
 Title: "Random Battle"
 Author:  controllerhead
 Website: http://opengameart.org/content/random-battle
@@ -47,3 +58,4 @@ Website: http://opengameart.org/content/level-finish-fanfares
 Date: Monday, May 26, 2014 - 11:32
 License: CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
 Filename:  Open Surge score jingle.zip
+

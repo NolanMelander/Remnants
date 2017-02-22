@@ -22,6 +22,7 @@ public class MapFactory {
                     map = new WorldMap();
                     _mapTable.put(MapType.WORLD_MAP, map);
                 }
+                break;
             case TOP_WORLD:
                 map = _mapTable.get(MapType.TOP_WORLD);
                 if( map == null ){

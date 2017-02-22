@@ -318,10 +318,10 @@
   <object id="137" name="TOWN_FOLK15" x="256" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="MAP_PORTAL_LAYER">
-  <object id="89" name="TOP_WORLD" x="0" y="478" width="640" height="12"/>
-  <object id="90" name="TOP_WORLD" x="0" y="-14" width="640" height="12"/>
+  <object id="89" name="WORLD_MAP" x="0" y="478" width="640" height="12"/>
+  <object id="90" name="WORLD_MAP" x="0" y="-14" width="640" height="12"/>
   <object id="91" name="WORLD_MAP" x="640" y="-12" width="12" height="500"/>
-  <object id="93" name="TOP_WORLD" x="-16" y="-12" width="12" height="500"/>
+  <object id="93" name="WORLD_MAP" x="-16" y="-12" width="12" height="500"/>
  </objectgroup>
  <objectgroup name="PARTICLE_EFFECT_SPAWN_LAYER" visible="0">
   <object id="157" name="CANDLE_FIRE" x="65" y="287" width="16" height="16"/>
