@@ -8,6 +8,7 @@ public class MapFactory {
 
     public static enum MapType{
         TOP_WORLD,
+        MAIN_TOWN,
         TOWN,
         CASTLE_OF_DOOM,
         WORLD_MAP
@@ -28,6 +29,13 @@ public class MapFactory {
                 if( map == null ){
                     map = new TopWorldMap();
                     _mapTable.put(MapType.TOP_WORLD, map);
+                }
+                break;
+            case MAIN_TOWN:
+                map = _mapTable.get(MapType.MAIN_TOWN);
+                if( map == null) {
+                    map = new MainTownMap();
+                    _mapTable.put(MapType.MAIN_TOWN, map);
                 }
                 break;
             case TOWN:
