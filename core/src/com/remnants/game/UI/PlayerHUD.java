@@ -142,11 +142,11 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _battleUI.setVisible(false);
 
         _padUI = new dPadUI();
-        _padUI.getGroup().setPosition(_stage.getWidth() / 10, _stage.getHeight() / 6);
-        _padUI.getStyle().background.setMinHeight(_stage.getHeight() / 6);
-        _padUI.getStyle().background.setMinWidth(_stage.getHeight() / 6);
-        _padUI.getStyle().knob.setMinHeight(_stage.getHeight() / 7);
-        _padUI.getStyle().knob.setMinWidth(_stage.getHeight() / 7);
+        _padUI.getGroup().setPosition(_stage.getWidth() / 9, _stage.getHeight() / 5);
+        _padUI.getStyle().background.setMinHeight(_stage.getHeight() / 4);
+        _padUI.getStyle().background.setMinWidth(_stage.getHeight() / 4);
+        _padUI.getStyle().knob.setMinHeight(_stage.getHeight() / 5);
+        _padUI.getStyle().knob.setMinWidth(_stage.getHeight() / 5);
 
         //_stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
