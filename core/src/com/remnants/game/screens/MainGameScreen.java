@@ -79,7 +79,7 @@ public class MainGameScreen extends GameScreen {
 		_hudCamera = new OrthographicCamera();
 		_hudCamera.setToOrtho(false, VIEWPORT.physicalWidth, VIEWPORT.physicalHeight);
 
-		_playerHUD = new PlayerHUD(_hudCamera, _player, _mapMgr);
+		_playerHUD = new PlayerHUD(_hudCamera, _player, _mapMgr, _game);
 
 		_multiplexer = new InputMultiplexer();
 		_multiplexer.addProcessor(_playerHUD.getStage());

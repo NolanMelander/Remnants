@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.Array;
@@ -24,6 +24,7 @@ import com.remnants.game.EntityConfig;
 import com.remnants.game.InventoryItem;
 import com.remnants.game.InventoryItem.ItemTypeID;
 import com.remnants.game.MapManager;
+import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioManager;
 import com.remnants.game.audio.AudioObserver;
@@ -47,6 +48,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
     private Viewport _viewport;
     private Camera _camera;
     private Entity _player;
+    private Remnants _game;
 
     private StatusUI _statusUI;
     private InventoryUI _inventoryUI;
@@ -68,7 +70,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
 
     private static final String INVENTORY_FULL = "Your inventory is full!";
 
-    public PlayerHUD(Camera camera, Entity player, MapManager mapMgr) {
+    public PlayerHUD(Camera camera, Entity player, MapManager mapMgr, Remnants game) {
+        _game = game;
         _camera = camera;
         _player = player;
         _mapMgr = mapMgr;
@@ -148,6 +151,11 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _padUI.getStyle().knob.setMinHeight(_stage.getHeight() / 5);
         _padUI.getStyle().knob.setMinWidth(_stage.getHeight() / 5);
 
+        TextButton menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
+        menuButton.setHeight(_stage.getHeight() / 6);
+        menuButton.setWidth(_stage.getWidth() / 6);
+        menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 3);
+
         //_stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
         //_stage.addActor(_storeInventoryUI);
@@ -156,6 +164,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         //_stage.addActor(_statusUI);
         //_stage.addActor(_inventoryUI);
         _stage.addActor(_padUI.getGroup());
+        _stage.addActor(menuButton);
         _stage.addActor(_clock);
 
         _battleUI.validate();
@@ -167,6 +176,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _inventoryUI.validate();
         _padUI.getGroup().validate();
         _clock.validate();
+        menuButton.validate();
 
         //add tooltips to the stage
         Array<Actor> actors = _inventoryUI.getInventoryActors();
@@ -205,6 +215,13 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         questButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 _questUI.setVisible(_questUI.isVisible() ? false : true);
+            }
+        });
+
+        menuButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log(TAG, "menu button clicked");
+                _game.setScreen(_game.getScreenType(Remnants.ScreenType.GameMenu));
             }
         });
 
