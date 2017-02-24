@@ -8,7 +8,7 @@ import com.remnants.game.audio.AudioObserver;
  * Last edited by Nolan Melander on 2/22/2017
  * Version 0.1.0
  */
-
+//TODO Add small door tiles to assets/res/objects
 public class MainTownMap extends Map {
     private static String _mapPath = "maps/main_town.tmx";
 
