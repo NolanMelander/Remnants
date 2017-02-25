@@ -11,10 +11,12 @@ import com.remnants.game.UI.GameMenuUI;
 
 public class GameMenuScreen extends GameScreen {
     private Stage _stage;
+    private Remnants _game;
     private GameMenuUI _menuUI;
 
     public GameMenuScreen(Remnants game) {
         //initial creation
+        _game = game;
         _stage = new Stage();
         _menuUI = new GameMenuUI(game);
     }
@@ -36,13 +38,11 @@ public class GameMenuScreen extends GameScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(_stage);
-        Gdx.app.log("GameMenuScreen", "set input processor");
     }
 
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
-        Gdx.app.log("GameMenuScreen", "removed input processor");
     }
 
     @Override

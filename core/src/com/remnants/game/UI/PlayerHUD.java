@@ -159,8 +159,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         //_stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
         //_stage.addActor(_storeInventoryUI);
-        _stage.addActor(_conversationUI);
-        _stage.addActor(_messageBoxUI);
+        //_stage.addActor(_conversationUI);
+        //_stage.addActor(_messageBoxUI);
         //_stage.addActor(_statusUI);
         //_stage.addActor(_inventoryUI);
         _stage.addActor(_padUI.getGroup());
@@ -175,6 +175,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         _statusUI.validate();
         _inventoryUI.validate();
         _padUI.getGroup().validate();
+        menuButton.validate();
         _clock.validate();
         menuButton.validate();
 
@@ -220,7 +221,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
 
         menuButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log(TAG, "menu button clicked");
                 _game.setScreen(_game.getScreenType(Remnants.ScreenType.GameMenu));
             }
         });

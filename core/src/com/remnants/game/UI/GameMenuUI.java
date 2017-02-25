@@ -5,15 +5,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.remnants.game.Remnants;
@@ -41,6 +38,8 @@ public class GameMenuUI implements Screen {
         float buttonWidth = _stage.getWidth() / 5;
 
         //button creation
+
+        TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
         TextButton spellButton = new TextButton("Spells", Utility.STATUSUI_SKIN);
         TextButton armorButton = new TextButton("Armor", Utility.STATUSUI_SKIN);
         TextButton weaponButton = new TextButton("Weapons", Utility.STATUSUI_SKIN);
@@ -59,6 +58,11 @@ public class GameMenuUI implements Screen {
         Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
         Image armor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
         Image weapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
+
+        //back button
+        backButton.setWidth(buttonWidth);
+        backButton.setHeight(buttonHeight);
+        backButton.setPosition(_stage.getWidth() *.06f, _stage.getHeight() *.8f);
 
         //table layout
         table.setDebug(true);
@@ -96,6 +100,7 @@ public class GameMenuUI implements Screen {
         spriteTable.add(ipoSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
         spriteTable.add(tyrusSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
 
+        _stage.addActor(backButton);
         _stage.addActor(table);
         _stage.addActor(spriteTable);
 
@@ -103,14 +108,16 @@ public class GameMenuUI implements Screen {
         spellButton.addListener(new ClickListener() {
                                     @Override
                                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
                                         return true;
                                     }
 
                                     @Override
                                     public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                                        Gdx.app.log(TAG, "spell button clicked");
+
                                         //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SpellScreen));
                                     }
+
 
         });
 
@@ -124,6 +131,10 @@ public class GameMenuUI implements Screen {
 
     @Override
     public void render(float delta) {
+        //this shouldn't have to be called here...
+        //   but it won't work without it
+        Gdx.input.setInputProcessor(_stage);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         _stage.act(delta);
@@ -141,4 +152,5 @@ public class GameMenuUI implements Screen {
 
     @Override
     public void hide() {}
+
 }
