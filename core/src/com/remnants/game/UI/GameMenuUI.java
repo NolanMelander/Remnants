@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.remnants.game.Entity;
+import com.remnants.game.InputComponent;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 
@@ -38,6 +40,8 @@ public class GameMenuUI implements Screen {
         float buttonWidth = _stage.getWidth() / 5;
 
         //button creation
+        TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
+
         TextButton spellButton = new TextButton("Spells", Utility.STATUSUI_SKIN);
         TextButton armorButton = new TextButton("Armor", Utility.STATUSUI_SKIN);
         TextButton weaponButton = new TextButton("Weapons", Utility.STATUSUI_SKIN);
@@ -56,6 +60,11 @@ public class GameMenuUI implements Screen {
         Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
         Image armor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
         Image weapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
+
+        //back button
+        backButton.setWidth(buttonWidth);
+        backButton.setHeight(buttonHeight);
+        backButton.setPosition(_stage.getWidth() *.06f, _stage.getHeight() *.8f);
 
         //table layout
         table.setDebug(true);
@@ -93,13 +102,16 @@ public class GameMenuUI implements Screen {
         spriteTable.add(ipoSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
         spriteTable.add(tyrusSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
 
+        _stage.addActor(backButton);
         _stage.addActor(table);
         _stage.addActor(spriteTable);
 
+        Gdx.app.log(TAG,"Creating button listener");
         //Button Listeners
         spellButton.addListener(new ClickListener() {
                                     @Override
                                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                                        Gdx.app.log(TAG,"spell button touched down");
                                         return true;
                                     }
 

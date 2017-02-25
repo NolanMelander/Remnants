@@ -60,6 +60,8 @@ public class LoadGameScreen extends GameScreen {
 		_stage.addActor(table);
 		_stage.addActor(bottomTable);
 
+		Gdx.app.log("LoadGameScreen","creating click listeners");
+
 		//Listeners
 		backButton.addListener(new ClickListener() {
 								   @Override
@@ -120,6 +122,7 @@ public class LoadGameScreen extends GameScreen {
 		Array<String> list = ProfileManager.getInstance().getProfileList();
 		_listItems.setItems(list);
 		Gdx.input.setInputProcessor(_stage);
+		Gdx.app.log("LoadGameScreen","set input processor");
 	}
 
 	@Override
