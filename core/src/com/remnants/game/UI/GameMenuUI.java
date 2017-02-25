@@ -26,6 +26,7 @@ public class GameMenuUI implements Screen {
 
     private Remnants _game;
     private Stage _stage;
+    private Image _activeBattleSprite = new Image();
 
     public GameMenuUI (Remnants game) {
         //initial creation
@@ -48,17 +49,17 @@ public class GameMenuUI implements Screen {
         TextButton saveButton = new TextButton("Save", Utility.STATUSUI_SKIN);
         TextButton optionButton = new TextButton("Options", Utility.STATUSUI_SKIN);
 
-        ImageButton tarenSprite = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/taren.png"))));
-        ImageButton abellaSprite = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella.png"))));
-        ImageButton ipoSprite = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ipo.png"))));
-        ImageButton tyrusSprite = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/tyrus.png"))));
+        ImageButton tarenSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/taren.png"))));
+        ImageButton abellaSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella.png"))));
+        ImageButton ipoSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ipo.png"))));
+        ImageButton tyrusSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/tyrus.png"))));
 
         //temporary images
         Image spellBook1 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ice-crystal-scroll.png"))));
         Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
         Image armor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
         Image weapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
-        Image battleSprite = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella-battle-sprite.png"))));
+        final TextureRegionDrawable abellaDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella-battle-sprite.png")));
 
         //back button
         backButton.setWidth(buttonWidth);
@@ -66,15 +67,15 @@ public class GameMenuUI implements Screen {
         backButton.setPosition(0, _stage.getHeight() - buttonHeight);
 
         //battle sprite
-        battleSprite.setHeight(_stage.getHeight() / 2);
-        battleSprite.setWidth(_stage.getHeight() / 2);
-        battleSprite.setPosition(buttonWidth / 2, buttonHeight * 2);
+        _activeBattleSprite.setHeight(_stage.getHeight() / 2);
+        _activeBattleSprite.setWidth(_stage.getHeight() / 2);
+        _activeBattleSprite.setPosition(buttonWidth / 2, buttonHeight * 2);
 
         //set sprites to fill button square
-        tarenSprite.getImageCell().expand().fill();
-        abellaSprite.getImageCell().expand().fill();
-        ipoSprite.getImageCell().expand().fill();
-        tyrusSprite.getImageCell().expand().fill();
+        tarenSpriteButton.getImageCell().expand().fill();
+        abellaSpriteButton.getImageCell().expand().fill();
+        ipoSpriteButton.getImageCell().expand().fill();
+        tyrusSpriteButton.getImageCell().expand().fill();
 
         //table layout
         //table.setDebug(true);
@@ -107,12 +108,12 @@ public class GameMenuUI implements Screen {
         //spriteTable.setDebug(true);
         spriteTable.left().bottom();
         spriteTable.padBottom(buttonHeight/2).padLeft(spritePadding);
-        spriteTable.add(tarenSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(abellaSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(ipoSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(tyrusSprite).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
+        spriteTable.add(tarenSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
+        spriteTable.add(abellaSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
+        spriteTable.add(ipoSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
+        spriteTable.add(tyrusSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
 
-        _stage.addActor(battleSprite);
+        _stage.addActor(_activeBattleSprite);
         _stage.addActor(backButton);
         _stage.addActor(table);
         _stage.addActor(spriteTable);
@@ -130,6 +131,180 @@ public class GameMenuUI implements Screen {
 
                                         //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SpellScreen));
                                     }
+
+
+        });
+
+        armorButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.ArmorScreen));
+            }
+
+
+        });
+
+        weaponButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.WeaponScreen));
+            }
+
+
+        });
+
+        accessoryButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.AccessoryScreen));
+            }
+
+
+        });
+
+        itemButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.ItemScreen));
+            }
+
+
+        });
+
+        saveButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SaveScreen));
+            }
+
+
+        });
+
+        optionButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.OptionScreen));
+            }
+
+
+        });
+
+        tarenSpriteButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                //_activeBattleSprite.setDrawable(tarenDrawable);
+                //set stats to display Taren's stats
+            }
+
+
+        });
+
+        abellaSpriteButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                _activeBattleSprite.setDrawable(abellaDrawable);
+                //set stats to display Taren's stats
+            }
+
+
+        });
+
+        ipoSpriteButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                //_activeBattleSprite.setDrawable(ipoDrawable);
+                //set stats to display Taren's stats
+            }
+
+
+        });
+
+        tyrusSpriteButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                //_activeBattleSprite.setDrawable(tyrusDrawable);
+                //set stats to display Taren's stats
+            }
+
+
+        });
+
+        backButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                return true;
+            }
+
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                _game.setScreen(_game.getScreenType(Remnants.ScreenType.MainGame));
+            }
 
 
         });

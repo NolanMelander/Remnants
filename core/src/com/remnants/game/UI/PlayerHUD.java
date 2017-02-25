@@ -155,7 +155,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         TextButton menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
         menuButton.setHeight(_stage.getHeight() / 6);
         menuButton.setWidth(_stage.getWidth() / 6);
-        menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 3);
+        menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 9);
 
         //_stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
