@@ -141,6 +141,10 @@ public class GameMenuUI implements Screen {
 
     @Override
     public void render(float delta) {
+        //this shouldn't have to be called here...
+        //   but it won't work without it
+        Gdx.input.setInputProcessor(_stage);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         _stage.act(delta);
