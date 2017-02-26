@@ -38,6 +38,7 @@ public class GameMenuScreen extends GameScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(_stage);
+        Gdx.app.log("GameMenuScreen","set input processor");
     }
 
     @Override
