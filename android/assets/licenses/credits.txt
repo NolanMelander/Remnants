@@ -18,23 +18,24 @@ Amber Martinez
 Sound
 Nolan Melander
 
-Business Development
-Patrick Hoey
-
-Legal
-Patrick Hoey, Esq.
 
 Art Copyright Notice
 
-Title: "DawnLike - 16x16 Universal Rogue-like tileset v1.81"
-Author:  DragonDePlatino (Andrew Rios;  DragonDePlatino@gmail.com) [Tileset creation]
-         DawnBringer (Richard Fhager; dawnbringer@hem.utfors.se)[Palette]
-Website: http://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181
-         http://dragondeplatino.daportfolio.com/
-         http://hem.fyristorg.com/dawnbringer/
-Date: Thursday, January 30, 2014 - 00:37
+Title: "FWM-Game Assets"
+Author: Georg Eckert
+Website: http://limbusdev.de/#pc-fwm-assets
+Date: Tuesday, February 28, 2017 - 14:48
+License: Opensource
+Filename: TownTiles1.png
+
+Title: "World Map Overworld Tileset"
+Author: MrBeast
+Website: http://opengameart.org/content/worldmapoverworld-tileset
+Date: Wednesday, July 27, 2011 - 15:55
 License: CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
-Filename:  DawnLike.zip
+Filename:Overworldx1.0.png
+         Overworldx1.1.png
+         Overworldx1.2.png
 
 Music Copyright Notice
 
