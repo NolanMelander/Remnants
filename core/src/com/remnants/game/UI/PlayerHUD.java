@@ -41,7 +41,7 @@ import com.remnants.game.sfx.ScreenTransitionAction;
 import com.remnants.game.sfx.ScreenTransitionActor;
 import com.remnants.game.sfx.ShakeCamera;
 
-public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,ComponentObserver,ConversationGraphObserver,StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver {
+public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
     private Stage _stage;
@@ -789,7 +789,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
             observer.onNotify(command, event);
         }
     }
-
 
 
 
