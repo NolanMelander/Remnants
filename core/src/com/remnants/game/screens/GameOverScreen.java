@@ -28,6 +28,8 @@ public class GameOverScreen extends GameScreen {
         _stage = new Stage();
         TextButton continueButton = new TextButton("Continue", Utility.STATUSUI_SKIN);
         TextButton mainMenuButton = new TextButton("Main Menu", Utility.STATUSUI_SKIN);
+        continueButton.getLabel().setFontScale(3);
+        mainMenuButton.getLabel().setFontScale(3);
         Label messageLabel = new Label(DEATH_MESSAGE, Utility.STATUSUI_SKIN);
         messageLabel.setWrap(true);
 
