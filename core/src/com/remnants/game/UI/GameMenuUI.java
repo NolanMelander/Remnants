@@ -26,6 +26,7 @@ public class GameMenuUI implements Screen {
     private Remnants _game;
     private Stage _stage;
     private Image _activeBattleSprite = new Image();
+    private StatusUI _statusUI;
 
     public GameMenuUI (Remnants game) {
         //initial creation
@@ -48,11 +49,19 @@ public class GameMenuUI implements Screen {
         TextButton saveButton = new TextButton("Save", Utility.STATUSUI_SKIN);
         TextButton optionButton = new TextButton("Options", Utility.STATUSUI_SKIN);
 
+        backButton.getLabel().setFontScale(3);
+        spellButton.getLabel().setFontScale(3);
+        armorButton.getLabel().setFontScale(3);
+        weaponButton.getLabel().setFontScale(3);
+        accessoryButton.getLabel().setFontScale(3);
+        itemButton.getLabel().setFontScale(3);
+        saveButton.getLabel().setFontScale(3);
+        optionButton.getLabel().setFontScale(3);
+
         ImageButton tarenSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/taren.png"))));
         ImageButton abellaSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella.png"))));
         ImageButton ipoSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ipo.png"))));
         ImageButton tyrusSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/tyrus.png"))));
-
 
         //temporary images
         Image spellBook1 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ice-crystal-scroll.png"))));
@@ -114,10 +123,19 @@ public class GameMenuUI implements Screen {
         spriteTable.add(ipoSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
         spriteTable.add(tyrusSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
 
+        //status ui
+        _statusUI = new StatusUI();
+        _statusUI.setVisible(true);
+        _statusUI.setPosition(_stage.getWidth() * .4f, buttonHeight * 2);
+        _statusUI.setMovable(false);
+        _statusUI.setHeight(buttonHeight * 4);
+        _statusUI.setWidth(_stage.getWidth() / 4);
+
         _stage.addActor(_activeBattleSprite);
         _stage.addActor(backButton);
         _stage.addActor(table);
         _stage.addActor(spriteTable);
+        _stage.addActor(_statusUI);
 
         //Button Listeners
         spellButton.addListener(new ClickListener() {

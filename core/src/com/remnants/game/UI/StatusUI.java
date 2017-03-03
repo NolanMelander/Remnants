@@ -11,13 +11,15 @@ import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.LevelTable;
 
+import sun.util.resources.be.CalendarData_be;
+
 public class StatusUI extends Window implements StatusSubject {
     private Image _hpBar;
     private Image _mpBar;
     private Image _xpBar;
 
-    private ImageButton _inventoryButton;
-    private ImageButton _questButton;
+    //private ImageButton _inventoryButton;
+    //private ImageButton _questButton;
     private Array<StatusObserver> _observers;
 
     private Array<LevelTable> _levelTables;
@@ -50,22 +52,21 @@ public class StatusUI extends Window implements StatusSubject {
 
         _observers = new Array<StatusObserver>();
 
-        //groups
-        WidgetGroup group = new WidgetGroup();
-        WidgetGroup group2 = new WidgetGroup();
-        WidgetGroup group3 = new WidgetGroup();
-
         //images
         _hpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("HP_Bar"));
-        Image bar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
         _mpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("MP_Bar"));
-        Image bar2 = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
         _xpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("XP_Bar"));
-        Image bar3 = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
 
-        _barWidth = _hpBar.getWidth();
-        _barHeight = _hpBar.getHeight();
-
+        //adjust height and width of bars
+        //there should be a way to do this within the textureatlas
+        _barWidth = _hpBar.getWidth() * 2;
+        _barHeight = _hpBar.getHeight() * 5;
+        _hpBar.setWidth(_barWidth);
+        _hpBar.setHeight(_barHeight);
+        _mpBar.setWidth(_barWidth);
+        _mpBar.setHeight(_barHeight);
+        _xpBar.setWidth(_barWidth);
+        _xpBar.setHeight(_barHeight);
 
         //labels
         Label hpLabel = new Label(" hp: ", Utility.STATUSUI_SKIN);
@@ -79,48 +80,41 @@ public class StatusUI extends Window implements StatusSubject {
         Label goldLabel = new Label(" gp: ", Utility.STATUSUI_SKIN);
         _goldValLabel = new Label(String.valueOf(_goldVal), Utility.STATUSUI_SKIN);
 
-        //buttons
-        _inventoryButton= new ImageButton(Utility.STATUSUI_SKIN, "inventory-button");
-        _inventoryButton.getImageCell().size(32, 32);
-
-        _questButton = new ImageButton(Utility.STATUSUI_SKIN, "quest-button");
-        _questButton.getImageCell().size(32,32);
+        //set label font scale
+        //again, there should be a way to do this in the STATUSUI_SKIN
+        hpLabel.setFontScale(3);
+        _hpValLabel.setFontScale(3);
+        mpLabel.setFontScale(3);
+        _mpValLabel.setFontScale(3);
+        xpLabel.setFontScale(3);
+        _xpValLabel.setFontScale(3);
+        goldLabel.setFontScale(3);
+        _goldValLabel.setFontScale(3);
+        levelLabel.setFontScale(3);
+        _levelValLabel.setFontScale(3);
 
         //Align images
         _hpBar.setPosition(3, 6);
         _mpBar.setPosition(3, 6);
         _xpBar.setPosition(3, 6);
 
-        //add to widget groups
-        group.addActor(bar);
-        group.addActor(_hpBar);
-        group2.addActor(bar2);
-        group2.addActor(_mpBar);
-        group3.addActor(bar3);
-        group3.addActor(_xpBar);
-
         //Add to layout
         defaults().expand().fill();
 
         //account for the title padding
-        this.pad(this.getPadTop() + 10, 10, 10, 10);
+        this.pad(this.getPadTop() + 10, 10, 5, 10);
 
-        this.add();
-        this.add(_questButton).align(Align.center);
-        this.add(_inventoryButton).align(Align.right);
-        this.row();
-
-        this.add(group).size(bar.getWidth(), bar.getHeight()).padRight(10);
+        this.add(_hpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(hpLabel);
         this.add(_hpValLabel).align(Align.left);
         this.row();
 
-        this.add(group2).size(bar2.getWidth(), bar2.getHeight()).padRight(10);
+        this.add(_mpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(mpLabel);
         this.add(_mpValLabel).align(Align.left);
         this.row();
 
-        this.add(group3).size(bar3.getWidth(), bar3.getHeight()).padRight(10);
+        this.add(_xpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(xpLabel);
         this.add(_xpValLabel).align(Align.left).padRight(20);
         this.row();
@@ -131,16 +125,8 @@ public class StatusUI extends Window implements StatusSubject {
         this.add(goldLabel);
         this.add(_goldValLabel).align(Align.left);
 
-        //this.debug();
+        this.debug();
         this.pack();
-    }
-
-    public ImageButton getInventoryButton() {
-        return _inventoryButton;
-    }
-
-    public ImageButton getQuestButton() {
-        return _questButton;
     }
 
     public int getLevelValue(){
