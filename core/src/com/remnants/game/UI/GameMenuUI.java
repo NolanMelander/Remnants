@@ -32,9 +32,10 @@ public class GameMenuUI implements Screen {
         //initial creation
         _game = game;
         _stage = new Stage();
-        Table table = new Table();
         Table spriteTable = new Table();
-        table.setFillParent(true);
+        Table buttonTable = new Table();
+        Table spellsTable = new Table();
+        Table equipTable = new Table();
 
         float buttonHeight = _stage.getHeight() / 7;
         float buttonWidth = _stage.getWidth() / 5;
@@ -87,30 +88,33 @@ public class GameMenuUI implements Screen {
         ipoSpriteButton.getImageCell().expand().fill();
         tyrusSpriteButton.getImageCell().expand().fill();
 
-        //table layout
-        //table.setDebug(true);
-        table.top().right();
-        table.add(spellBook1).width(buttonHeight).height(buttonHeight);
-        table.add(spellBook2).width(buttonHeight).height(buttonHeight);
-        table.add(spellButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add(armor).width(buttonHeight).height(buttonHeight);
-        table.add(armorButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add(weapon).width(buttonHeight).height(buttonHeight);
-        table.add(weaponButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add();
-        table.add(accessoryButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add();
-        table.add(itemButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add();
-        table.add(saveButton).width(buttonWidth).height(buttonHeight).row();
-        table.add();
-        table.add();
-        table.add(optionButton).width(buttonWidth).height(buttonHeight).row();
+        //button table layout
+        //buttonTable.setDebug(true);
+        buttonTable.top().right();
+        buttonTable.setPosition(_stage.getWidth(), _stage.getHeight());
+        buttonTable.add(spellButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(armorButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(weaponButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(accessoryButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(itemButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(saveButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(optionButton).width(buttonWidth).height(buttonHeight).row();
+
+        //spells table layout
+        //spellsTable.setDebug(true);
+        spellsTable.top().right();
+        spellsTable.setPosition(_stage.getWidth() - buttonWidth, _stage.getHeight());
+        spellsTable.add().width(buttonHeight).height(buttonHeight);
+        spellsTable.add(spellBook1).width(buttonHeight).height(buttonHeight);
+        spellsTable.add(spellBook2).width(buttonHeight).height(buttonHeight);
+
+        //equipment table layout
+        //equipTable.setDebug(true);
+        equipTable.top().right();
+        equipTable.setPosition(_stage.getWidth() - buttonWidth, _stage.getHeight() - buttonHeight);
+        equipTable.add(armor).width(buttonHeight).height(buttonHeight).row();
+        equipTable.add(weapon).width(buttonHeight).height(buttonHeight).row();
+        equipTable.add(/*accessory*/).width(buttonHeight).height(buttonHeight).row();
 
         float spritePadding = buttonHeight - (buttonHeight * 0.15f);
 
@@ -133,7 +137,9 @@ public class GameMenuUI implements Screen {
 
         _stage.addActor(_activeBattleSprite);
         _stage.addActor(backButton);
-        _stage.addActor(table);
+        _stage.addActor(spellsTable);
+        _stage.addActor(buttonTable);
+        _stage.addActor(equipTable);
         _stage.addActor(spriteTable);
         _stage.addActor(_statusUI);
 
@@ -150,7 +156,6 @@ public class GameMenuUI implements Screen {
 
                                         //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SpellScreen));
                                     }
-
 
         });
 

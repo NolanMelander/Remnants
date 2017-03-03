@@ -18,8 +18,6 @@ public class StatusUI extends Window implements StatusSubject {
     private Image _mpBar;
     private Image _xpBar;
 
-    //private ImageButton _inventoryButton;
-    //private ImageButton _questButton;
     private Array<StatusObserver> _observers;
 
     private Array<LevelTable> _levelTables;
@@ -125,7 +123,7 @@ public class StatusUI extends Window implements StatusSubject {
         this.add(goldLabel);
         this.add(_goldValLabel).align(Align.left);
 
-        this.debug();
+        //this.debug();
         this.pack();
     }
 
