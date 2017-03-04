@@ -41,7 +41,7 @@ import com.remnants.game.sfx.ScreenTransitionAction;
 import com.remnants.game.sfx.ScreenTransitionActor;
 import com.remnants.game.sfx.ShakeCamera;
 
-public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,ComponentObserver,ConversationGraphObserver,StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver {
+public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
     private Stage _stage;
@@ -104,7 +104,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
 
         _messageBoxUI.setVisible(false);
         _messageBoxUI.pack();
-        _messageBoxUI.setPosition(_stage.getWidth() / 2 - _messageBoxUI.getWidth() / 2, _stage.getHeight() / 2 - _messageBoxUI.getHeight() / 2);
+        _messageBoxUI.setPosition(_stage.getWidth() / 2 - _messageBoxUI.getWidth() / 2
+                , _stage.getHeight() / 2 - _messageBoxUI.getHeight() / 2);
 
         _statusUI = new StatusUI();
         _statusUI.setVisible(true);
@@ -203,21 +204,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
         //currently, the observer isn't doing anything
         //_padUI.addObserver(this);
         this.addObserver(AudioManager.getInstance());
-
-        //Listeners
-        ImageButton inventoryButton = _statusUI.getInventoryButton();
-        inventoryButton.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                _inventoryUI.setVisible(_inventoryUI.isVisible() ? false : true);
-            }
-        });
-
-        ImageButton questButton = _statusUI.getQuestButton();
-        questButton.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                _questUI.setVisible(_questUI.isVisible() ? false : true);
-            }
-        });
 
         menuButton.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
@@ -789,7 +775,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver,Componen
             observer.onNotify(command, event);
         }
     }
-
 
 
 

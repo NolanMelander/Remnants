@@ -11,13 +11,13 @@ import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.LevelTable;
 
+import sun.util.resources.be.CalendarData_be;
+
 public class StatusUI extends Window implements StatusSubject {
     private Image _hpBar;
     private Image _mpBar;
     private Image _xpBar;
 
-    private ImageButton _inventoryButton;
-    private ImageButton _questButton;
     private Array<StatusObserver> _observers;
 
     private Array<LevelTable> _levelTables;
@@ -26,19 +26,27 @@ public class StatusUI extends Window implements StatusSubject {
     //Attributes
     private int _levelVal = -1;
     private int _goldVal = -1;
-    private int _hpVal = -1;
-    private int _mpVal = -1;
+    private int _hpVal = -1;        //health points
+    private int _mpVal = -1;        //magic power
+    private int _mAtkVal = -1;      //magic attack
+    private int _pAtkVal = -1;      //physical attack
+    private int _defVal = -1;       //defense
+    private int _aglVal = -1;       //agility
     private int _xpVal = 0;
 
     private int _xpCurrentMax = -1;
     private int _hpCurrentMax = -1;
     private int _mpCurrentMax = -1;
 
-    private Label _hpValLabel;
-    private Label _mpValLabel;
-    private Label _xpValLabel;
     private Label _levelValLabel;
     private Label _goldValLabel;
+    private Label _hpValLabel;
+    private Label _mpValLabel;
+    private Label _mAtkValLabel;
+    private Label _pAtkValLabel;
+    private Label _defValLabel;
+    private Label _aglValLabel;
+    private Label _xpValLabel;
 
     private float _barWidth = 0;
     private float _barHeight = 0;
@@ -50,79 +58,100 @@ public class StatusUI extends Window implements StatusSubject {
 
         _observers = new Array<StatusObserver>();
 
-        //groups
-        WidgetGroup group = new WidgetGroup();
-        WidgetGroup group2 = new WidgetGroup();
-        WidgetGroup group3 = new WidgetGroup();
-
         //images
         _hpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("HP_Bar"));
-        Image bar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
         _mpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("MP_Bar"));
-        Image bar2 = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
         _xpBar = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("XP_Bar"));
-        Image bar3 = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("Bar"));
 
-        _barWidth = _hpBar.getWidth();
-        _barHeight = _hpBar.getHeight();
-
+        //adjust height and width of bars
+        //there should be a way to do this within the textureatlas
+        _barWidth = _hpBar.getWidth() * 2;
+        _barHeight = _hpBar.getHeight() * 5;
+        _hpBar.setWidth(_barWidth);
+        _hpBar.setHeight(_barHeight);
+        _mpBar.setWidth(_barWidth);
+        _mpBar.setHeight(_barHeight);
+        _xpBar.setWidth(_barWidth);
+        _xpBar.setHeight(_barHeight);
 
         //labels
+        Label levelLabel = new Label(" lv: ", Utility.STATUSUI_SKIN);
+        _levelValLabel = new Label(String.valueOf(_levelVal), Utility.STATUSUI_SKIN);
+        Label goldLabel = new Label(" gp: ", Utility.STATUSUI_SKIN);
+        _goldValLabel = new Label(String.valueOf(_goldVal), Utility.STATUSUI_SKIN);
         Label hpLabel = new Label(" hp: ", Utility.STATUSUI_SKIN);
         _hpValLabel = new Label(String.valueOf(_hpVal), Utility.STATUSUI_SKIN);
         Label mpLabel = new Label(" mp: ", Utility.STATUSUI_SKIN);
         _mpValLabel = new Label(String.valueOf(_mpVal), Utility.STATUSUI_SKIN);
         Label xpLabel = new Label(" xp: ", Utility.STATUSUI_SKIN);
         _xpValLabel = new Label(String.valueOf(_xpVal), Utility.STATUSUI_SKIN);
-        Label levelLabel = new Label(" lv: ", Utility.STATUSUI_SKIN);
-        _levelValLabel = new Label(String.valueOf(_levelVal), Utility.STATUSUI_SKIN);
-        Label goldLabel = new Label(" gp: ", Utility.STATUSUI_SKIN);
-        _goldValLabel = new Label(String.valueOf(_goldVal), Utility.STATUSUI_SKIN);
+        Label mAtkLabel = new Label(" matk: ", Utility.STATUSUI_SKIN);
+        _mAtkValLabel = new Label(String.valueOf(_mAtkVal), Utility.STATUSUI_SKIN);
+        Label pAtkLabel = new Label(" patk: ", Utility.STATUSUI_SKIN);
+        _pAtkValLabel = new Label(String.valueOf(_pAtkVal), Utility.STATUSUI_SKIN);
+        Label defLabel = new Label(" def: ", Utility.STATUSUI_SKIN);
+        _defValLabel = new Label(String.valueOf(_defVal), Utility.STATUSUI_SKIN);
+        Label aglLabel = new Label(" agl: ", Utility.STATUSUI_SKIN);
+        _aglValLabel = new Label(String.valueOf(_aglVal), Utility.STATUSUI_SKIN);
 
-        //buttons
-        _inventoryButton= new ImageButton(Utility.STATUSUI_SKIN, "inventory-button");
-        _inventoryButton.getImageCell().size(32, 32);
-
-        _questButton = new ImageButton(Utility.STATUSUI_SKIN, "quest-button");
-        _questButton.getImageCell().size(32,32);
+        //set label font scale
+        //again, there should be a way to do this in the STATUSUI_SKIN
+        levelLabel.setFontScale(3);
+        _levelValLabel.setFontScale(3);
+        goldLabel.setFontScale(3);
+        _goldValLabel.setFontScale(3);
+        hpLabel.setFontScale(3);
+        _hpValLabel.setFontScale(3);
+        mpLabel.setFontScale(3);
+        _mpValLabel.setFontScale(3);
+        xpLabel.setFontScale(3);
+        _xpValLabel.setFontScale(3);
+        mAtkLabel.setFontScale(3);
+        _mAtkValLabel.setFontScale(3);
+        pAtkLabel.setFontScale(3);
+        _pAtkValLabel.setFontScale(3);
+        defLabel.setFontScale(3);
+        _defValLabel.setFontScale(3);
+        aglLabel.setFontScale(3);
+        _aglValLabel.setFontScale(3);
 
         //Align images
         _hpBar.setPosition(3, 6);
         _mpBar.setPosition(3, 6);
         _xpBar.setPosition(3, 6);
 
-        //add to widget groups
-        group.addActor(bar);
-        group.addActor(_hpBar);
-        group2.addActor(bar2);
-        group2.addActor(_mpBar);
-        group3.addActor(bar3);
-        group3.addActor(_xpBar);
-
         //Add to layout
         defaults().expand().fill();
 
         //account for the title padding
-        this.pad(this.getPadTop() + 10, 10, 10, 10);
+        this.pad(this.getPadTop() + 10, 10, 5, 10);
 
-        this.add();
-        this.add(_questButton).align(Align.center);
-        this.add(_inventoryButton).align(Align.right);
-        this.row();
-
-        this.add(group).size(bar.getWidth(), bar.getHeight()).padRight(10);
+        this.add(_hpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(hpLabel);
         this.add(_hpValLabel).align(Align.left);
         this.row();
 
-        this.add(group2).size(bar2.getWidth(), bar2.getHeight()).padRight(10);
+        this.add(_mpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(mpLabel);
         this.add(_mpValLabel).align(Align.left);
         this.row();
 
-        this.add(group3).size(bar3.getWidth(), bar3.getHeight()).padRight(10);
+        this.add(_xpBar).size(_barWidth, _barHeight).padRight(7);
         this.add(xpLabel);
         this.add(_xpValLabel).align(Align.left).padRight(20);
+        this.row();
+
+        this.add(mAtkLabel).align(Align.left);
+        this.add(_mAtkValLabel).align(Align.left);
+        this.row();
+        this.add(pAtkLabel).align(Align.left);
+        this.add(_pAtkValLabel).align(Align.left);
+        this.row();
+        this.add(defLabel).align(Align.left);
+        this.add(_defValLabel).align(Align.left);
+        this.row();
+        this.add(aglLabel).align(Align.left);
+        this.add(_aglValLabel).align(Align.left);
         this.row();
 
         this.add(levelLabel).align(Align.left);
@@ -133,14 +162,6 @@ public class StatusUI extends Window implements StatusSubject {
 
         //this.debug();
         this.pack();
-    }
-
-    public ImageButton getInventoryButton() {
-        return _inventoryButton;
-    }
-
-    public ImageButton getQuestButton() {
-        return _questButton;
     }
 
     public int getLevelValue(){

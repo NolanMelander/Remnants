@@ -35,107 +35,24 @@ public class PlayerInputComponent extends InputComponent {
 
 	@Override
 	public void update(Entity entity, float delta){
-		/*
-		//Keyboard input
-		if(keys.get(Keys.PAUSE)) {
-			MainGameScreen.setGameState(MainGameScreen.GameState.PAUSED);
-			pauseReleased();
-		}else if( keys.get(Keys.LEFT)){
-			entity.sendMessage(MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.LEFT));
-		}else if( keys.get(Keys.RIGHT)){
-			entity.sendMessage(MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.RIGHT));
-		}else if( keys.get(Keys.UP)){
-			entity.sendMessage(MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.UP));
-		}else if(keys.get(Keys.DOWN)){
-			entity.sendMessage(MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.DOWN));
-		}else if(keys.get(Keys.QUIT)) {
-			quitReleased();
-			Gdx.app.exit();
-		}else{
-			entity.sendMessage(MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.IDLE));
-			if( _currentDirection == null ){
-				entity.sendMessage(MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.DOWN));
-			}
-		}
-		*/
-
 		//Mouse input
 		if( mouseButtons.get(Mouse.SELECT)) {
 			//Gdx.app.debug(TAG, "Mouse LEFT click at : (" + _lastMouseCoordinates.x + "," + _lastMouseCoordinates.y + ")" );
 			entity.sendMessage(MESSAGE.INIT_SELECT_ENTITY, _json.toJson(_lastMouseCoordinates));
 			mouseButtons.put(Mouse.SELECT, false);
 		}
-
-		/*
-		//Touchpad input
-		if(dPadButtons.get(dPad.LEFT)){
-			entity.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.LEFT));
-		}else if(dPadButtons.get(dPad.RIGHT)){
-			entity.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.RIGHT));
-		}else if(dPadButtons.get(dPad.UP)){
-			entity.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.UP));
-		}else if(dPadButtons.get(dPad.DOWN)){
-			entity.sendMessage(Component.MESSAGE.CURRENT_STATE, _json.toJson(Entity.State.WALKING));
-			entity.sendMessage(Component.MESSAGE.CURRENT_DIRECTION, _json.toJson(Entity.Direction.DOWN));
-		}
-		*/
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
-		/*
-		if( keycode == Input.Keys.LEFT || keycode == Input.Keys.A){
-			this.leftPressed();
-		}
-		if( keycode == Input.Keys.RIGHT || keycode == Input.Keys.D){
-			this.rightPressed();
-		}
-		if( keycode == Input.Keys.UP || keycode == Input.Keys.W){
-			this.upPressed();
-		}
-		if( keycode == Input.Keys.DOWN || keycode == Input.Keys.S){
-			this.downPressed();
-		}
-		if( keycode == Input.Keys.Q){
-			this.quitPressed();
-		}
-		if( keycode == Input.Keys.P ){
-			this.pausePressed();
-		}
-		*/
+
 
 		return true;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-		/*
-		if( keycode == Input.Keys.LEFT || keycode == Input.Keys.A){
-			this.leftReleased();
-		}
-		if( keycode == Input.Keys.RIGHT || keycode == Input.Keys.D){
-			this.rightReleased();
-		}
-		if( keycode == Input.Keys.UP || keycode == Input.Keys.W ){
-			this.upReleased();
-		}
-		if( keycode == Input.Keys.DOWN || keycode == Input.Keys.S){
-			this.downReleased();
-		}
-		if( keycode == Input.Keys.Q){
-			this.quitReleased();
-		}
-		if( keycode == Input.Keys.P ){
-			this.pauseReleased();
-		}
-		*/
+
 		return true;
 	}
 
@@ -146,7 +63,6 @@ public class PlayerInputComponent extends InputComponent {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		//Gdx.app.debug(TAG, "GameScreen: MOUSE DOWN........: (" + screenX + "," + screenY + ")" );
 		Gdx.app.log(TAG, "GameScreen: MOUSE DOWN........: (" + screenX + "," + screenY + ")" );
 
 		if( button == Input.Buttons.LEFT || button == Input.Buttons.RIGHT ){
@@ -166,17 +82,6 @@ public class PlayerInputComponent extends InputComponent {
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 
-		/*
-		if (dPadUI.isLeft())
-			this.padLeftPressed();
-		if (dPadUI.isRight())
-			this.padRightPressed();
-		if (dPadUI.isUp())
-			this.padUpPressed();
-		if (dPadUI.isDown())
-			this.padDownPressed();
-		*/
-
 		return false;
 	}
 
@@ -190,12 +95,6 @@ public class PlayerInputComponent extends InputComponent {
 			this.doActionMouseButtonReleased(screenX, screenY);
 		}
 
-		//reset Touchpad variables
-		//this.padLeftReleased();
-		//this.padRightReleased();
-		//this.padUpReleased();
-		//this.padDownReleased();
-
 		return true;
 	}
 
@@ -208,32 +107,6 @@ public class PlayerInputComponent extends InputComponent {
 	public boolean scrolled(int amount) {
 		return false;
 	}
-	
-	//Key presses
-	/*
-	public void leftPressed(){
-		keys.put(Keys.LEFT, true);
-	}
-	public void rightPressed(){
-		keys.put(Keys.RIGHT, true);
-	}
-	public void upPressed(){
-		keys.put(Keys.UP, true);
-	}
-	public void downPressed(){
-		keys.put(Keys.DOWN, true);
-	}
-	public void quitPressed(){
-		keys.put(Keys.QUIT, true);
-	}
-	public void pausePressed() {
-		keys.put(Keys.PAUSE, true);
-	}
-	*/
-	public void padLeftPressed() { dPadButtons.put(dPad.LEFT, true); }
-	public void padRightPressed() { dPadButtons.put(dPad.RIGHT, true); }
-	public void padUpPressed() { dPadButtons.put(dPad.UP, true); }
-	public void padDownPressed() { dPadButtons.put(dPad.DOWN, true); }
 
 	public void setClickedMouseCoordinates(int x,int y){
 		_lastMouseCoordinates.set(x, y, 0);
@@ -245,38 +118,12 @@ public class PlayerInputComponent extends InputComponent {
 		mouseButtons.put(Mouse.DOACTION, true);
 	}
 
-
-	//Releases
-	/*
-	public void leftReleased(){
-		keys.put(Keys.LEFT, false);
-	}
-	public void rightReleased(){
-		keys.put(Keys.RIGHT, false);
-	}
-	public void upReleased(){
-		keys.put(Keys.UP, false);
-	}
-	public void downReleased(){
-		keys.put(Keys.DOWN, false);
-	}
-	public void quitReleased(){
-		keys.put(Keys.QUIT, false);
-	}
-	public void pauseReleased() { keys.put(Keys.PAUSE, false);}
-	*/
-
 	public void selectMouseButtonReleased(int x, int y){
 		mouseButtons.put(Mouse.SELECT, false);
 	}
 	public void doActionMouseButtonReleased(int x, int y){
 		mouseButtons.put(Mouse.DOACTION, false);
 	}
-
-	public void padLeftReleased() { dPadButtons.put(dPad.LEFT, false); }
-	public void padRightReleased() { dPadButtons.put(dPad.RIGHT, false); }
-	public void padUpReleased() { dPadButtons.put(dPad.UP, false); }
-	public void padDownReleased() { dPadButtons.put(dPad.DOWN, false); }
 
 	public static void clear(){
 		keys.put(Keys.LEFT, false);
