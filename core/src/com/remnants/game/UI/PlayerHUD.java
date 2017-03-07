@@ -157,7 +157,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         menuButton.setWidth(_stage.getWidth() / 6);
         menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 9);
 
-        //_stage.addActor(_battleUI);
+        _stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
         //_stage.addActor(_storeInventoryUI);
         //_stage.addActor(_conversationUI);
