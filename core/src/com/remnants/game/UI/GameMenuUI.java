@@ -25,8 +25,25 @@ public class GameMenuUI implements Screen {
 
     private Remnants _game;
     private Stage _stage;
-    private Image _activeBattleSprite = new Image();
     private StatusUI _statusUI;
+    private InventoryUI _inventoryUI;
+
+    //active images
+    private Image _activeBattleSprite = new Image();
+    private Image _activeArmor = new Image();
+    private Image _activeWeapon = new Image();
+    private Image _activeAccessory = new Image();
+
+    //active battle sprite variables
+    private float _absSize;
+    private float _absX;
+    private float _absY;
+
+    //battle sprite image locations
+    private TextureRegionDrawable _tarenDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TarenB.png")));
+    private TextureRegionDrawable _abellaDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/AbellaB.png")));
+    private TextureRegionDrawable _ipoDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/IpoB.png")));
+    private TextureRegionDrawable _tyrusDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TyrusB.png")));
 
     public GameMenuUI (Remnants game) {
         //initial creation
@@ -37,8 +54,14 @@ public class GameMenuUI implements Screen {
         Table spellsTable = new Table();
         Table equipTable = new Table();
 
+        //set button dimensions
         float buttonHeight = _stage.getHeight() / 7;
         float buttonWidth = _stage.getWidth() / 5;
+
+        //set active battle sprite variables
+        _absSize = _stage.getHeight() / 2;
+        _absX = buttonWidth / 2;
+        _absY = buttonHeight * 2;
 
         //button creation
         TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
@@ -67,10 +90,8 @@ public class GameMenuUI implements Screen {
         //temporary images
         Image spellBook1 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ice-crystal-scroll.png"))));
         Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
-        Image armor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
-        Image weapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
-
-        final TextureRegionDrawable abellaDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella-battle-sprite.png")));
+        _activeArmor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
+        _activeWeapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
 
         //back button
         backButton.setWidth(buttonWidth);
@@ -78,9 +99,9 @@ public class GameMenuUI implements Screen {
         backButton.setPosition(0, _stage.getHeight() - buttonHeight);
 
         //battle sprite
-        _activeBattleSprite.setHeight(_stage.getHeight() / 2);
-        _activeBattleSprite.setWidth(_stage.getHeight() / 2);
-        _activeBattleSprite.setPosition(buttonWidth / 2, buttonHeight * 2);
+        _activeBattleSprite.setHeight(_absSize);
+        _activeBattleSprite.setWidth(_absSize);
+        _activeBattleSprite.setPosition(_absX, _absY);
 
         //set sprites to fill button square
         tarenSpriteButton.getImageCell().expand().fill();
@@ -112,8 +133,8 @@ public class GameMenuUI implements Screen {
         //equipTable.setDebug(true);
         equipTable.top().right();
         equipTable.setPosition(_stage.getWidth() - buttonWidth, _stage.getHeight() - buttonHeight);
-        equipTable.add(armor).width(buttonHeight).height(buttonHeight).row();
-        equipTable.add(weapon).width(buttonHeight).height(buttonHeight).row();
+        equipTable.add(_activeArmor).width(buttonHeight).height(buttonHeight).row();
+        equipTable.add(_activeWeapon).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(/*accessory*/).width(buttonHeight).height(buttonHeight).row();
 
         float spritePadding = buttonHeight - (buttonHeight * 0.15f);
@@ -135,6 +156,11 @@ public class GameMenuUI implements Screen {
         _statusUI.setHeight(buttonHeight * 4);
         _statusUI.setWidth(_stage.getWidth() / 4);
 
+        //inventory ui
+        _inventoryUI = new InventoryUI();
+        _inventoryUI.setVisible(false);
+        _inventoryUI.setFillParent(true);
+
         _stage.addActor(_activeBattleSprite);
         _stage.addActor(backButton);
         _stage.addActor(spellsTable);
@@ -142,19 +168,19 @@ public class GameMenuUI implements Screen {
         _stage.addActor(equipTable);
         _stage.addActor(spriteTable);
         _stage.addActor(_statusUI);
+        _stage.addActor(_inventoryUI);
 
         //Button Listeners
         spellButton.addListener(new ClickListener() {
                                     @Override
                                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
                                         return true;
                                     }
 
                                     @Override
                                     public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
                                         //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SpellScreen));
+                                        _inventoryUI.setVisible(true);
                                     }
 
         });
@@ -263,10 +289,12 @@ public class GameMenuUI implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //_activeBattleSprite.setDrawable(tarenDrawable);
+                _activeBattleSprite.setHeight(_absSize);
+                _activeBattleSprite.setWidth(_absSize);
+                _activeBattleSprite.setPosition(_absX, _absY);
+                _activeBattleSprite.setDrawable(_tarenDrawable);
                 //set stats to display Taren's stats
             }
-
 
         });
 
@@ -279,10 +307,13 @@ public class GameMenuUI implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                _activeBattleSprite.setDrawable(abellaDrawable);
-                //set stats to display Taren's stats
-            }
+                _activeBattleSprite.setHeight(_absSize);
+                _activeBattleSprite.setWidth(_absSize);
+                _activeBattleSprite.setPosition(_absX, _absY);
+                _activeBattleSprite.setDrawable(_abellaDrawable);
 
+                //set stats to display Abella's stats
+            }
 
         });
 
@@ -295,10 +326,12 @@ public class GameMenuUI implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //_activeBattleSprite.setDrawable(ipoDrawable);
-                //set stats to display Taren's stats
+                _activeBattleSprite.setHeight(_absSize / 2);
+                _activeBattleSprite.setWidth(_absSize / 2);
+                _activeBattleSprite.setPosition(_absX + _absSize / 4, _absY);
+                _activeBattleSprite.setDrawable(_ipoDrawable);
+                //set stats to display Ipo's stats
             }
-
 
         });
 
@@ -311,10 +344,11 @@ public class GameMenuUI implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //_activeBattleSprite.setDrawable(tyrusDrawable);
-                //set stats to display Taren's stats
+                _activeBattleSprite.setHeight(_absSize);
+                _activeBattleSprite.setWidth(_absSize);
+                _activeBattleSprite.setDrawable(_tyrusDrawable);
+                //set stats to display Tyrus's stats
             }
-
 
         });
 
@@ -327,9 +361,9 @@ public class GameMenuUI implements Screen {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                _activeBattleSprite = new Image();
                 _game.setScreen(_game.getScreenType(Remnants.ScreenType.MainGame));
             }
-
 
         });
     }
