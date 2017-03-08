@@ -15,12 +15,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
+import com.remnants.game.battle.BattleSprites;
 
 /**
  * Created by brian on 2/23/2017.
  */
 
-public class GameMenuUI implements Screen {
+public class GameMenuUI implements Screen, BattleSprites {
     private static final String TAG = GameMenuUI.class.getSimpleName();
 
     private Remnants _game;
@@ -40,10 +41,6 @@ public class GameMenuUI implements Screen {
     private float _absY;
 
     //battle sprite image locations
-    private TextureRegionDrawable _tarenDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TarenB.png")));
-    private TextureRegionDrawable _abellaDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/AbellaB.png")));
-    private TextureRegionDrawable _ipoDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/IpoB.png")));
-    private TextureRegionDrawable _tyrusDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TyrusB.png")));
 
     public GameMenuUI (Remnants game) {
         //initial creation

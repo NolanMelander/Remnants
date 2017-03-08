@@ -1,14 +1,18 @@
 package com.remnants.game.UI;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
@@ -16,14 +20,20 @@ import com.remnants.game.Entity;
 import com.remnants.game.EntityConfig;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.BattleObserver;
+import com.remnants.game.battle.BattleSprites;
 import com.remnants.game.battle.BattleState;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
 
-public class BattleUI extends Window implements BattleObserver {
+public class BattleUI extends Window implements BattleObserver, BattleSprites {
     private static final String TAG = BattleUI.class.getSimpleName();
 
-    private AnimatedImage _image;
+    //battle sprites
+    private AnimatedImage _enemyImage;
+    private Image _tarenSprite = new Image(_tarenDrawable);
+    private Image _abellaSprite = new Image(_abellaDrawable);
+    private Image _ipoSprite = new Image(_ipoDrawable);
+    private Image _tyrusSprite = new Image(_tyrusDrawable);
 
     private final int _enemyWidth = 96;
     private final int _enemyHeight = 96;
@@ -55,21 +65,34 @@ public class BattleUI extends Window implements BattleObserver {
         _damageValLabel = new Label("0", Utility.STATUSUI_SKIN);
         _damageValLabel.setVisible(false);
 
-        _image = new AnimatedImage();
-        _image.setTouchable(Touchable.disabled);
+        _enemyImage = new AnimatedImage();
+        _enemyImage.setTouchable(Touchable.disabled);
 
         Table table = new Table();
+        table.setDebug(true);
         _attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
         table.add(_attackButton).pad(20, 20, 20, 20);
         table.row();
         table.add(_runButton).pad(20, 20, 20, 20);
 
+        //Battle Sprite table
+        Table bsTable = new Table();
+        bsTable.setDebug(true);
+        //bsTable.add(_tarenSprite);
+        //bsTable.add(_abellaSprite);
+        //bsTable.add(_ipoSprite);
+        //bsTable.add(_tyrusSprite);
+        Image rickroll = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/rick.jpg"))));
+        bsTable.add(rickroll);
+
         //layout
         this.setFillParent(true);
-        this.add(_damageValLabel).align(Align.left).padLeft(_enemyWidth / 2).row();
-        this.add(_image).size(_enemyWidth, _enemyHeight).pad(10, 10, 10, _enemyWidth / 2);
-        this.add(table);
+        this.setDebug(true);
+        //this.add(_damageValLabel).align(Align.left).padLeft(_enemyWidth / 2).row();
+        //this.add(_enemyImage).size(_enemyWidth, _enemyHeight).pad(10, 10, 10, _enemyWidth / 2);
+        //this.add(table);
+        this.add(bsTable).align(Align.right);
 
         this.pack();
 
@@ -120,11 +143,11 @@ public class BattleUI extends Window implements BattleObserver {
                 _attackButton.setTouchable(Touchable.disabled);
                 break;
             case OPPONENT_ADDED:
-                _image.setEntity(entity);
-                _image.setCurrentAnimation(Entity.AnimationType.IMMOBILE);
-                _image.setSize(_enemyWidth, _enemyHeight);
+                _enemyImage.setEntity(entity);
+                _enemyImage.setCurrentAnimation(Entity.AnimationType.IMMOBILE);
+                _enemyImage.setSize(_enemyWidth, _enemyHeight);
 
-                _currentImagePosition.set(_image.getX(),_image.getY());
+                _currentImagePosition.set(_enemyImage.getX(),_enemyImage.getY());
                 if( _battleShakeCam == null ){
                     _battleShakeCam = new ShakeCamera(_currentImagePosition.x, _currentImagePosition.y, 30.0f);
                 }
@@ -190,7 +213,7 @@ public class BattleUI extends Window implements BattleObserver {
 
         if( _battleShakeCam != null && _battleShakeCam.isCameraShaking() ){
             Vector2 shakeCoords = _battleShakeCam.getNewShakePosition();
-            _image.setPosition(shakeCoords.x, shakeCoords.y);
+            _enemyImage.setPosition(shakeCoords.x, shakeCoords.y);
         }
 
         for( int i = 0; i < _effects.size; i++){

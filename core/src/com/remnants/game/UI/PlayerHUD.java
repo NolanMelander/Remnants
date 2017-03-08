@@ -151,11 +151,19 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _padUI.getStyle().background.setMinWidth(_stage.getHeight() / 4);
         _padUI.getStyle().knob.setMinHeight(_stage.getHeight() / 5);
         _padUI.getStyle().knob.setMinWidth(_stage.getHeight() / 5);
+        _padUI.setVisible(true);
 
-        TextButton menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
+        final TextButton menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
+        menuButton.getLabel().setFontScale(3);
         menuButton.setHeight(_stage.getHeight() / 6);
         menuButton.setWidth(_stage.getWidth() / 6);
         menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 9);
+
+        final TextButton debugBattleUI = new TextButton("BattleUI", Utility.STATUSUI_SKIN);
+        debugBattleUI.getLabel().setFontScale(3);
+        debugBattleUI.setHeight(_stage.getHeight() / 6);
+        debugBattleUI.setWidth(_stage.getWidth() / 6);
+        debugBattleUI.setPosition((float)(_stage.getWidth() * .5), _stage.getHeight() / 9);
 
         _stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
@@ -167,6 +175,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _stage.addActor(_padUI.getGroup());
         _stage.addActor(menuButton);
         _stage.addActor(_clock);
+        //for debugging
+        _stage.addActor(debugBattleUI);
 
         _battleUI.validate();
         _questUI.validate();
@@ -287,6 +297,27 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                                                        }
         );
 
+        debugBattleUI.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                addTransitionToScreen();
+                MainGameScreen.setGameState(MainGameScreen.GameState.SAVING);
+                _mapMgr.disableCurrentmapMusic();
+                _battleUI.toBack();
+                _battleUI.setVisible(true);
+
+                //turn all buttons off
+                menuButton.setVisible(false);
+                _padUI.setVisible(false);
+                debugBattleUI.setVisible(false);
+
+                //set music
+                AudioObserver.AudioCommand command = AudioObserver.AudioCommand.MUSIC_PLAY_LOOP;
+                AudioObserver.AudioTypeEvent myEvent = AudioObserver.AudioTypeEvent.BATTLE_UI;
+                AudioObserver observer = _observers.first();
+                observer.onNotify(command, myEvent);
+            }
+        });
+
         //Music/Sound loading
         notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_BATTLE);
         notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_LEVEL_UP_FANFARE);
@@ -296,6 +327,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_PLAYER_WAND_ATTACK);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_EATING);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_DRINKING);
+        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.BATTLE_UI);
     }
 
     public Stage getStage() {
