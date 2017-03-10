@@ -2,7 +2,9 @@ package com.remnants.game.UI;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -33,6 +35,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
     private Table _equipSlots;
     private DragAndDrop _dragAndDrop;
     private Array<Actor> _inventoryActors;
+    private Stage _stage;
 
     private Label _DPValLabel;
     private int _DPVal = 0;
@@ -49,6 +52,8 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
     public InventoryUI(){
         super("Inventory", Utility.STATUSUI_SKIN, "solidbackground");
 
+        _stage = new Stage();
+
         _observers = new Array<InventoryObserver>();
 
         _dragAndDrop = new DragAndDrop();
@@ -64,6 +69,11 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
         _equipSlots.defaults().space(10);
         _inventorySlotTooltip = new InventorySlotTooltip(Utility.STATUSUI_SKIN);
+
+        //back button
+        TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
+        backButton.getLabel().setFontScale(3);
+        //backButton.
 
         Label DPLabel = new Label("Defense: ", Utility.STATUSUI_SKIN);
         _DPValLabel = new Label(String.valueOf(_DPVal), Utility.STATUSUI_SKIN);
