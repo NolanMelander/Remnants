@@ -6,11 +6,11 @@ conversations: {
         }
 		2: {
                 id: 2
-                dialog: Ok
+                dialog: Thanks, for your buisness.
         }
         3: {
                 id: 3
-                dialog: Ok
+                dialog: Maybe next time then.
         }		
 }
 associatedChoices: {

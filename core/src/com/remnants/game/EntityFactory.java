@@ -24,6 +24,7 @@ public class EntityFactory {
         TOWN_BLACKSMITH,
         TOWN_MAGE,
         TOWN_INNKEEPER,
+        TOWN_VENDOR,
         TOWN_FOLK1, TOWN_FOLK2, TOWN_FOLK3, TOWN_FOLK4, TOWN_FOLK5,
         TOWN_FOLK6, TOWN_FOLK7, TOWN_FOLK8, TOWN_FOLK9, TOWN_FOLK10,
         TOWN_FOLK11, TOWN_FOLK12, TOWN_FOLK13, TOWN_FOLK14, TOWN_FOLK15,
@@ -37,6 +38,7 @@ public class EntityFactory {
     public static String TOWN_INNKEEPER_CONFIG = "scripts/town_innkeeper.json";
     public static String TOWN_FOLK_CONFIGS = "scripts/town_folk.json";
     public static String ENVIRONMENTAL_ENTITY_CONFIGS = "scripts/environmental_entities.json";
+    public static String TOWN_VENDOR_CONFIG = "scripts/town_vendor1.json";
 
     private EntityFactory(){
         _entities = new Hashtable<String, EntityConfig>();
@@ -56,6 +58,7 @@ public class EntityFactory {
         _entities.put(EntityName.TOWN_MAGE.toString(), Entity.loadEntityConfigByPath(TOWN_MAGE_CONFIG));
         _entities.put(EntityName.TOWN_INNKEEPER.toString(), Entity.loadEntityConfigByPath(TOWN_INNKEEPER_CONFIG));
         _entities.put(EntityName.PLAYER_PUPPET.toString(), Entity.loadEntityConfigByPath(PLAYER_CONFIG));
+        _entities.put(EntityName.TOWN_VENDOR.toString(), Entity.loadEntityConfigByPath(TOWN_VENDOR_CONFIG));
     }
 
     public static EntityFactory getInstance() {

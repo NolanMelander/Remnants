@@ -27,9 +27,7 @@ public class TownMap extends Map{
         }
 
         //Special cases
-        Entity blackSmith = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_BLACKSMITH);
-        initSpecialEntityPosition(blackSmith);
-        _mapEntities.add(blackSmith);
+
 
         Entity mage = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_MAGE);
         initSpecialEntityPosition(mage);
