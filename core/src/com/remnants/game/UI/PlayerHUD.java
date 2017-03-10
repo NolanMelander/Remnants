@@ -57,6 +57,10 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     private QuestUI _questUI;
     private BattleUI _battleUI;
     private dPadUI _padUI;
+    private TextButton _menuButton;
+
+    //for debugging
+    private TextButton _debugBattleUI;
 
     private Dialog _messageBoxUI;
     private Json _json;
@@ -153,17 +157,17 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _padUI.getStyle().knob.setMinWidth(_stage.getHeight() / 5);
         _padUI.setVisible(true);
 
-        final TextButton menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
-        menuButton.getLabel().setFontScale(3);
-        menuButton.setHeight(_stage.getHeight() / 6);
-        menuButton.setWidth(_stage.getWidth() / 6);
-        menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 9);
+        _menuButton = new TextButton("Menu", Utility.STATUSUI_SKIN);
+        _menuButton.getLabel().setFontScale(3);
+        _menuButton.setHeight(_stage.getHeight() / 6);
+        _menuButton.setWidth(_stage.getWidth() / 6);
+        _menuButton.setPosition((float)(_stage.getWidth() * .8), _stage.getHeight() / 9);
 
-        final TextButton debugBattleUI = new TextButton("BattleUI", Utility.STATUSUI_SKIN);
-        debugBattleUI.getLabel().setFontScale(3);
-        debugBattleUI.setHeight(_stage.getHeight() / 6);
-        debugBattleUI.setWidth(_stage.getWidth() / 6);
-        debugBattleUI.setPosition((float)(_stage.getWidth() * .5), _stage.getHeight() / 9);
+        _debugBattleUI = new TextButton("BattleUI", Utility.STATUSUI_SKIN);
+        _debugBattleUI.getLabel().setFontScale(3);
+        _debugBattleUI.setHeight(_stage.getHeight() / 6);
+        _debugBattleUI.setWidth(_stage.getWidth() / 6);
+        _debugBattleUI.setPosition((float)(_stage.getWidth() * .5), _stage.getHeight() / 9);
 
         _stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
@@ -173,10 +177,10 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         //_stage.addActor(_statusUI);
         //_stage.addActor(_inventoryUI);
         _stage.addActor(_padUI.getGroup());
-        _stage.addActor(menuButton);
+        _stage.addActor(_menuButton);
         _stage.addActor(_clock);
         //for debugging
-        _stage.addActor(debugBattleUI);
+        _stage.addActor(_debugBattleUI);
 
         _battleUI.validate();
         _questUI.validate();
@@ -186,9 +190,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _statusUI.validate();
         _inventoryUI.validate();
         _padUI.getGroup().validate();
-        menuButton.validate();
+        _menuButton.validate();
         _clock.validate();
-        menuButton.validate();
 
         //add tooltips to the stage
         Array<Actor> actors = _inventoryUI.getInventoryActors();
@@ -215,7 +218,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         //_padUI.addObserver(this);
         this.addObserver(AudioManager.getInstance());
 
-        menuButton.addListener(new ClickListener() {
+        _menuButton.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                _game.setScreen(_game.getScreenType(Remnants.ScreenType.GameMenu));
            }
@@ -297,24 +300,16 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                                                        }
         );
 
-        debugBattleUI.addListener(new ClickListener() {
+        _debugBattleUI.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                addTransitionToScreen();
-                MainGameScreen.setGameState(MainGameScreen.GameState.SAVING);
-                _mapMgr.disableCurrentmapMusic();
-                _battleUI.toBack();
-                _battleUI.setVisible(true);
+                _battleUI.activate = true;
 
-                //turn all buttons off
-                menuButton.setVisible(false);
-                _padUI.setVisible(false);
-                debugBattleUI.setVisible(false);
+                if (_battleUI.isBattleReady())
+                    Gdx.app.log(TAG, "Ready for battle");
+                else
+                    Gdx.app.log(TAG, "Not ready yet!");
 
-                //set music
-                //AudioObserver.AudioCommand command = AudioObserver.AudioCommand.MUSIC_PLAY_LOOP;
-                //AudioObserver.AudioTypeEvent myEvent = AudioObserver.AudioTypeEvent.BATTLE_UI;
-                //AudioObserver observer = _observers.first();
-                //observer.onNotify(command, myEvent);
+                onNotify("", ComponentEvent.PLAYER_HAS_MOVED);
             }
         });
 
@@ -500,11 +495,15 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 _battleUI.battleZoneTriggered(Integer.parseInt(enemyZoneID));
                 break;
             case PLAYER_HAS_MOVED:
+                Gdx.app.log(TAG, "Entered 'PLAYER_HAS_MOVED'");
                 if( _battleUI.isBattleReady() ){
                     addTransitionToScreen();
                     MainGameScreen.setGameState(MainGameScreen.GameState.SAVING);
                     _mapMgr.disableCurrentmapMusic();
                     notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_BATTLE);
+                    _menuButton.setVisible(false);
+                    _padUI.setVisible(false);
+                    _debugBattleUI.setVisible(false);
                     _battleUI.toBack();
                     _battleUI.setVisible(true);
                 }
@@ -738,6 +737,9 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 _mapMgr.enableCurrentmapMusic();
                 addTransitionToScreen();
                 _battleUI.setVisible(false);
+                _padUI.setVisible(true);
+                _menuButton.setVisible(true);
+                _debugBattleUI.setVisible(true);
                 break;
             case PLAYER_HIT_DAMAGE:
                 notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_PLAYER_PAIN);

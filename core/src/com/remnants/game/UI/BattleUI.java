@@ -44,6 +44,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     private BattleState _battleState = null;
     private TextButton _attackButton = null;
     private TextButton _runButton = null;
+    private TextButton _backButton = null;
+    public boolean activate = false;
     private Label _damageValLabel = null;
 
     private float _battleTimer = 0;
@@ -76,6 +78,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         _attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
+        _backButton = new TextButton("Back", Utility.STATUSUI_SKIN, "inventory");
 
         //temporary image
         Image enemy1 = new Image(_enemyDrawable);
@@ -124,6 +127,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         layoutTable.add(bsTable);
         layoutTable.row();
         layoutTable.add(buttonTable).left();
+        layoutTable.row();
+        layoutTable.add(_backButton).height(buttonTableSizeScale).width(buttonTableSizeScale * 2);
 
         //layout
         this.setStage(stage);
@@ -157,6 +162,15 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     }
                 }
         );
+        _backButton.addListener(
+                new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        activate = false;
+                        _battleState.playerRuns();
+                    }
+                }
+        );
     }
 
     public void battleZoneTriggered(int battleZoneValue){
@@ -164,12 +178,14 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     }
 
     public boolean isBattleReady(){
-        if( _battleTimer > _checkTimer ){
+        /*if( _battleTimer > _checkTimer ){
             _battleTimer = 0;
             return _battleState.isOpponentReady();
         }else{
             return false;
-        }
+        }*/
+        //for debugging
+        return activate;
     }
 
     public BattleState getCurrentState(){
