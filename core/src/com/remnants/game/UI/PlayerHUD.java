@@ -139,7 +139,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _questUI.setWidth(_stage.getWidth());
         _questUI.setHeight(_stage.getHeight() / 2);
 
-        _battleUI = new BattleUI();
+        _battleUI = new BattleUI(_stage);
         _battleUI.setMovable(false);
         //removes all listeners including ones that handle focus
         _battleUI.clearListeners();
@@ -228,7 +228,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 //Gdx.app.log(TAG, "touchpad touchDown");
-                //Gdx.app.log(TAG, "knob percentages: " + _padUI.getTouchpad().getKnobPercentX()
+                //Gdx.app.log(TAG, "knob percentages: " + _padUI.getTouchpad().getKnobPercentX());
                 //        + ", " + _padUI.getTouchpad().getKnobPercentX());
                 return true;
             }
@@ -311,10 +311,10 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 debugBattleUI.setVisible(false);
 
                 //set music
-                AudioObserver.AudioCommand command = AudioObserver.AudioCommand.MUSIC_PLAY_LOOP;
-                AudioObserver.AudioTypeEvent myEvent = AudioObserver.AudioTypeEvent.BATTLE_UI;
-                AudioObserver observer = _observers.first();
-                observer.onNotify(command, myEvent);
+                //AudioObserver.AudioCommand command = AudioObserver.AudioCommand.MUSIC_PLAY_LOOP;
+                //AudioObserver.AudioTypeEvent myEvent = AudioObserver.AudioTypeEvent.BATTLE_UI;
+                //AudioObserver observer = _observers.first();
+                //observer.onNotify(command, myEvent);
             }
         });
 

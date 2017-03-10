@@ -15,13 +15,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
-import com.remnants.game.battle.BattleSprites;
+import com.remnants.game.battle.CharacterDrawables;
 
 /**
  * Created by brian on 2/23/2017.
  */
 
-public class GameMenuUI implements Screen, BattleSprites {
+public class GameMenuUI implements Screen, CharacterDrawables {
     private static final String TAG = GameMenuUI.class.getSimpleName();
 
     private Remnants _game;
@@ -289,7 +289,7 @@ public class GameMenuUI implements Screen, BattleSprites {
                 _activeBattleSprite.setHeight(_absSize);
                 _activeBattleSprite.setWidth(_absSize);
                 _activeBattleSprite.setPosition(_absX, _absY);
-                _activeBattleSprite.setDrawable(_tarenDrawable);
+                _activeBattleSprite.setDrawable(_tarenBattleDrawable);
                 //set stats to display Taren's stats
             }
 
@@ -307,7 +307,7 @@ public class GameMenuUI implements Screen, BattleSprites {
                 _activeBattleSprite.setHeight(_absSize);
                 _activeBattleSprite.setWidth(_absSize);
                 _activeBattleSprite.setPosition(_absX, _absY);
-                _activeBattleSprite.setDrawable(_abellaDrawable);
+                _activeBattleSprite.setDrawable(_abellaBattleDrawable);
 
                 //set stats to display Abella's stats
             }
@@ -326,7 +326,7 @@ public class GameMenuUI implements Screen, BattleSprites {
                 _activeBattleSprite.setHeight(_absSize / 2);
                 _activeBattleSprite.setWidth(_absSize / 2);
                 _activeBattleSprite.setPosition(_absX + _absSize / 4, _absY);
-                _activeBattleSprite.setDrawable(_ipoDrawable);
+                _activeBattleSprite.setDrawable(_ipoBattleDrawable);
                 //set stats to display Ipo's stats
             }
 
@@ -343,7 +343,7 @@ public class GameMenuUI implements Screen, BattleSprites {
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 _activeBattleSprite.setHeight(_absSize);
                 _activeBattleSprite.setWidth(_absSize);
-                _activeBattleSprite.setDrawable(_tyrusDrawable);
+                _activeBattleSprite.setDrawable(_tyrusBattleDrawable);
                 //set stats to display Tyrus's stats
             }
 

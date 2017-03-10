@@ -1,39 +1,42 @@
 package com.remnants.game.UI;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
 import com.remnants.game.EntityConfig;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.BattleObserver;
-import com.remnants.game.battle.BattleSprites;
 import com.remnants.game.battle.BattleState;
+import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
 
-public class BattleUI extends Window implements BattleObserver, BattleSprites {
+
+public class BattleUI extends Window implements BattleObserver, CharacterDrawables {
     private static final String TAG = BattleUI.class.getSimpleName();
 
-    //battle sprites
+    //character sprites
     private AnimatedImage _enemyImage;
-    private Image _tarenSprite = new Image(_tarenDrawable);
-    private Image _abellaSprite = new Image(_abellaDrawable);
-    private Image _ipoSprite = new Image(_ipoDrawable);
-    private Image _tyrusSprite = new Image(_tyrusDrawable);
+    private Image _tarenBattleSprite = new Image(/*_tarenBattleDrawable*/_abellaBattleDrawable);
+    private Image _abellaBattleSprite = new Image(_abellaBattleDrawable);
+    private Image _ipoBattleSprite = new Image(/*_ipoBattleDrawable*/_abellaBattleDrawable);
+    private Image _tyrusBattleSprite = new Image(/*_tyrusBattleDrawable*/_abellaBattleDrawable);
+    private Image _tarenWorldSprite = new Image(_tarenWorldDrawable);
+    private Image _abellaWorldSprite = new Image(_abellaWorldDrawable);
+    private Image _ipoWorldSprite = new Image(_ipoWorldDrawable);
+    private Image _tyrusWorldSprite = new Image(_tyrusWorldDrawable);
 
     private final int _enemyWidth = 96;
     private final int _enemyHeight = 96;
@@ -52,8 +55,11 @@ public class BattleUI extends Window implements BattleObserver, BattleSprites {
     private float _origDamageValLabelY = 0;
     private Vector2 _currentImagePosition;
 
-    public BattleUI(){
+    public BattleUI(Stage stage){
         super("BATTLE", Utility.STATUSUI_SKIN, "solidbackground");
+
+        float battleSpriteSize = stage.getHeight() * .23f;
+        float buttonTableSizeScale = stage.getHeight() * .2f;
 
         _battleTimer = 0;
         _battleState = new BattleState();
@@ -68,31 +74,68 @@ public class BattleUI extends Window implements BattleObserver, BattleSprites {
         _enemyImage = new AnimatedImage();
         _enemyImage.setTouchable(Touchable.disabled);
 
-        Table table = new Table();
-        table.setDebug(true);
         _attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
-        table.add(_attackButton).pad(20, 20, 20, 20);
-        table.row();
-        table.add(_runButton).pad(20, 20, 20, 20);
+
+        //temporary image
+        Image enemy1 = new Image(_enemyDrawable);
+        Image enemy2 = new Image(_enemyDrawable);
+        Image enemy3 = new Image(_enemyDrawable);
+
+        float padding = battleSpriteSize * .45f;
+
+        //Enemy table
+        Table enemyTable = new Table();
+        enemyTable.setDebug(true);
+        enemyTable.add(enemy1).width(battleSpriteSize).height(battleSpriteSize).bottom().left();
+        enemyTable.add(enemy2).width(battleSpriteSize).height(battleSpriteSize).bottom().padBottom(padding);
+        enemyTable.add(enemy3).width(battleSpriteSize).height(battleSpriteSize).bottom().padBottom(padding * 2);
 
         //Battle Sprite table
+        //TODO: split into two tables in order to stack images on top of one another with an offset
         Table bsTable = new Table();
         bsTable.setDebug(true);
-        //bsTable.add(_tarenSprite);
-        //bsTable.add(_abellaSprite);
-        //bsTable.add(_ipoSprite);
-        //bsTable.add(_tyrusSprite);
-        Image rickroll = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/rick.jpg"))));
-        bsTable.add(rickroll);
+        bsTable.add(_tarenBattleSprite).width(battleSpriteSize).height(battleSpriteSize).top().left();
+        bsTable.add(_abellaBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padTop(padding).top();
+        bsTable.add(_ipoBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padTop(padding * 2).top();
+        bsTable.add(_tyrusBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padTop(padding * 3).top();
+        //Image rickroll = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/rick.jpg"))));
+        //bsTable.add(rickroll);
+
+        //dead zone between enemy's side and character's side
+        float deadZoneWidth = stage.getWidth() - (battleSpriteSize * 3 + battleSpriteSize * 4);
+        Gdx.app.log(TAG, "deadZoneWidth: " + deadZoneWidth + "      stage width: " + stage.getWidth() + "      enemy table width: " + battleSpriteSize * 3 + "      character table width: " + battleSpriteSize * 4);
+
+        //buttons
+        TextButton attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
+        attackButton.getLabel().setFontScale(4);
+
+        //button table
+        Table buttonTable = new Table();
+        buttonTable.setDebug(true);
+        buttonTable.add(_tyrusWorldSprite).width(buttonTableSizeScale).height(buttonTableSizeScale).left();
+        buttonTable.add(attackButton).height(buttonTableSizeScale).width(buttonTableSizeScale * 2);
+
+        //layout table
+        Table layoutTable = new Table();
+        layoutTable.setDebug(true);
+        layoutTable.add(enemyTable);
+        layoutTable.add().width(deadZoneWidth);
+        layoutTable.add(bsTable);
+        layoutTable.row();
+        layoutTable.add(buttonTable).left();
 
         //layout
+        this.setStage(stage);
+        this.setKeepWithinStage(true);
         this.setFillParent(true);
         this.setDebug(true);
         //this.add(_damageValLabel).align(Align.left).padLeft(_enemyWidth / 2).row();
         //this.add(_enemyImage).size(_enemyWidth, _enemyHeight).pad(10, 10, 10, _enemyWidth / 2);
         //this.add(table);
-        this.add(bsTable).align(Align.right);
+        this.add(layoutTable);
+
+        //TODO: try adding this to the stage with stage.addActor() and see if it changes anything
 
         this.pack();
 
