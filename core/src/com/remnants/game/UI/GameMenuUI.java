@@ -2,7 +2,6 @@ package com.remnants.game.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,21 +10,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.CharacterDrawables;
+import com.remnants.game.menu.MenuObserver;
+import com.remnants.game.menu.MenuState;
 
 /**
  * Created by brian on 2/23/2017.
  */
 
-public class GameMenuUI implements Screen, CharacterDrawables {
+public class GameMenuUI extends Window implements MenuObserver, CharacterDrawables {
     private static final String TAG = GameMenuUI.class.getSimpleName();
 
-    private Remnants _game;
     private Stage _stage;
+    private MenuState _menuState = null;
     private StatusUI _statusUI;
     private InventoryUI _inventoryUI;
 
@@ -40,23 +43,24 @@ public class GameMenuUI implements Screen, CharacterDrawables {
     private float _absX;
     private float _absY;
 
-    //battle sprite image locations
+    public GameMenuUI (Stage gameStage) {
+        super ("MENU", Utility.STATUSUI_SKIN, "solidbackground");
 
-    public GameMenuUI (Remnants game) {
         //initial creation
-        _game = game;
         _stage = new Stage();
+        _menuState = new MenuState();
+        _menuState.addObserver(this);
         Table spriteTable = new Table();
         Table buttonTable = new Table();
         Table spellsTable = new Table();
         Table equipTable = new Table();
 
         //set button dimensions
-        float buttonHeight = _stage.getHeight() / 7;
-        float buttonWidth = _stage.getWidth() / 5;
+        float buttonHeight = gameStage.getHeight() / 7;
+        float buttonWidth = gameStage.getWidth() / 5;
 
         //set active battle sprite variables
-        _absSize = _stage.getHeight() / 2;
+        _absSize = gameStage.getHeight() / 2;
         _absX = buttonWidth / 2;
         _absY = buttonHeight * 2;
 
@@ -93,7 +97,7 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         //back button
         backButton.setWidth(buttonWidth);
         backButton.setHeight(buttonHeight);
-        backButton.setPosition(0, _stage.getHeight() - buttonHeight);
+        backButton.setPosition(0, gameStage.getHeight() - buttonHeight);
 
         //battle sprite
         _activeBattleSprite.setHeight(_absSize);
@@ -109,7 +113,7 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         //button table layout
         //buttonTable.setDebug(true);
         buttonTable.top().right();
-        buttonTable.setPosition(_stage.getWidth(), _stage.getHeight());
+        buttonTable.setPosition(gameStage.getWidth(), gameStage.getHeight());
         buttonTable.add(spellButton).width(buttonWidth).height(buttonHeight).row();
         buttonTable.add(armorButton).width(buttonWidth).height(buttonHeight).row();
         buttonTable.add(weaponButton).width(buttonWidth).height(buttonHeight).row();
@@ -121,7 +125,7 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         //spells table layout
         //spellsTable.setDebug(true);
         spellsTable.top().right();
-        spellsTable.setPosition(_stage.getWidth() - buttonWidth, _stage.getHeight());
+        spellsTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight());
         spellsTable.add().width(buttonHeight).height(buttonHeight);
         spellsTable.add(spellBook1).width(buttonHeight).height(buttonHeight);
         spellsTable.add(spellBook2).width(buttonHeight).height(buttonHeight);
@@ -129,7 +133,7 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         //equipment table layout
         //equipTable.setDebug(true);
         equipTable.top().right();
-        equipTable.setPosition(_stage.getWidth() - buttonWidth, _stage.getHeight() - buttonHeight);
+        equipTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight() - buttonHeight);
         equipTable.add(_activeArmor).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(_activeWeapon).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(/*accessory*/).width(buttonHeight).height(buttonHeight).row();
@@ -148,10 +152,10 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         //status ui
         _statusUI = new StatusUI();
         _statusUI.setVisible(true);
-        _statusUI.setPosition(_stage.getWidth() * .4f, buttonHeight * 2);
+        _statusUI.setPosition(gameStage.getWidth() * .4f, buttonHeight * 2);
         _statusUI.setMovable(false);
         _statusUI.setHeight(buttonHeight * 4);
-        _statusUI.setWidth(_stage.getWidth() / 4);
+        _statusUI.setWidth(gameStage.getWidth() / 4);
 
         //inventory ui
         _inventoryUI = new InventoryUI();
@@ -165,7 +169,12 @@ public class GameMenuUI implements Screen, CharacterDrawables {
         _stage.addActor(equipTable);
         _stage.addActor(spriteTable);
         _stage.addActor(_statusUI);
-        _stage.addActor(_inventoryUI);
+        //_stage.addActor(_inventoryUI);
+
+        this.setStage(_stage);
+        this.setFillParent(true);
+        this.setDebug(true);
+        this.pack();
 
         //Button Listeners
         spellButton.addListener(new ClickListener() {
@@ -343,6 +352,7 @@ public class GameMenuUI implements Screen, CharacterDrawables {
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 _activeBattleSprite.setHeight(_absSize);
                 _activeBattleSprite.setWidth(_absSize);
+                _activeBattleSprite.setPosition(_absX, _absY);
                 _activeBattleSprite.setDrawable(_tyrusBattleDrawable);
                 //set stats to display Tyrus's stats
             }
@@ -359,40 +369,22 @@ public class GameMenuUI implements Screen, CharacterDrawables {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 _activeBattleSprite = new Image();
-                _game.setScreen(_game.getScreenType(Remnants.ScreenType.MainGame));
+                _menuState.closeMenu();
             }
 
         });
     }
 
-    @Override
-    public void dispose() {}
-
-    @Override
-    public void pause() {}
-
-    @Override
-    public void render(float delta) {
-        //this shouldn't have to be called here...
-        //   but it won't work without it
+    public void draw(float delta) {
         Gdx.input.setInputProcessor(_stage);
-
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         _stage.act(delta);
         _stage.draw();
     }
 
-    @Override
-    public void resize(int width, int height) {}
+    public MenuState getCurrentState() { return _menuState; }
 
     @Override
-    public void resume() {}
-
-    @Override
-    public void show() {}
-
-    @Override
-    public void hide() {}
-
+    public void onNotify(String value, MenuEvent event) {
+        //no need to do anything here
+    }
 }

@@ -33,11 +33,11 @@ public class MainMenuScreen extends GameScreen {
 		TextButton creditsButton = new TextButton("Credits", Utility.STATUSUI_SKIN);
 		TextButton exitButton = new TextButton("Exit",Utility.STATUSUI_SKIN);
 
-		newGameButton.getLabel().setFontScale(3);
-		loadGameButton.getLabel().setFontScale(3);
-		watchIntroButton.getLabel().setFontScale(3);
-		creditsButton.getLabel().setFontScale(3);
-		exitButton.getLabel().setFontScale(3);
+		newGameButton.getLabel().setFontScale(6);
+		loadGameButton.getLabel().setFontScale(6);
+		watchIntroButton.getLabel().setFontScale(6);
+		creditsButton.getLabel().setFontScale(6);
+		exitButton.getLabel().setFontScale(6);
 
 		//Layout
 		table.add(title).spaceBottom(75).row();
