@@ -41,6 +41,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
     private List<Drawable> _worldSprites;
     private Image _activeWorldSprite;
+    private List<Drawable> _enemySprites;
 
     private int _currentTurn = 0;
 
@@ -71,6 +72,10 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _worldSprites = new List<Drawable>(Utility.STATUSUI_SKIN);
         _worldSprites.setItems(_tarenWorldDrawable, _abellaWorldDrawable, _ipoWorldDrawable, _tyrusWorldDrawable);
         _activeWorldSprite = new Image();
+        _enemySprites = new List<Drawable>(Utility.STATUSUI_SKIN);
+
+        //TODO: set up monster factory to randomly generate creatures
+        _enemySprites.setItems(_enemyDrawable, _enemyDrawable, _enemyDrawable);
 
         //TODO: come up with a good equation to measure the size of the sprites to fit any screen
         float battleSpriteSize = gameStage.getHeight() / 3;
@@ -95,24 +100,25 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
         _backButton = new TextButton("Back", Utility.STATUSUI_SKIN, "inventory");
 
-        //temporary image
-        Image enemy1 = new Image(_enemyDrawable);
-        Image enemy2 = new Image(_enemyDrawable);
-        Image enemy3 = new Image(_enemyDrawable);
-
         float padding = battleSpriteSize * .45f;
 
         //Enemy table
         Table enemyTable = new Table();
         enemyTable.setDebug(true);
         enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - buttonHeight) / 2));
-        enemyTable.add(enemy1).width(enemySpriteSize).height(enemySpriteSize);
-        enemyTable.add(enemy2).width(enemySpriteSize).height(enemySpriteSize);
-        enemyTable.add(enemy3).width(enemySpriteSize).height(enemySpriteSize);
-        enemyTable.row();
-        enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
-        enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
-        enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
+
+        //maximum of 5 creatures in battle
+        for (int i = 0; i < 6; i++) {
+            if (i < _enemySprites.getItems().size) {
+                Image enemy = new Image(_enemySprites.getItems().get(i));
+                enemyTable.add(enemy).width(enemySpriteSize).height(enemySpriteSize);
+            }
+            if (i == 2)
+                enemyTable.row();
+            if (i > _enemySprites.getItems().size) {
+                enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
+            }
+        }
 
         //Battle Sprite table
         //   splitting it up into two rows allows for easy displacement
@@ -132,10 +138,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         bsTable.row();
         bsTable.add(bottomRow);
 
-        //dead zone between enemy's side and character's side
-        float deadZoneWidth = gameStage.getWidth() - (battleSpriteSize * 3 + battleSpriteSize * 4);
-        Gdx.app.log(TAG, "deadZoneWidth: " + deadZoneWidth + "      stage width: " + gameStage.getWidth() + "      enemy table width: " + battleSpriteSize * 3 + "      character table width: " + battleSpriteSize * 4);
-
         //buttons
         TextButton attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
         TextButton magicButton = new TextButton("Magic", Utility.STATUSUI_SKIN, "inventory");
@@ -147,7 +149,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         fleeButton.getLabel().setFontScale(4);
 
         //set active world sprite based on who's turn it is
-        Gdx.app.log(TAG, "Current turn at setting of active world sprite: " + _currentTurn);
         _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
 
         //button table
@@ -178,18 +179,24 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         //_battleState.playerAttacks();
-                        _currentTurn++;
-                        if (_currentTurn >= 4) {
-                            //set to -1 for current debugging purposes
-                            _currentTurn = -1;
-                            _activeWorldSprite.setDrawable(null);
-                            onNotify(null, BattleEvent.ALL_PLAYERS_DONE);
-                        }
-                        else {
-                            Gdx.app.log(TAG, "Advancing to turn " + _currentTurn);
-                            _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
-                        }
-                        //onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                        onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                    }
+                }
+        );
+        magicButton.addListener(
+                new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        //_battleState.playerAttacks();
+                        onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                    }
+                }
+        );
+        itemsButton.addListener(
+                new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        //open inventory
                     }
                 }
         );
@@ -217,7 +224,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     public boolean debugBattleReady = false;
     public boolean isBattleReady(){
         //TODO: decide when enemies should appear
-        Gdx.app.log(TAG, "isBattleReady() entered");
         /*if( _battleTimer > _checkTimer ){
             _battleTimer = 0;
             return _battleState.isOpponentReady();
@@ -270,11 +276,20 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 _runButton.setDisabled(false);
                 _runButton.setTouchable(Touchable.enabled);
                 break;
-            case PLAYER_TURN_DONE:
-
+            case CHARACTER_TURN_DONE:
+                _currentTurn++;
+                if (_currentTurn >= 4) {
+                    //set to -1 for current debugging purposes
+                    _currentTurn = -1;
+                    _activeWorldSprite.setDrawable(null);
+                    onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                }
+                else {
+                    _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
+                }
                 break;
-            case ALL_PLAYERS_DONE:
-                Gdx.app.log(TAG, "All players have finished their turn");
+            case PLAYER_TURN_DONE:
+                Gdx.app.log(TAG, "All characters have been given an action");
                 _battleState.opponentAttacks();
                 break;
             case PLAYER_USED_MAGIC:

@@ -13,7 +13,7 @@ public interface BattleObserver {
         PLAYER_TURN_DONE,
         PLAYER_TURN_START,
         PLAYER_USED_MAGIC,
-        ALL_PLAYERS_DONE,
+        CHARACTER_TURN_DONE,
         ALL_OPPONENTS_DONE,
         NONE
     }
