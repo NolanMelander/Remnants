@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 
 import com.remnants.game.screens.CreditScreen;
 import com.remnants.game.screens.CutSceneScreen;
-import com.remnants.game.screens.GameMenuScreen;
 import com.remnants.game.screens.GameOverScreen;
 import com.remnants.game.screens.LoadGameScreen;
 import com.remnants.game.screens.MainGameScreen;
@@ -23,7 +22,6 @@ public class Remnants extends Game {
 	private static GameOverScreen _gameOverScreen;
 	private static CutSceneScreen _cutSceneScreen;
 	private static CreditScreen _creditScreen;
-	private static GameMenuScreen _gameMenuScreen;
 
 	public static enum ScreenType{
 		MainMenu,
@@ -32,8 +30,7 @@ public class Remnants extends Game {
 		NewGame,
 		GameOver,
 		WatchIntro,
-		Credits,
-		GameMenu
+		Credits
 	}
 
 	public Screen getScreenType(ScreenType screenType){
@@ -52,8 +49,6 @@ public class Remnants extends Game {
 				return _cutSceneScreen;
 			case Credits:
 				return _creditScreen;
-			case GameMenu:
-				return _gameMenuScreen;
 			default:
 				return _mainMenuScreen;
 		}
@@ -69,7 +64,6 @@ public class Remnants extends Game {
 		_gameOverScreen = new GameOverScreen(this);
 		_cutSceneScreen = new CutSceneScreen(this);
 		_creditScreen = new CreditScreen(this);
-		_gameMenuScreen = new GameMenuScreen(this);
 		setScreen(_mainMenuScreen);
 	}
 
@@ -81,7 +75,5 @@ public class Remnants extends Game {
 		_newGameScreen.dispose();
 		_gameOverScreen.dispose();
 		_creditScreen.dispose();
-		_gameMenuScreen.dispose();
 	}
-
 }

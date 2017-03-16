@@ -1,13 +1,17 @@
 package com.remnants.game.battle;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
 import com.remnants.game.EntityConfig;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 public class MonsterFactory {
+    private static final String TAG = MonsterFactory.class.getSimpleName();
+
     public static enum MonsterEntityType{
         MONSTER001,MONSTER002,MONSTER003,MONSTER004,MONSTER005,
         MONSTER006,MONSTER007,MONSTER008,MONSTER009,MONSTER010,
@@ -45,15 +49,31 @@ public class MonsterFactory {
         return new Entity(entity);
     }
 
-    public Entity getRandomMonster(int monsterZoneID){
-        Array<MonsterEntityType> monsters = _monsterZones.get(String.valueOf(monsterZoneID));
-        int size = monsters.size;
-        if( size == 0 ){
-            return null;
-        }
-        int randomIndex = MathUtils.random(size - 1);
+    public Vector<Entity> getRandomMonsters(int monsterZoneID){
+        Vector<Entity> enemies = new Vector<Entity>();
+        int numCreatures = MathUtils.random(1,5);
+        for(int i = 0; i < numCreatures; i++) {
+            //TODO: figure out how to get the right monsterZoneID
+            Gdx.app.log(TAG, "MonsterZoneID: " + monsterZoneID);
+            Array<MonsterEntityType> monsters = _monsterZones.get(String.valueOf(1/*monsterZoneID*/));
 
-        return getMonster(monsters.get(randomIndex));
+            if (_monsterZones.get(String.valueOf(1)) == null) {
+                Gdx.app.log(TAG, "MonsterZones is returning null");
+            }
+
+            int size = monsters.size;
+
+            if (size == 0) {
+                return null;
+            }
+            int randomIndex = MathUtils.random(size - 1);
+
+            enemies.add(getMonster(monsters.get(randomIndex)));
+            Gdx.app.log(TAG, "Adding " + getMonster(monsters.get(randomIndex)).getEntityConfig().getEntityID());
+        }
+
+        Gdx.app.log(TAG, "Number of monsters generated: " + enemies.size());
+        return enemies;
     }
 
 }

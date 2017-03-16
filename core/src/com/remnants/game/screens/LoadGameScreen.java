@@ -31,8 +31,8 @@ public class LoadGameScreen extends GameScreen {
 
 		TextButton loadButton = new TextButton("Load", Utility.STATUSUI_SKIN);
 		TextButton backButton = new TextButton("Back",Utility.STATUSUI_SKIN);
-		loadButton.getLabel().setFontScale(3);
-		backButton.getLabel().setFontScale(3);
+		loadButton.getLabel().setFontScale(6);
+		backButton.getLabel().setFontScale(6);
 
 		ProfileManager.getInstance().storeAllProfiles();
 		_listItems = new List(Utility.STATUSUI_SKIN, "inventory");
@@ -59,6 +59,7 @@ public class LoadGameScreen extends GameScreen {
 		bottomTable.center();
 		bottomTable.add(loadButton).padRight(50);
 		bottomTable.add(backButton);
+		bottomTable.padBottom(loadButton.getHeight());
 
 		_stage.addActor(table);
 		_stage.addActor(bottomTable);

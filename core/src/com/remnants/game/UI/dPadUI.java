@@ -44,8 +44,12 @@ public class dPadUI {
         _table.add(_touchpad);
 
         _group.addActor(_table);
-
     }
+
+    public void setVisible(boolean vis) {
+        _touchpad.setVisible(vis);
+    }
+
 
     public WidgetGroup getGroup() { return _group;}
     public Touchpad.TouchpadStyle getStyle() { return _style; }

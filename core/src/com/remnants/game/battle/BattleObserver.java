@@ -2,9 +2,11 @@ package com.remnants.game.battle;
 
 import com.remnants.game.Entity;
 
+import java.util.Vector;
+
 public interface BattleObserver {
     public static enum BattleEvent{
-        OPPONENT_ADDED,
+        ADD_OPPONENTS,
         OPPONENT_HIT_DAMAGE,
         OPPONENT_DEFEATED,
         OPPONENT_TURN_DONE,
@@ -12,9 +14,11 @@ public interface BattleObserver {
         PLAYER_RUNNING,
         PLAYER_TURN_DONE,
         PLAYER_TURN_START,
-        PLAYER_USED_MAGIC,
+        CHARACTER_USED_MAGIC,
+        CHARACTER_TURN_DONE,
+        ALL_OPPONENTS_DONE,
         NONE
     }
 
-    void onNotify(final Entity enemyEntity, BattleEvent event);
+    void onNotify(final Vector<Entity> enemyEntities, BattleEvent event);
 }
