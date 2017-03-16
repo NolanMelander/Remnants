@@ -14,23 +14,31 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
+import com.remnants.game.Component;
+import com.remnants.game.InventoryItem;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
+import com.remnants.game.audio.AudioObserver;
+import com.remnants.game.audio.AudioSubject;
 import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.menu.MenuObserver;
 import com.remnants.game.menu.MenuState;
+import com.remnants.game.profile.ProfileManager;
 
 /**
  * Created by brian on 2/23/2017.
  */
 
-public class GameMenuUI extends Window implements MenuObserver, CharacterDrawables {
+public class GameMenuUI extends Window implements StatusObserver, InventoryObserver, AudioSubject, MenuObserver, CharacterDrawables {
     private static final String TAG = GameMenuUI.class.getSimpleName();
 
     private Stage _stage;
     private MenuState _menuState = null;
     private StatusUI _statusUI;
     private InventoryUI _inventoryUI;
+
+    private Array<AudioObserver> _observers;
 
     //active images
     private Image _activeBattleSprite = new Image();
@@ -49,20 +57,19 @@ public class GameMenuUI extends Window implements MenuObserver, CharacterDrawabl
         //initial creation
         _stage = new Stage();
         _menuState = new MenuState();
+        _statusUI = new StatusUI();
+        _inventoryUI = new InventoryUI();
+
+        //observers
+        _observers = new Array<AudioObserver>();
         _menuState.addObserver(this);
+        _statusUI.addObserver(this);
+        _inventoryUI.addObserver(this);
+        //tables
         Table spriteTable = new Table();
         Table buttonTable = new Table();
         Table spellsTable = new Table();
         Table equipTable = new Table();
-
-        //set button dimensions
-        float buttonHeight = gameStage.getHeight() / 7;
-        float buttonWidth = gameStage.getWidth() / 5;
-
-        //set active battle sprite variables
-        _absSize = gameStage.getHeight() / 2;
-        _absX = buttonWidth / 2;
-        _absY = buttonHeight * 2;
 
         //button creation
         TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
@@ -74,6 +81,8 @@ public class GameMenuUI extends Window implements MenuObserver, CharacterDrawabl
         TextButton saveButton = new TextButton("Save", Utility.STATUSUI_SKIN);
         TextButton optionButton = new TextButton("Options", Utility.STATUSUI_SKIN);
 
+        //resize button labels
+        //  there should be a better way to do this across the board
         backButton.getLabel().setFontScale(3);
         spellButton.getLabel().setFontScale(3);
         armorButton.getLabel().setFontScale(3);
@@ -93,6 +102,15 @@ public class GameMenuUI extends Window implements MenuObserver, CharacterDrawabl
         Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
         _activeArmor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
         _activeWeapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
+
+        //set button dimensions
+        float buttonHeight = gameStage.getHeight() / 7;
+        float buttonWidth = gameStage.getWidth() / 5;
+
+        //set active battle sprite variables
+        _absSize = gameStage.getHeight() / 2;
+        _absX = buttonWidth / 2;
+        _absY = buttonHeight * 2;
 
         //back button
         backButton.setWidth(buttonWidth);
@@ -391,6 +409,95 @@ public class GameMenuUI extends Window implements MenuObserver, CharacterDrawabl
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void onNotify(String name, int value, StatusObserver.StatusEvent event) {
+        switch(event) {
+            case UPDATED_STAT:
+                if (name == "level") {
+                    ProfileManager.getInstance().setProperty("currentPlayerLevel", _statusUI.getLevelValue());
+                }
+                else if (name == "gold") {
+                    //_storeInventoryUI.setPlayerGP(value);
+                    ProfileManager.getInstance().setProperty("currentPlayerGP", _statusUI.getGoldValue());
+                }
+                else if (name == "xp") {
+                    ProfileManager.getInstance().setProperty("currentPlayerXP", _statusUI.getXPValue());
+                }
+                else if (name == "hp") {
+                    ProfileManager.getInstance().setProperty("currentPlayerHP", _statusUI.getHPValue());
+                }
+                else if (name == "mp") {
+                    ProfileManager.getInstance().setProperty("currentPlayerMP", _statusUI.getMPValue());
+                }
+                else if (name == "pAtk") {
+                    //ProfileManager.getInstance().setProperty("currentPlayerPAtk", _statusUI.getpAtkValue());
+                }
+                else if (name == "mAtk") {
+                    //ProfileManager.getInstance().setProperty("currentPlayerMAtk", _statusUI.getmAtkValue());
+                }
+                else if (name == "def") {
+                    //ProfileManager.getInstance().setProperty("currentPlayerDef", _statusUI.getDefValue());
+                }
+                else if (name == "agl") {
+                    //ProfileManager.getInstance().setProperty("currentPlayerAgl", _statusUI.getAglValue());
+                }
+                else {
+                    Gdx.app.log(TAG, "ERROR: '" + name + "' is not in stat list");
+                }
+                break;
+            case LEVELED_UP:
+                notify(AudioObserver.AudioCommand.MUSIC_PLAY_ONCE, AudioObserver.AudioTypeEvent.MUSIC_LEVEL_UP_FANFARE);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNotify(String value, InventoryObserver.InventoryEvent event) {
+        switch(event){
+            case ITEM_CONSUMED:
+                String[] strings = value.split(Component.MESSAGE_TOKEN);
+                if( strings.length != 2) return;
+
+                int type = Integer.parseInt(strings[0]);
+                int typeValue = Integer.parseInt(strings[1]);
+
+                if( InventoryItem.doesRestoreHP(type) ){
+                    notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_EATING);
+                    _statusUI.addHPValue(typeValue);
+                }else if( InventoryItem.doesRestoreMP(type) ){
+                    notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_DRINKING);
+                    _statusUI.addMPValue(typeValue);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void addObserver(AudioObserver audioObserver) {
+        _observers.add(audioObserver);
+    }
+
+    @Override
+    public void removeObserver(AudioObserver audioObserver) {
+        _observers.removeValue(audioObserver, true);
+    }
+
+    @Override
+    public void removeAllObservers() {
+        _observers.removeAll(_observers, true);
+    }
+
+    @Override
+    public void notify(AudioObserver.AudioCommand command, AudioObserver.AudioTypeEvent event) {
+        for(AudioObserver observer: _observers){
+            observer.onNotify(command, event);
         }
     }
 }

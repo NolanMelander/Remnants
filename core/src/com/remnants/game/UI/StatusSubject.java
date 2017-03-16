@@ -5,5 +5,5 @@ public interface StatusSubject {
     public void addObserver(StatusObserver statusObserver);
     public void removeObserver(StatusObserver statusObserver);
     public void removeAllObservers();
-    public void notify(final int value, StatusObserver.StatusEvent event);
+    public void notify(final String name, final int value, StatusObserver.StatusEvent event);
 }

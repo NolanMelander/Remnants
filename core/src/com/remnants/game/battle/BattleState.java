@@ -76,7 +76,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         }
 
         //Check for magic if used in attack; If we don't have enough MP, then return
-        int mpVal = ProfileManager.getInstance().getProperty("currentCharacterMP", Integer.class);
+        int mpVal = ProfileManager.getInstance().getProperty("currentPlayerMP", Integer.class);
         //notify(_currentOpponent, BattleObserver.BattleEvent.PLAYER_TURN_START);
 
         if( _currentCharacterWandAPPoints == 0 ){
@@ -125,12 +125,12 @@ public class BattleState extends BattleSubject implements InventoryObserver {
 
                 int damage = MathUtils.clamp(_currentCharacterAP - currentOpponentDP, 0, _currentCharacterAP);
 
-                Gdx.app.debug(TAG, "ENEMY HAS " + currentOpponentHP + " hit with damage: " + damage);
+                Gdx.app.log(TAG, "ENEMY HAS " + currentOpponentHP + " hit with damage: " + damage);
 
                 currentOpponentHP = MathUtils.clamp(currentOpponentHP - damage, 0, currentOpponentHP);
                 _enemies.get(0).getEntityConfig().setPropertyValue(EntityConfig.EntityProperties.ENTITY_HEALTH_POINTS.toString(), String.valueOf(currentOpponentHP));
 
-                Gdx.app.debug(TAG, "Player attacks " + _enemies.get(0).getEntityConfig().getEntityID() + " leaving it with HP: " + currentOpponentHP);
+                Gdx.app.log(TAG, "Player attacks " + _enemies.get(0).getEntityConfig().getEntityID() + " leaving it with HP: " + currentOpponentHP);
 
                 _enemies.get(0).getEntityConfig().setPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString(), String.valueOf(damage));
                 if( damage > 0 ){

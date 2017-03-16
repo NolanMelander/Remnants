@@ -130,9 +130,7 @@ public class LoadGameScreen extends GameScreen {
 	}
 
 	@Override
-	public void hide() {
-		Gdx.input.setInputProcessor(null);
-	}
+	public void hide() { /*Gdx.input.setInputProcessor(null);*/	}
 
 	@Override
 	public void pause() {

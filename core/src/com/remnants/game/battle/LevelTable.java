@@ -9,30 +9,28 @@ import java.util.ArrayList;
 
 public class LevelTable {
     private String levelID;
-    private int xpMax;
-    private int hpMax;
-    private int mpMax;
+    private String charName;
+    private int hpMax;     //health points
+    private int mpMax;     //magic points
+    private int mAtkMax;      //magic attack
+    private int pAtkMax;      //physical attack
+    private int defMax;       //defense
+    private int aglMax;       //agility
+    private int xpMax;     //experience points
 
     public String getLevelID() {
         return levelID;
     }
-
     public void setLevelID(String levelID) {
         this.levelID = levelID;
     }
 
-    public int getXpMax() {
-        return xpMax;
-    }
-
-    public void setXpMax(int xpMax) {
-        this.xpMax = xpMax;
-    }
+    public String getCharName() { return charName; }
+    public void setCharName(String name) { this.charName = name; }
 
     public int getHpMax() {
         return hpMax;
     }
-
     public void setHpMax(int hpMax) {
         this.hpMax = hpMax;
     }
@@ -40,9 +38,27 @@ public class LevelTable {
     public int getMpMax() {
         return mpMax;
     }
-
     public void setMpMax(int mpMax) {
         this.mpMax = mpMax;
+    }
+
+    public int getmAtkMax() { return mAtkMax; }
+    public void setmAtkMax(int mAtk) { this.mAtkMax = mAtk; }
+
+    public int getpAtkMax() { return pAtkMax; }
+    public void setpAtkMax(int pAtk) { this.pAtkMax = pAtk; }
+
+    public int getDefMax() { return defMax; }
+    public void setDefMax(int def) { this.defMax = def; }
+
+    public int getAglMax() { return aglMax; }
+    public void setAglMax(int agl) { this.aglMax = agl; }
+
+    public int getXpMax() {
+        return xpMax;
+    }
+    public void setXpMax(int xpMax) {
+        this.xpMax = xpMax;
     }
 
     static public Array<LevelTable> getLevelTables(String configFilePath){

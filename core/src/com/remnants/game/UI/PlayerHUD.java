@@ -44,7 +44,7 @@ import com.remnants.game.sfx.ShakeCamera;
 
 import java.util.Vector;
 
-public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver, MenuObserver {
+public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, dPadObserver, MenuObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
     private Stage _stage;
@@ -217,10 +217,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
         //Observers
         _player.registerObserver(this);
-        _statusUI.addObserver(this);
         _storeInventoryUI.addObserver(this);
         _inventoryUI.addObserver(_battleUI.getCurrentState());
-        _inventoryUI.addObserver(this);
         _battleUI.getCurrentState().addObserver(this);
         _menuUI.getCurrentState().addObserver(this);
         //currently, the observer isn't doing anything
@@ -347,6 +345,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _stage.addAction(
                 Actions.sequence(
                         Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_IN, 1), _transitionActor)));
+        showUI();
     }
 
     private void hideUI() {
@@ -650,33 +649,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     }
 
     @Override
-    public void onNotify(int value, StatusEvent event) {
-        switch(event) {
-            case UPDATED_GP:
-                _storeInventoryUI.setPlayerGP(value);
-                ProfileManager.getInstance().setProperty("currentPlayerGP", _statusUI.getGoldValue());
-                break;
-            case UPDATED_HP:
-                ProfileManager.getInstance().setProperty("currentPlayerHP", _statusUI.getHPValue());
-                break;
-            case UPDATED_LEVEL:
-                ProfileManager.getInstance().setProperty("currentPlayerLevel", _statusUI.getLevelValue());
-                break;
-            case UPDATED_MP:
-                ProfileManager.getInstance().setProperty("currentPlayerMP", _statusUI.getMPValue());
-                break;
-            case UPDATED_XP:
-                ProfileManager.getInstance().setProperty("currentPlayerXP", _statusUI.getXPValue());
-                break;
-            case LEVELED_UP:
-                notify(AudioObserver.AudioCommand.MUSIC_PLAY_ONCE, AudioObserver.AudioTypeEvent.MUSIC_LEVEL_UP_FANFARE);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
     public void onNotify(int value, dPadEvent event) {
         switch(event) {
             case LEFT:
@@ -756,7 +728,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 _mapMgr.enableCurrentmapMusic();
                 addTransitionToScreen();
                 _battleUI.setVisible(false);
-
+                showUI();
                 break;
             case PLAYER_RUNNING:
                 MainGameScreen.setGameState(MainGameScreen.GameState.RUNNING);
@@ -786,29 +758,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_PLAYER_WAND_ATTACK);
                 int mpVal = ProfileManager.getInstance().getProperty("currentPlayerMP", Integer.class);
                 _statusUI.setMPValue(mpVal);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onNotify(String value, InventoryEvent event) {
-        switch(event){
-            case ITEM_CONSUMED:
-                String[] strings = value.split(Component.MESSAGE_TOKEN);
-                if( strings.length != 2) return;
-
-                int type = Integer.parseInt(strings[0]);
-                int typeValue = Integer.parseInt(strings[1]);
-
-                if( InventoryItem.doesRestoreHP(type) ){
-                    notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_EATING);
-                    _statusUI.addHPValue(typeValue);
-                }else if( InventoryItem.doesRestoreMP(type) ){
-                    notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_DRINKING);
-                    _statusUI.addMPValue(typeValue);
-                }
                 break;
             default:
                 break;
