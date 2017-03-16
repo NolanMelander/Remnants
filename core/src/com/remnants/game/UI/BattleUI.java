@@ -3,6 +3,7 @@ package com.remnants.game.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
@@ -25,7 +27,8 @@ import com.remnants.game.battle.BattleState;
 import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
+
+import java.util.Vector;
 
 public class BattleUI extends Window implements BattleObserver, CharacterDrawables {
     private static final String TAG = BattleUI.class.getSimpleName();
@@ -33,7 +36,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     private Stage _stage;
 
     //character sprites
-    private AnimatedImage _enemyImage;
+    private Vector<AnimatedImage> _enemyImages;
     private Image _tarenBattleSprite = new Image(_tarenBattleDrawable);
     private Image _abellaBattleSprite = new Image(_abellaBattleDrawable);
     private Image _ipoBattleSprite = new Image(_ipoBattleDrawable);
@@ -62,6 +65,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
     private float _origDamageValLabelY = 0;
     private Vector2 _currentImagePosition;
+
+    private int fleeChance = 60;
 
     public BattleUI(Stage gameStage){
         super("BATTLE", Utility.STATUSUI_SKIN, "solidbackground");
@@ -93,8 +98,10 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _damageValLabel = new Label("0", Utility.STATUSUI_SKIN);
         _damageValLabel.setVisible(false);
 
-        _enemyImage = new AnimatedImage();
-        _enemyImage.setTouchable(Touchable.disabled);
+        _enemyImages = new Vector<AnimatedImage>();
+        //populate _enemyImages with empty AnimatedImage objects
+        for (int i = 0; i < 5; i++)
+            _enemyImages.add(new AnimatedImage());
 
         _attackButton = new TextButton("Attack", Utility.STATUSUI_SKIN, "inventory");
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
@@ -108,7 +115,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - buttonHeight) / 2));
 
         //maximum of 5 creatures in battle
-        for (int i = 0; i < 6; i++) {
+        //TODO: change to _enemyImages
+        /*for (int i = 0; i < 6; i++) {
             if (i < _enemySprites.getItems().size) {
                 Image enemy = new Image(_enemySprites.getItems().get(i));
                 enemyTable.add(enemy).width(enemySpriteSize).height(enemySpriteSize);
@@ -118,20 +126,31 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
             if (i > _enemySprites.getItems().size) {
                 enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
             }
+        }*/
+
+        for (int i = 0; i < 6; i++) {
+            if (i < _enemyImages.size()) {
+                Image enemy = new Image(_enemyImages.get(i).getDrawable());
+                enemyTable.add(enemy).width(enemySpriteSize).height(enemySpriteSize);
+            }
+            if (i == 2)
+                enemyTable.row();
+            if (i > _enemyImages.size())
+                enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
         }
 
         //Battle Sprite table
         //   splitting it up into two rows allows for easy displacement
         Table topRow = new Table();
-        //topRow.setDebug(true);
+        topRow.setDebug(true);
         topRow.add(_tarenBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
         topRow.add(_ipoBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padRight(padding);
         Table bottomRow = new Table();
-        //bottomRow.setDebug(true);
+        bottomRow.setDebug(true);
         bottomRow.add(_abellaBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padLeft(padding);
         bottomRow.add(_tyrusBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
         Table bsTable = new Table();
-        //bsTable.setDebug(true);
+        bsTable.setDebug(true);
         bsTable.align(Align.topRight);
         bsTable.setPosition(gameStage.getWidth(), gameStage.getHeight());
         bsTable.add(topRow);
@@ -178,8 +197,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        //_battleState.playerAttacks();
-                        onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                        _battleState.characterAttacks();
+                        onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -187,8 +206,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        //_battleState.playerAttacks();
-                        onNotify(null, BattleEvent.PLAYER_TURN_DONE);
+                        _battleState.characterAttacks();
+                        onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -240,7 +259,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     }
 
     @Override
-    public void onNotify(Entity entity, BattleEvent event) {
+    public void onNotify(Vector<Entity> enemies, BattleEvent event) {
         switch(event){
             case PLAYER_TURN_START:
                 _runButton.setDisabled(true);
@@ -248,23 +267,29 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 _attackButton.setDisabled(true);
                 _attackButton.setTouchable(Touchable.disabled);
                 break;
-            case OPPONENT_ADDED:
-                _enemyImage.setEntity(entity);
-                _enemyImage.setCurrentAnimation(Entity.AnimationType.IMMOBILE);
-                _enemyImage.setSize(_enemyWidth, _enemyHeight);
-                _currentImagePosition.set(_enemyImage.getX(),_enemyImage.getY());
-                if( _battleShakeCam == null ){
-                    _battleShakeCam = new ShakeCamera(_currentImagePosition.x, _currentImagePosition.y, 30.0f);
+            case ADD_OPPONENTS:
+                Gdx.app.log(TAG, "Adding " + enemies.size() + " opponents' images");
+
+                Gdx.app.log(TAG, "First element: " + enemies.firstElement().getEntityConfig().getEntityID());
+                Gdx.app.log(TAG, "With index: " + enemies.get(0).getEntityConfig().getEntityID());
+
+                for (int i = 0; i < enemies.size(); i++) {
+                    TextureRegionDrawable region = new TextureRegionDrawable((TextureRegion) enemies.get(i).getAnimation(Entity.AnimationType.IDLE).getKeyFrame(10, true));
+                    _enemyImages.get(i).setDrawable(region);
+                    Gdx.app.log(TAG, "Added image for " + enemies.get(i).getEntityConfig().getEntityID());
                 }
 
-                this.setTitle("Level " + _battleState.getCurrentZoneLevel() + " " + entity.getEntityConfig().getEntityID());
+                //if( _battleShakeCam == null ){
+                //    _battleShakeCam = new ShakeCamera(_currentImagePosition.x, _currentImagePosition.y, 30.0f);
+                //}
+                //this.setTitle("Level " + _battleState.getCurrentZoneLevel() + " " + entity.getEntityConfig().getEntityID());
                 break;
             case OPPONENT_HIT_DAMAGE:
-                int damage = Integer.parseInt(entity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
+                /*int damage = Integer.parseInt(entity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
                 _damageValLabel.setText(String.valueOf(damage));
                 _damageValLabel.setY(_origDamageValLabelY);
                 _battleShakeCam.startShaking();
-                _damageValLabel.setVisible(true);
+                _damageValLabel.setVisible(true);*/
                 break;
             case OPPONENT_DEFEATED:
                 _damageValLabel.setVisible(false);
@@ -292,7 +317,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 Gdx.app.log(TAG, "All characters have been given an action");
                 _battleState.opponentAttacks();
                 break;
-            case PLAYER_USED_MAGIC:
+            case CHARACTER_USED_MAGIC:
                 float x = _currentImagePosition.x + (_enemyWidth/2);
                 float y = _currentImagePosition.y + (_enemyHeight/2);
                 _effects.add(ParticleEffectFactory.getParticleEffect(ParticleEffectFactory.ParticleEffectType.WAND_ATTACK, x,y));
@@ -331,7 +356,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         if( _battleShakeCam != null && _battleShakeCam.isCameraShaking() ){
             Vector2 shakeCoords = _battleShakeCam.getNewShakePosition();
-            _enemyImage.setPosition(shakeCoords.x, shakeCoords.y);
+            //_enemyImage.setPosition(shakeCoords.x, shakeCoords.y);
         }
 
         for( int i = 0; i < _effects.size; i++){

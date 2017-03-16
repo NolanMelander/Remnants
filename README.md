@@ -16,6 +16,7 @@ Known Bugs:
   Player Sprite continues to walk in place when no action is being taken (Temporary fix put in place)  
   Graphics issue on WorldMap causes towns to be surounded by Green blocks (Working on fix)
   Menu buttons are sometimes unresponsive
+  Input in game menu fails after exiting from battle (working on fix)
 
 Other Info:  
   This project was done for **CS246** at **BYU-I**.

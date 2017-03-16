@@ -42,6 +42,8 @@ import com.remnants.game.sfx.ScreenTransitionAction;
 import com.remnants.game.sfx.ScreenTransitionActor;
 import com.remnants.game.sfx.ShakeCamera;
 
+import java.util.Vector;
+
 public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, InventoryObserver, StatusObserver, dPadObserver, MenuObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
@@ -511,6 +513,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             case PLAYER_HAS_MOVED:
                 if( _battleUI.isBattleReady() ){
                     Gdx.app.log(TAG, "Entering battle mode");
+                    Gdx.app.log(TAG, "Setting opponents");
+                    _battleUI.getCurrentState().setCurrentOpponents();
                     addTransitionToScreen();
                     MainGameScreen.setGameState(MainGameScreen.GameState.SAVING);
                     _mapMgr.disableCurrentmapMusic();
@@ -734,21 +738,25 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     }
 
     @Override
-    public void onNotify(Entity enemyEntity, BattleEvent event) {
+    public void onNotify(Vector<Entity> enemyEntity, BattleEvent event) {
         switch (event) {
             case OPPONENT_HIT_DAMAGE:
                 notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_CREATURE_PAIN);
                 break;
             case OPPONENT_DEFEATED:
                 MainGameScreen.setGameState(MainGameScreen.GameState.RUNNING);
+                //TODO: update for multiple enemies
+                /*
                 int goldReward = Integer.parseInt(enemyEntity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_GP_REWARD.toString()));
                 _statusUI.addGoldValue(goldReward);
                 int xpReward = Integer.parseInt(enemyEntity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_XP_REWARD.toString()));
                 _statusUI.addXPValue(xpReward);
+                */
                 notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_BATTLE);
                 _mapMgr.enableCurrentmapMusic();
                 addTransitionToScreen();
                 _battleUI.setVisible(false);
+
                 break;
             case PLAYER_RUNNING:
                 MainGameScreen.setGameState(MainGameScreen.GameState.RUNNING);
@@ -774,7 +782,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                     MainGameScreen.setGameState(MainGameScreen.GameState.GAME_OVER);
                 }
                 break;
-            case PLAYER_USED_MAGIC:
+            case CHARACTER_USED_MAGIC:
                 notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_PLAYER_WAND_ATTACK);
                 int mpVal = ProfileManager.getInstance().getProperty("currentPlayerMP", Integer.class);
                 _statusUI.setMPValue(mpVal);

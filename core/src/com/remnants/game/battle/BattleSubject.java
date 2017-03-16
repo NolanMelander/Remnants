@@ -3,6 +3,8 @@ package com.remnants.game.battle;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
 
+import java.util.Vector;
+
 public class BattleSubject {
     private Array<BattleObserver> _observers;
 
@@ -18,9 +20,9 @@ public class BattleSubject {
         _observers.removeValue(battleObserver, true);
     }
 
-    protected void notify(final Entity entity, BattleObserver.BattleEvent event){
+    protected void notify(final Vector<Entity> entities, BattleObserver.BattleEvent event){
         for(BattleObserver observer: _observers){
-            observer.onNotify(entity, event);
+            observer.onNotify(entities, event);
         }
     }
 }

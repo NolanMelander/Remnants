@@ -385,6 +385,12 @@ public class GameMenuUI extends Window implements MenuObserver, CharacterDrawabl
 
     @Override
     public void onNotify(String value, MenuEvent event) {
-        //no need to do anything here
+        switch(event) {
+            case OPEN_MENU:
+                Gdx.input.setInputProcessor(_stage);
+                break;
+            default:
+                break;
+        }
     }
 }
