@@ -130,8 +130,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         for (int i = 0; i < 6; i++) {
             if (i < _enemyImages.size()) {
-                Image enemy = new Image(_enemyImages.get(i).getDrawable());
-                enemyTable.add(enemy).width(enemySpriteSize).height(enemySpriteSize);
+                enemyTable.add(_enemyImages.get(i)).width(enemySpriteSize).height(enemySpriteSize);
             }
             if (i == 2)
                 enemyTable.row();
@@ -270,13 +269,10 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
             case ADD_OPPONENTS:
                 Gdx.app.log(TAG, "Adding " + enemies.size() + " opponents' images");
 
-                Gdx.app.log(TAG, "First element: " + enemies.firstElement().getEntityConfig().getEntityID());
-                Gdx.app.log(TAG, "With index: " + enemies.get(0).getEntityConfig().getEntityID());
-
                 for (int i = 0; i < enemies.size(); i++) {
-                    TextureRegionDrawable region = new TextureRegionDrawable((TextureRegion) enemies.get(i).getAnimation(Entity.AnimationType.IDLE).getKeyFrame(10, true));
-                    _enemyImages.get(i).setDrawable(region);
-                    Gdx.app.log(TAG, "Added image for " + enemies.get(i).getEntityConfig().getEntityID());
+                    Gdx.app.log(TAG, "Setting image for " + enemies.get(i).getEntityConfig().getEntityID());
+                    _enemyImages.get(i).setEntity(enemies.get(i));
+                    _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
                 }
 
                 //if( _battleShakeCam == null ){
