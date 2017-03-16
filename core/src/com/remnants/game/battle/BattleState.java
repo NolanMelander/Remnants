@@ -67,7 +67,6 @@ public class BattleState extends BattleSubject implements InventoryObserver {
     public void setCurrentOpponents(){
         Gdx.app.log(TAG, "Entered BATTLE ZONE: " + _currentZoneLevel);
         _enemies = MonsterFactory.getInstance().getRandomMonsters(_currentZoneLevel);
-        Gdx.app.log(TAG, "Notifying with " + _enemies.size() + " enemies");
         notify(_enemies, BattleObserver.BattleEvent.ADD_OPPONENTS);
     }
 

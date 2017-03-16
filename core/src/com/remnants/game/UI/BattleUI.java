@@ -267,10 +267,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 _attackButton.setTouchable(Touchable.disabled);
                 break;
             case ADD_OPPONENTS:
-                Gdx.app.log(TAG, "Adding " + enemies.size() + " opponents' images");
-
                 for (int i = 0; i < enemies.size(); i++) {
-                    Gdx.app.log(TAG, "Setting image for " + enemies.get(i).getEntityConfig().getEntityID());
                     _enemyImages.get(i).setEntity(enemies.get(i));
                     _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
                 }

@@ -51,15 +51,13 @@ public class MonsterFactory {
 
     public Vector<Entity> getRandomMonsters(int monsterZoneID){
         Vector<Entity> enemies = new Vector<Entity>();
+
+        //TODO: get the right permutation formula for the creatures spawning
         int numCreatures = MathUtils.random(1,5);
+
         for(int i = 0; i < numCreatures; i++) {
             //TODO: figure out how to get the right monsterZoneID
-            Gdx.app.log(TAG, "MonsterZoneID: " + monsterZoneID);
             Array<MonsterEntityType> monsters = _monsterZones.get(String.valueOf(1/*monsterZoneID*/));
-
-            if (_monsterZones.get(String.valueOf(1)) == null) {
-                Gdx.app.log(TAG, "MonsterZones is returning null");
-            }
 
             int size = monsters.size;
 
