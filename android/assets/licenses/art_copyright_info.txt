@@ -1,3 +1,21 @@
+Used in Remnants
+Title: "FWM-Game Assets"
+Author: Georg Eckert
+Website: http://limbusdev.de/#pc-fwm-assets
+Date: Tuesday, February 28, 2017 - 14:48
+License: Opensource
+Filename: TownTiles1.png
+
+Title: "World Map Overworld Tileset"
+Author: MrBeast
+Website: http://opengameart.org/content/worldmapoverworld-tileset
+Date: Wednesday, July 27, 2011 - 15:55
+License: CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+Filename:Overworldx1.0.png
+         Overworldx1.1.png
+         Overworldx1.2.png
+
+Unused in Remnants
 Title: "DawnLike - 16x16 Universal Rogue-like tileset v1.81"
 Author:  DragonDePlatino (Andrew Rios;  DragonDePlatino@gmail.com) [Tileset creation]
          DawnBringer (Richard Fhager; dawnbringer@hem.utfors.se)[Palette]

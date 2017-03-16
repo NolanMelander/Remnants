@@ -34,8 +34,7 @@ public class MapFactory {
             case MAIN_TOWN:
                 map = _mapTable.get(MapType.MAIN_TOWN);
                 if (map == null) {
-                    //this will need changing to the new town map
-                    map = new TownMap();
+                    map = new MainTownMap();
                     _mapTable.put(MapType.MAIN_TOWN, map);
                 }
                 break;
