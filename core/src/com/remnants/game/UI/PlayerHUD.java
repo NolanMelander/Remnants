@@ -404,6 +404,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                     Array<QuestGraph> quests = profileManager.getProperty("playerQuests", Array.class);
                     _questUI.setQuests(quests);
 
+                    //TODO: update to include all stats
                     int xpMaxVal = profileManager.getProperty("currentPlayerXPMax", Integer.class);
                     int xpVal = profileManager.getProperty("currentPlayerXP", Integer.class);
 
@@ -412,6 +413,9 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
                     int mpMaxVal = profileManager.getProperty("currentPlayerMPMax", Integer.class);
                     int mpVal = profileManager.getProperty("currentPlayerMP", Integer.class);
+
+                    //check if this will crash
+                    int pAtkVal = profileManager.getProperty("currentPlayerPAtkMax", Integer.class);
 
                     int levelVal = profileManager.getProperty("currentPlayerLevel", Integer.class);
 
@@ -445,6 +449,14 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 profileManager.setProperty("currentPlayerHPMax", _statusUI.getHPValueMax() );
                 profileManager.setProperty("currentPlayerMP", _statusUI.getMPValue() );
                 profileManager.setProperty("currentPlayerMPMax", _statusUI.getMPValueMax() );
+                profileManager.setProperty("currentPlayerPAtkMax", _statusUI.getpAtkValueMax());
+                profileManager.setProperty("currentPlayerPAtk", _statusUI.getpAtkValue());
+                profileManager.setProperty("currentPlayerMAtkMax", _statusUI.getmAtkValueMax());
+                profileManager.setProperty("currentPlayerMAtk", _statusUI.getmAtkValue());
+                profileManager.setProperty("currentPlayerDefMax", _statusUI.getDefValueMax());
+                profileManager.setProperty("currentPlayerDef", _statusUI.getDefValue());
+                profileManager.setProperty("currentPlayerAglMax", _statusUI.getAglValueMax());
+                profileManager.setProperty("currentPlayerAgl", _statusUI.getAglValue());
                 profileManager.setProperty("currentTime", _clock.getTotalTime());
                 break;
             case CLEAR_CURRENT_PROFILE:
@@ -459,6 +471,14 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 profileManager.setProperty("currentPlayerHPMax", 0 );
                 profileManager.setProperty("currentPlayerMP", 0 );
                 profileManager.setProperty("currentPlayerMPMax", 0 );
+                profileManager.setProperty("currentPlayerPAtkMax", 0);
+                profileManager.setProperty("currentPlayerPAtk", 0);
+                profileManager.setProperty("currentPlayerMAtkMax", 0);
+                profileManager.setProperty("currentPlayerMAtk", 0);
+                profileManager.setProperty("currentPlayerDefMax", 0);
+                profileManager.setProperty("currentPlayerDef", 0);
+                profileManager.setProperty("currentPlayerAglMax", 0);
+                profileManager.setProperty("currentPlayerAgl", 0);
                 profileManager.setProperty("currentTime", 0);
                 break;
             default:

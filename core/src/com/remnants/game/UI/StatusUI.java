@@ -124,10 +124,10 @@ public class StatusUI extends Window implements StatusObserver, StatusSubject {
         this.add(_gold.getLabel());
         this.add(_gold.getValLabel()).align(Align.left);
 
-        debugLevelUp = new TextButton("Level Up", Utility.STATUSUI_SKIN);
+        debugLevelUp = new TextButton("Lvl Up", Utility.STATUSUI_SKIN);
         debugLevelUp.getLabel().setFontScale(3);
         this.row();
-        this.add(debugLevelUp).size(_barWidth * 2, _barHeight);
+        this.add(debugLevelUp).size(_barWidth * 1.5f, _barHeight);
 
         //this.debug();
         this.pack();
