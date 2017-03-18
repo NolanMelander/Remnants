@@ -322,6 +322,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 item.getDrawable().setMinWidth(_slotWidth);
 
                 inventorySlot.add(item);
+
                 if( item.getName().equalsIgnoreCase(defaultName) ){
                     draganddrop.addSource(new InventorySlotSource(inventorySlot, draganddrop));
                 }else if( disableNonDefaultItems == false ){

@@ -3,7 +3,6 @@ package com.remnants.game.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,11 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
-import com.remnants.game.EntityConfig;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.BattleObserver;
 import com.remnants.game.battle.BattleState;
@@ -44,7 +41,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
     private List<Drawable> _worldSprites;
     private Image _activeWorldSprite;
-    private List<Drawable> _enemySprites;
 
     private int _currentTurn = 0;
 
@@ -77,10 +73,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _worldSprites = new List<Drawable>(Utility.STATUSUI_SKIN);
         _worldSprites.setItems(_tarenWorldDrawable, _abellaWorldDrawable, _ipoWorldDrawable, _tyrusWorldDrawable);
         _activeWorldSprite = new Image();
-        _enemySprites = new List<Drawable>(Utility.STATUSUI_SKIN);
-
-        //TODO: set up monster factory to randomly generate creatures
-        _enemySprites.setItems(_enemyDrawable, _enemyDrawable, _enemyDrawable);
 
         //TODO: come up with a good equation to measure the size of the sprites to fit any screen
         float battleSpriteSize = gameStage.getHeight() / 3;
@@ -113,20 +105,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         Table enemyTable = new Table();
         enemyTable.setDebug(true);
         enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - buttonHeight) / 2));
-
-        //maximum of 5 creatures in battle
-        //TODO: change to _enemyImages
-        /*for (int i = 0; i < 6; i++) {
-            if (i < _enemySprites.getItems().size) {
-                Image enemy = new Image(_enemySprites.getItems().get(i));
-                enemyTable.add(enemy).width(enemySpriteSize).height(enemySpriteSize);
-            }
-            if (i == 2)
-                enemyTable.row();
-            if (i > _enemySprites.getItems().size) {
-                enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
-            }
-        }*/
 
         for (int i = 0; i < 6; i++) {
             if (i < _enemyImages.size()) {
