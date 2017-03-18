@@ -26,7 +26,7 @@ entityProperties: {
 	}
 	ENTITY_GP_REWARD: {
 		class: java.lang.String
-		value: 5
+		value: 6
 	}
 }
 animationConfig: [
