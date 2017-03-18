@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="60" tilewidth="16" tileheight="16" nextobjectid="172">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="60" tilewidth="16" tileheight="16" nextobjectid="173">
  <tileset firstgid="1" name="Mountains" tilewidth="16" tileheight="16" tilecount="120" columns="12">
   <image source="../sprites/objects/Overworldx1.0.png" width="192" height="160"/>
  </tileset>
@@ -331,5 +331,8 @@
  <objectgroup name="MAP_PORTAL_LAYER">
   <object id="170" name="MAIN_TOWN" x="392.5" y="162.5" width="45.75" height="25.25"/>
   <object id="171" name="MAIN_TOWN" x="384.5" y="183.25" width="24.75" height="38.25"/>
+ </objectgroup>
+ <objectgroup name="MAP_ENEMY_SPAWN_LAYER">
+  <object id="172" name="1" x="51" y="39" width="885" height="840"/>
  </objectgroup>
 </map>
