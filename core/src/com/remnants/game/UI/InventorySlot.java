@@ -15,7 +15,7 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
 
     //All slots have this default image
     private Stack _defaultBackground;
-    private Image _customBackgroundDecal;
+    public Image _customBackgroundDecal;
     private Label _numItemsLabel;
     private int _numItemsVal = 0;
     private int _filterItemType;
@@ -32,6 +32,7 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         _numItemsLabel = new Label(String.valueOf(_numItemsVal), Utility.STATUSUI_SKIN, "inventory-item-count");
         _numItemsLabel.setAlignment(Align.bottomRight);
         _numItemsLabel.setVisible(false);
+        _numItemsLabel.setFontScale(6);
 
         _defaultBackground.add(image);
 
@@ -59,7 +60,6 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
         if( sendRemoveNotification ){
             notify(this, InventorySlotObserver.SlotEvent.REMOVED_ITEM);
         }
-
     }
 
     public void incrementItemCount(boolean sendAddNotification) {
@@ -149,7 +149,6 @@ public class InventorySlot extends Stack implements InventorySlotSubject {
             }
         }
     }
-
 
     public void clearAllInventoryItems(boolean sendRemoveNotifications) {
         if( hasItem() ){
