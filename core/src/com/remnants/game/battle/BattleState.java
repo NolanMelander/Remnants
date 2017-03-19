@@ -34,9 +34,9 @@ public class BattleState extends BattleSubject implements InventoryObserver {
     public void resetDefaults(){
         Gdx.app.debug(TAG, "Resetting defaults...");
         _currentZoneLevel = 0;
-        _currentCharacterAP = 0;
-        _currentCharacterDP = 0;
-        _currentCharacterWandAPPoints = 0;
+        _currentCharacterAP = 10;
+        _currentCharacterDP = 10;
+        _currentCharacterWandAPPoints = 10;
         _characterAttackCalculations.cancel();
         _opponentAttackCalculations.cancel();
         _checkCharacterMagicUse.cancel();
@@ -128,7 +128,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
                 int currentOpponentDP = Integer.parseInt(_enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_DEFENSE_POINTS.toString()));
 
                 int damage = MathUtils.clamp(_currentCharacterAP - currentOpponentDP, 0, _currentCharacterAP);
-                //damage = 25;
+                damage = 25;
 
                 Gdx.app.log(TAG, "ENEMY HAS " + currentOpponentHP + " hit with damage: " + damage);
 
@@ -143,6 +143,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
                 }
 
                 if (currentOpponentHP == 0) {
+                    Gdx.app.log(TAG, "Notifying that the enemy is dead");
                     BattleState.this.notify(_enemies, BattleObserver.BattleEvent.OPPONENT_DEFEATED);
                 }
 

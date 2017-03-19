@@ -261,7 +261,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 Gdx.app.log(TAG, "OPPONENT_HIT_DAMAGE: damage: " + damage);
                 _damageValLabel.setText(String.valueOf(damage));
                 _damageValLabel.setY(_origDamageValLabelY);
-                _battleShakeCam.startShaking();
+                //_battleShakeCam.startShaking();
                 _damageValLabel.setVisible(true);
                 break;
             case OPPONENT_DEFEATED:
@@ -269,6 +269,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 enemies.clear();
                 _damageValLabel.setVisible(false);
                 _damageValLabel.setY(_origDamageValLabelY);
+                this.setVisible(false);
                 break;
             case OPPONENT_TURN_DONE:
                  _attackButton.setDisabled(false);

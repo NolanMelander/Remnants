@@ -753,6 +753,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 addTransitionToScreen();
                 _battleUI.setVisible(false);
                 showUI();
+                Gdx.input.setInputProcessor(_stage);
                 break;
             case PLAYER_RUNNING:
                 MainGameScreen.setGameState(MainGameScreen.GameState.RUNNING);
