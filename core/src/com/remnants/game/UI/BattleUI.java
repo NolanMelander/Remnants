@@ -258,12 +258,15 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 break;
             case OPPONENT_HIT_DAMAGE:
                 int damage = Integer.parseInt(enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
+                Gdx.app.log(TAG, "OPPONENT_HIT_DAMAGE: damage: " + damage);
                 _damageValLabel.setText(String.valueOf(damage));
                 _damageValLabel.setY(_origDamageValLabelY);
                 _battleShakeCam.startShaking();
                 _damageValLabel.setVisible(true);
                 break;
             case OPPONENT_DEFEATED:
+                Gdx.app.log(TAG, "Victorious");
+                enemies.clear();
                 _damageValLabel.setVisible(false);
                 _damageValLabel.setY(_origDamageValLabelY);
                 break;

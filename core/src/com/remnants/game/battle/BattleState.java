@@ -128,6 +128,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
                 int currentOpponentDP = Integer.parseInt(_enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_DEFENSE_POINTS.toString()));
 
                 int damage = MathUtils.clamp(_currentCharacterAP - currentOpponentDP, 0, _currentCharacterAP);
+                //damage = 25;
 
                 Gdx.app.log(TAG, "ENEMY HAS " + currentOpponentHP + " hit with damage: " + damage);
 
@@ -194,12 +195,12 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         switch(event) {
             case UPDATED_AP:
                 int apVal = Integer.valueOf(value);
-                _currentCharacterAP = apVal;
+                _currentCharacterAP = 50;//apVal;
                 //Gdx.app.debug(TAG, "APVAL: " + _currentPlayerAP);
                 break;
             case UPDATED_DP:
                 int dpVal = Integer.valueOf(value);
-                _currentCharacterDP = dpVal;
+                _currentCharacterDP = 50;//dpVal;
                 //Gdx.app.debug(TAG, "DPVAL: " + _currentPlayerDP);
                 break;
             case ADD_WAND_AP:
