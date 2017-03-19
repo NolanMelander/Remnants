@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Entity;
+import com.remnants.game.EntityConfig;
 import com.remnants.game.Utility;
 import com.remnants.game.battle.BattleObserver;
 import com.remnants.game.battle.BattleState;
@@ -256,11 +257,11 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 //this.setTitle("Level " + _battleState.getCurrentZoneLevel() + " " + entity.getEntityConfig().getEntityID());
                 break;
             case OPPONENT_HIT_DAMAGE:
-                /*int damage = Integer.parseInt(entity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
+                int damage = Integer.parseInt(enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
                 _damageValLabel.setText(String.valueOf(damage));
                 _damageValLabel.setY(_origDamageValLabelY);
                 _battleShakeCam.startShaking();
-                _damageValLabel.setVisible(true);*/
+                _damageValLabel.setVisible(true);
                 break;
             case OPPONENT_DEFEATED:
                 _damageValLabel.setVisible(false);
