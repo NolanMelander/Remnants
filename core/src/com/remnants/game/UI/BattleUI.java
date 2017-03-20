@@ -2,6 +2,7 @@ package com.remnants.game.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -26,6 +27,7 @@ import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
 
+import java.awt.Font;
 import java.util.Vector;
 
 public class BattleUI extends Window implements BattleObserver, CharacterDrawables {
@@ -40,6 +42,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     private Image _ipoBattleSprite = new Image(_ipoBattleDrawable);
     private Image _tyrusBattleSprite = new Image(_tyrusBattleDrawable);
 
+    //world sprites
     private List<Drawable> _worldSprites;
     private Image _activeWorldSprite;
 
@@ -48,23 +51,32 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     private final int _enemyWidth = 96;
     private final int _enemyHeight = 96;
 
+    //buttons and labels
     private BattleState _battleState = null;
     private TextButton _attackButton = null;
     private TextButton _runButton = null;
     private TextButton _backButton = null;
     private Label _damageValLabel = null;
+    private float _buttonHeight;
+    private float _buttonWidth;
+
+    private BitmapFont _messageField;
+    private String _message;
 
     private float _battleTimer = 0;
     private final float _checkTimer = 1;
 
+    //fun to have; original Bludbourne feature
     private ShakeCamera _battleShakeCam = null;
     private Array<ParticleEffect> _effects;
-
     private float _origDamageValLabelY = 0;
     private Vector2 _currentImagePosition;
 
-    private int fleeChance = 60;
-
+    /**
+     * CONSTRUCTOR BattleUI
+     *
+     * @param gameStage - needed for stage height and width for sizing
+     */
     public BattleUI(Stage gameStage){
         super("BATTLE", Utility.STATUSUI_SKIN, "solidbackground");
 
@@ -75,11 +87,14 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _worldSprites.setItems(_tarenWorldDrawable, _abellaWorldDrawable, _ipoWorldDrawable, _tyrusWorldDrawable);
         _activeWorldSprite = new Image();
 
+        _messageField = new BitmapFont(Gdx.files.internal("fonts/SDS_6x6.fnt"), false);
+        _message = "Do you even Leviosa?";
+
         //TODO: come up with a good equation to measure the size of the sprites to fit any screen
         float battleSpriteSize = gameStage.getHeight() / 3;
         float enemySpriteSize = gameStage.getHeight() / 4;
-        float buttonHeight = gameStage.getHeight() / 4;
-        float buttonWidth = (gameStage.getWidth() - buttonHeight) / 4;
+        _buttonHeight = gameStage.getHeight() / 4;
+        _buttonWidth = (gameStage.getWidth() - _buttonHeight) / 4;
 
         _battleTimer = 0;
         _battleState = new BattleState();
@@ -105,7 +120,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         //Enemy table
         Table enemyTable = new Table();
         enemyTable.setDebug(true);
-        enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - buttonHeight) / 2));
+        enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - _buttonHeight) / 2));
 
         for (int i = 0; i < 6; i++) {
             if (i < _enemyImages.size()) {
@@ -151,13 +166,13 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         //button table
         Table buttonTable = new Table();
         buttonTable.setDebug(true);
-        buttonTable.add(_activeWorldSprite).height(buttonHeight).width(buttonHeight).left();
-        buttonTable.add(attackButton).height(buttonHeight).width(buttonWidth);
-        buttonTable.add(magicButton).height(buttonHeight).width(buttonWidth);
-        buttonTable.add(itemsButton).height(buttonHeight).width(buttonWidth);
-        buttonTable.add(fleeButton).height(buttonHeight).width(buttonWidth);
+        buttonTable.add(_activeWorldSprite).height(_buttonHeight).width(_buttonHeight).left();
+        buttonTable.add(attackButton).height(_buttonHeight).width(_buttonWidth);
+        buttonTable.add(magicButton).height(_buttonHeight).width(_buttonWidth);
+        buttonTable.add(itemsButton).height(_buttonHeight).width(_buttonWidth);
+        buttonTable.add(fleeButton).height(_buttonHeight).width(_buttonWidth);
         buttonTable.align(Align.topLeft);
-        buttonTable.setPosition(0, buttonHeight);
+        buttonTable.setPosition(0, _buttonHeight);
 
         _stage.addActor(bsTable);
         _stage.addActor(buttonTable);
@@ -175,8 +190,9 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
+                        _message = "Preapring a physical attack";
                         _battleState.characterAttacks();
-                        onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
+                        //onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -184,8 +200,9 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
+                        _message = "Preparing a magical attack";
                         _battleState.characterAttacks();
-                        onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
+                        //onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -201,6 +218,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
+                        _message = "Chickening out already?";
                         debugBattleReady = false;
                         _battleState.playerRuns();
                     }
@@ -212,6 +230,12 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         Gdx.input.setInputProcessor(_stage);
         _stage.act(delta);
         _stage.draw();
+
+        //draw the message
+        _stage.getBatch().begin();
+        _messageField.draw(_stage.getBatch(), _message, 0, _buttonHeight + _messageField.getLineHeight());
+        _messageField.getData().setScale(3);
+        _stage.getBatch().end();
     }
 
     public void battleZoneTriggered(int battleZoneValue){
@@ -219,6 +243,14 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     }
 
     public boolean debugBattleReady = false;
+
+    /**
+     * FUNCTION isBattleReady
+     *
+     * Determines when enemies should appear
+     *
+     * @return whether we are ready for combat
+     */
     public boolean isBattleReady(){
         //TODO: decide when enemies should appear
         /*if( _battleTimer > _checkTimer ){
@@ -236,6 +268,14 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         return _battleState;
     }
 
+    /**
+     * FUNCTION onNotify - Battle Observer
+     *
+     * Observes battle changes
+     *
+     * @param enemies - vector of entities for the enemies spawned in battle
+     * @param event - Battle Event being notified
+     */
     @Override
     public void onNotify(Vector<Entity> enemies, BattleEvent event) {
         switch(event){
@@ -244,44 +284,53 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 _runButton.setTouchable(Touchable.disabled);
                 _attackButton.setDisabled(true);
                 _attackButton.setTouchable(Touchable.disabled);
+                _currentTurn = 0;
+                _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
                 break;
+
             case ADD_OPPONENTS:
                 for (int i = 0; i < enemies.size(); i++) {
                     _enemyImages.get(i).setEntity(enemies.get(i));
                     _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
                 }
-
-                //if( _battleShakeCam == null ){
-                //    _battleShakeCam = new ShakeCamera(_currentImagePosition.x, _currentImagePosition.y, 30.0f);
-                //}
-                //this.setTitle("Level " + _battleState.getCurrentZoneLevel() + " " + entity.getEntityConfig().getEntityID());
+                _message = "Oh look! An enemy!";
                 break;
+
             case OPPONENT_HIT_DAMAGE:
                 int damage = Integer.parseInt(enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_HIT_DAMAGE_TOTAL.toString()));
                 Gdx.app.log(TAG, "OPPONENT_HIT_DAMAGE: damage: " + damage);
+                _message = "Opponent was hit with " + damage + " damage";
                 _damageValLabel.setText(String.valueOf(damage));
                 _damageValLabel.setY(_origDamageValLabelY);
                 //_battleShakeCam.startShaking();
                 _damageValLabel.setVisible(true);
                 break;
+
             case OPPONENT_DEFEATED:
                 Gdx.app.log(TAG, "Victorious");
+                //the screen transitions too soon for this to be seen, but it's fun to have ;)
+                _message = "*Female British accent* You are victorious!";
                 enemies.clear();
                 _damageValLabel.setVisible(false);
                 _damageValLabel.setY(_origDamageValLabelY);
                 this.setVisible(false);
                 break;
+
             case OPPONENT_TURN_DONE:
                  _attackButton.setDisabled(false);
                  _attackButton.setTouchable(Touchable.enabled);
                 _runButton.setDisabled(false);
                 _runButton.setTouchable(Touchable.enabled);
                 break;
+
+            case OPPONENT_CRIT_ON_FLEE:
+                _message = "Enemy attacks while you try to flee!";
+                break;
+
             case CHARACTER_TURN_DONE:
                 _currentTurn++;
                 if (_currentTurn >= 4) {
-                    //set to -1 for current debugging purposes
-                    _currentTurn = -1;
+                    _currentTurn = 0;
                     _activeWorldSprite.setDrawable(null);
                     onNotify(null, BattleEvent.PLAYER_TURN_DONE);
                 }
@@ -289,15 +338,27 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
                 }
                 break;
+
             case PLAYER_TURN_DONE:
                 Gdx.app.log(TAG, "All characters have been given an action");
                 _battleState.opponentAttacks();
+                _currentTurn = 0;
                 break;
+
             case CHARACTER_USED_MAGIC:
                 float x = _currentImagePosition.x + (_enemyWidth/2);
                 float y = _currentImagePosition.y + (_enemyHeight/2);
                 _effects.add(ParticleEffectFactory.getParticleEffect(ParticleEffectFactory.ParticleEffectType.WAND_ATTACK, x,y));
                 break;
+
+            case PLAYER_RUNNING:
+                //don't think there's time for this message to be displayed, but oh well
+                _message = "You leave the scene.";
+                enemies.clear();
+                _currentTurn = 0;
+                _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
+                break;
+
             default:
                 break;
         }
@@ -309,6 +370,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     public void resetDefaults(){
         _battleTimer = 0;
         _battleState.resetDefaults();
+        _activeWorldSprite.setDrawable(_worldSprites.getItems().get(0));
     }
 
     @Override

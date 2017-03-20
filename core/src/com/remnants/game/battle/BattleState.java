@@ -25,6 +25,9 @@ public class BattleState extends BattleSubject implements InventoryObserver {
     private Timer.Task _opponentAttackCalculations;
     private Timer.Task _checkCharacterMagicUse;
 
+    /**
+     * CONSTRUCTOR BattleState
+     */
     public BattleState(){
         _characterAttackCalculations = getCharacterAttackCalculationTimer();
         _opponentAttackCalculations = getOpponentAttackCalculationTimer();
@@ -64,6 +67,11 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         //}
     }
 
+    /**
+     * FUNCTION setCurrentOpponents
+     *
+     * Adds new monsters for each encounter
+     */
     public void setCurrentOpponents(){
         Gdx.app.log(TAG, "Entered BATTLE ZONE: " + _currentZoneLevel);
         //for only one monster
@@ -98,6 +106,10 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         }
     }
 
+    /**
+     * FUNCTION opponentAttacks
+     * Initiates the opponent's attack calculation timer
+     */
     public void opponentAttacks(){
         if( _enemies == null ){
             return;
@@ -128,7 +140,8 @@ public class BattleState extends BattleSubject implements InventoryObserver {
                 int currentOpponentDP = Integer.parseInt(_enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_DEFENSE_POINTS.toString()));
 
                 int damage = MathUtils.clamp(_currentCharacterAP - currentOpponentDP, 0, _currentCharacterAP);
-                damage = 25;
+                //for debugging
+                damage = 4;
 
                 Gdx.app.log(TAG, "ENEMY HAS " + currentOpponentHP + " hit with damage: " + damage);
 
@@ -147,7 +160,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
                     BattleState.this.notify(_enemies, BattleObserver.BattleEvent.OPPONENT_DEFEATED);
                 }
 
-                BattleState.this.notify(_enemies, BattleObserver.BattleEvent.PLAYER_TURN_DONE);
+                BattleState.this.notify(_enemies, BattleObserver.BattleEvent.CHARACTER_TURN_DONE);
             }
         };
     }
@@ -180,17 +193,32 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         };
     }
 
+    /**
+    * FUNCTION playerRuns
+    *
+    * Compares a random number between 1 and 100 with the chance of escape
+    * There is a chance to be attacked when trying to flee
+     */
     public void playerRuns(){
         int randomVal = MathUtils.random(1,100);
         if( _chanceOfEscape > randomVal  ) {
             notify(_enemies, BattleObserver.BattleEvent.PLAYER_RUNNING);
         }else if (randomVal > _criticalChance){
+            notify(_enemies, BattleObserver.BattleEvent.OPPONENT_CRIT_ON_FLEE);
             opponentAttacks();
         }else{
             return;
         }
     }
 
+    /**
+     * FUNCTION onNotify - Inventory Observer
+     *
+     * Observes inventory changes
+     *
+     * @param value - AP or DP value as a string
+     * @param event - Inventory event being notified
+     */
     @Override
     public void onNotify(String value, InventoryEvent event) {
         switch(event) {
