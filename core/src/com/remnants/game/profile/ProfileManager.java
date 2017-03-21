@@ -67,6 +67,8 @@ public class ProfileManager extends ProfileSubject {
             FileHandle[] files = Gdx.files.local(".").list(SAVEGAME_SUFFIX);
 
             for(FileHandle file: files) {
+                Gdx.app.log(TAG, "Saving profile: " + file.nameWithoutExtension() + SAVEGAME_SUFFIX + " at " + file.path());
+
                 _profiles.put(file.nameWithoutExtension(), file);
             }
         }else{

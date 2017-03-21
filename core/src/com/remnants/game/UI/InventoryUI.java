@@ -444,20 +444,19 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
     public void addEntityToInventory(Entity entity, String itemName){
         Array<Cell> sourceCells = _inventorySlotTable.getCells();
-        int index = 0;
 
-            for (; index < sourceCells.size; index++) {
-                InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
-                if (inventorySlot == null) continue;
-                int numItems = inventorySlot.getNumItems();
-                if (numItems == 0) {
-                    InventoryItem inventoryItem = InventoryItemFactory.getInstance().getInventoryItem(ItemTypeID.valueOf(entity.getEntityConfig().getItemTypeID()));
-                    inventoryItem.setName(itemName);
-                    inventorySlot.add(inventoryItem);
-                    _dragAndDrop.addSource(new InventorySlotSource(inventorySlot, _dragAndDrop));
-                    break;
-                }
+        for (int index = 0; index < sourceCells.size; index++) {
+            InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
+            if (inventorySlot == null) continue;
+            int numItems = inventorySlot.getNumItems();
+            if (numItems == 0) {
+                InventoryItem inventoryItem = InventoryItemFactory.getInstance().getInventoryItem(ItemTypeID.valueOf(entity.getEntityConfig().getItemTypeID()));
+                inventoryItem.setName(itemName);
+                inventorySlot.add(inventoryItem);
+                _dragAndDrop.addSource(new InventorySlotSource(inventorySlot, _dragAndDrop));
+                break;
             }
+        }
     }
 
     public void removeQuestItemFromInventory(String questID){

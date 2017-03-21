@@ -26,6 +26,8 @@ import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.menu.MenuObserver;
 import com.remnants.game.menu.MenuState;
 import com.remnants.game.profile.ProfileManager;
+import com.remnants.game.profile.ProfileObserver;
+import com.remnants.game.profile.ProfileSubject;
 
 /**
  * Created by brian on 2/23/2017.
@@ -292,8 +294,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SaveScreen));
+                ProfileManager.getInstance().saveProfile();
             }
 
 

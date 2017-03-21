@@ -432,7 +432,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             break;
             case SAVING_PROFILE:
                 Gdx.app.log(TAG, "Saving profile...");
-                /*if (_menuUI.getInventoryUI().getInventorySlotTable().getChildren().size == 0)
+                if (_menuUI.getInventoryUI().getInventorySlotTable().getChildren().size == 0)
                     Gdx.app.log(TAG, "No children in the inventory slot table to save");
                 else {
                     Gdx.app.log(TAG, "Items in inventory slot table being saved:");
@@ -440,9 +440,21 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                         Gdx.app.log(TAG, "Count: " + i);
                         Gdx.app.log(TAG, _menuUI.getInventoryUI().getInventorySlotTable().getCells().get(i).toString());
                     }
-                }*/
+                }
+
+                if (_menuUI.getInventoryUI().getInventoryActors().size >= 0) {
+                    Gdx.app.log(TAG, "Actors in Inventory UI:");
+                    for (int i = 0; i < _menuUI.getInventoryUI().getInventoryActors().size; i++) {
+                        Gdx.app.log(TAG, "Count: " + i);
+                        Gdx.app.log(TAG, _menuUI.getInventoryUI().getInventoryActors().get(i).toString());
+                    }
+                }
+                else
+                    Gdx.app.log(TAG, "No actors in inventory ui");
+
                 profileManager.setProperty("playerQuests", _questUI.getQuests());
                 profileManager.setProperty("playerInventory", InventoryUI.getInventory(_menuUI.getInventoryUI().getInventorySlotTable()));
+                Gdx.app.log(TAG, "Storing in playerInventory: " + InventoryUI.getInventory(_menuUI.getInventoryUI().getInventorySlotTable()).toString());
                 profileManager.setProperty("playerEquipInventory", InventoryUI.getInventory(_menuUI.getInventoryUI().getEquipSlotTable()));
                 profileManager.setProperty("currentPlayerGP", _statusUI.getGoldValue() );
                 profileManager.setProperty("currentPlayerLevel", _statusUI.getLevelValue() );

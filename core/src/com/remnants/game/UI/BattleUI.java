@@ -119,7 +119,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         //Enemy table
         Table enemyTable = new Table();
-        enemyTable.setDebug(true);
+        //enemyTable.setDebug(true);
         enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - _buttonHeight) / 2));
 
         for (int i = 0; i < 6; i++) {
@@ -135,15 +135,15 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         //Battle Sprite table
         //   splitting it up into two rows allows for easy displacement
         Table topRow = new Table();
-        topRow.setDebug(true);
+        //topRow.setDebug(true);
         topRow.add(_tarenBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
         topRow.add(_ipoBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padRight(padding);
         Table bottomRow = new Table();
-        bottomRow.setDebug(true);
+        //bottomRow.setDebug(true);
         bottomRow.add(_abellaBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padLeft(padding);
         bottomRow.add(_tyrusBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
         Table bsTable = new Table();
-        bsTable.setDebug(true);
+        //bsTable.setDebug(true);
         bsTable.align(Align.topRight);
         bsTable.setPosition(gameStage.getWidth(), gameStage.getHeight());
         bsTable.add(topRow);
@@ -165,7 +165,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         //button table
         Table buttonTable = new Table();
-        buttonTable.setDebug(true);
+        //buttonTable.setDebug(true);
         buttonTable.add(_activeWorldSprite).height(_buttonHeight).width(_buttonHeight).left();
         buttonTable.add(attackButton).height(_buttonHeight).width(_buttonWidth);
         buttonTable.add(magicButton).height(_buttonHeight).width(_buttonWidth);
@@ -181,7 +181,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         //layout
         this.setStage(_stage);
         this.setFillParent(true);
-        this.setDebug(true);
+        //this.setDebug(true);
         this.pack();
 
         _origDamageValLabelY = _damageValLabel.getY()+_enemyHeight;
