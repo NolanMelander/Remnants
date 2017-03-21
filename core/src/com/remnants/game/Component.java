@@ -1,6 +1,5 @@
 package com.remnants.game;
 
-
 public interface Component {
 
     public static final String MESSAGE_TOKEN = ":::::";

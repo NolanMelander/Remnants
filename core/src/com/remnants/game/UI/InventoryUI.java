@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
 import com.remnants.game.Component;
 import com.remnants.game.Entity;
 import com.remnants.game.InventoryItem;
@@ -31,7 +30,7 @@ import com.remnants.game.inventory.InventoryState;
 *
  */
 public class InventoryUI extends Window implements InventorySubject, InventorySlotObserver{
-    private static final String TAG = GameMenuUI.class.getSimpleName();
+    private static final String TAG = InventoryUI.class.getSimpleName();
 
     public final static int _numSlots = 30;
     public static final String PLAYER_INVENTORY = "Player_Inventory";

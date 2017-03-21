@@ -3,7 +3,6 @@ package com.remnants.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector3;
-import com.remnants.game.UI.dPadUI;
 
 public class PlayerInputComponent extends InputComponent {
 

@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -209,7 +208,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
         _menuButton.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
-               _menuUI.open();
                onNotify("", MenuEvent.OPEN_MENU);
            }
         });

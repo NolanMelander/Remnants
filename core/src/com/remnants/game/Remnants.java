@@ -12,7 +12,6 @@ import com.remnants.game.screens.MainGameScreen;
 import com.remnants.game.screens.MainMenuScreen;
 import com.remnants.game.screens.NewGameScreen;
 
-
 public class Remnants extends Game {
 
 	private static MainGameScreen _mainGameScreen;

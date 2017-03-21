@@ -27,9 +27,18 @@ import com.remnants.game.battle.CharacterDrawables;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
 
-import java.awt.Font;
 import java.util.Vector;
 
+/**
+ * CLASS BattleUI
+ *
+ * Graphical user interface for the battle scene
+ *
+ * @extends Window - will be drawn on the screen
+ * @implements BattleObserver - notifies other functions of battle updates
+ *             CharacterDrawables - interface holding character sprites
+ *
+ */
 public class BattleUI extends Window implements BattleObserver, CharacterDrawables {
     private static final String TAG = BattleUI.class.getSimpleName();
 
@@ -186,6 +195,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         _origDamageValLabelY = _damageValLabel.getY()+_enemyHeight;
 
+        //button listeners
         attackButton.addListener(
                 new ClickListener() {
                     @Override
@@ -394,7 +404,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
         if( _battleShakeCam != null && _battleShakeCam.isCameraShaking() ){
             Vector2 shakeCoords = _battleShakeCam.getNewShakePosition();
-            //_enemyImage.setPosition(shakeCoords.x, shakeCoords.y);
         }
 
         for( int i = 0; i < _effects.size; i++){
