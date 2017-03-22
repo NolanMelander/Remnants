@@ -11,7 +11,8 @@ public class MapFactory {
         MAIN_TOWN,
         TOWN,
         CASTLE_OF_DOOM,
-        WORLD_MAP
+        WORLD_MAP,
+        DUNGEON
     }
 
     static public Map getMap(MapType mapType){
@@ -50,6 +51,13 @@ public class MapFactory {
                 if( map == null ){
                     map = new CastleDoomMap();
                     _mapTable.put(MapType.CASTLE_OF_DOOM, map);
+                }
+                break;
+            case DUNGEON:
+                map = _mapTable.get(MapType.DUNGEON);
+                if( map == null) {
+                    map = new DungeonMap();
+                    _mapTable.put(MapType.DUNGEON, map);
                 }
                 break;
             default:
