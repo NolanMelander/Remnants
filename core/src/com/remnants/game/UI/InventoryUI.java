@@ -1,7 +1,9 @@
 package com.remnants.game.UI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -11,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
@@ -50,6 +54,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
     //armor / weapon slots
     private InventorySlot _armorSlot;
     private InventorySlot _weaponSlot;
+    private InventorySlot _spellSlot;
 
     private Label _DPValLabel;
     private int _DPVal = 0;
@@ -112,9 +117,9 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         labelTable.add(APLabel).align(Align.left);
         labelTable.add(_APValLabel).align(Align.center);
 
-        InventorySlot headSlot = new InventorySlot(
+        _spellSlot = new InventorySlot(
                 ItemUseType.ARMOR_HELMET.getValue(),
-                new Image(Utility.ITEMS_TEXTUREATLAS.findRegion("inv_helmet")));
+                new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/default-scroll-background.png")))));/*Utility.ITEMS_TEXTUREATLAS.findRegion("inv_helmet"))*/
 
         _weaponSlot = new InventorySlot(
                 ItemUseType.WEAPON_ONEHAND.getValue() |
@@ -144,19 +149,19 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 ItemUseType.ARMOR_FEET.getValue(),
                 new Image(Utility.ITEMS_TEXTUREATLAS.findRegion("inv_boot")));
 
-        headSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+        _spellSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         _weaponSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         rightArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         _armorSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         legsSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
 
-        headSlot.addObserver(this);
+        _spellSlot.addObserver(this);
         _weaponSlot.addObserver(this);
         rightArmSlot.addObserver(this);
         _armorSlot.addObserver(this);
         legsSlot.addObserver(this);
 
-        _dragAndDrop.addTarget(new InventorySlotTarget(headSlot));
+        _dragAndDrop.addTarget(new InventorySlotTarget(_spellSlot));
         _dragAndDrop.addTarget(new InventorySlotTarget(_weaponSlot));
         _dragAndDrop.addTarget(new InventorySlotTarget(_armorSlot));
         _dragAndDrop.addTarget(new InventorySlotTarget(rightArmSlot));
@@ -208,7 +213,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         }
 
         _equipSlots.add();
-        _equipSlots.add(headSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(_spellSlot).size(_slotWidth, _slotHeight);
         _equipSlots.row();
 
         _equipSlots.add(_weaponSlot).size(_slotWidth, _slotHeight);
@@ -248,6 +253,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
     public InventorySlot getArmorSlot() { return _armorSlot; }
     public InventorySlot getWeaponSlot() { return _weaponSlot; }
+    public InventorySlot getSpellSlot() { return _spellSlot; }
 
     public void setCharacterSprite(Image sprite) {
         _characterSprite.setDrawable(sprite.getDrawable());

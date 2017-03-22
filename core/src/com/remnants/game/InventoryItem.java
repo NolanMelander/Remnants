@@ -32,7 +32,7 @@ public class InventoryItem extends Image {
         WAND_ONEHAND(32),
         WAND_TWOHAND(64),
         ARMOR_SHIELD(128),
-        ARMOR_HELMET(256),
+        ARMOR_HELMET(256), //change this to SPELL_SCROLL
         ARMOR_CHEST(512),
         ARMOR_FEET(1024),
         QUEST_ITEM(2048);

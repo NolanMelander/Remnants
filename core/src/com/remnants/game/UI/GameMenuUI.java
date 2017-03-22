@@ -52,6 +52,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
     private Image _activeBattleSprite = new Image();
     private Image _activeArmor = new Image();
     private Image _activeWeapon = new Image();
+    private Image _activeSpellScroll = new Image();
     private Image _activeAccessory = new Image();
 
     //active battle sprite variables
@@ -82,7 +83,6 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         //tables
         Table spriteTable = new Table();
         Table buttonTable = new Table();
-        Table spellsTable = new Table();
         Table equipTable = new Table();
 
         //add tooltips to the stage
@@ -116,12 +116,6 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         ImageButton abellaSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/abella.png"))));
         ImageButton ipoSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ipo.png"))));
         ImageButton tyrusSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/tyrus.png"))));
-
-        //temporary images
-        Image spellBook1 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/ice-crystal-scroll.png"))));
-        Image spellBook2 = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/flame-scroll.png"))));
-        _activeArmor = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/yellow-tunic-plain.png"))));
-        _activeWeapon = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/broad-sword.png"))));
 
         //set button dimensions
         float buttonHeight = gameStage.getHeight() / 7;
@@ -160,18 +154,11 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         buttonTable.add(saveButton).width(buttonWidth).height(buttonHeight).row();
         buttonTable.add(optionButton).width(buttonWidth).height(buttonHeight).row();
 
-        //spells table layout
-        //spellsTable.setDebug(true);
-        spellsTable.top().right();
-        spellsTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight());
-        spellsTable.add().width(buttonHeight).height(buttonHeight);
-        spellsTable.add(spellBook1).width(buttonHeight).height(buttonHeight);
-        spellsTable.add(spellBook2).width(buttonHeight).height(buttonHeight);
-
         //equipment table layout
-        //equipTable.setDebug(true);
+        equipTable.setDebug(true);
         equipTable.top().right();
-        equipTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight() - buttonHeight);
+        equipTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight());
+        equipTable.add(_activeSpellScroll).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(_activeArmor).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(_activeWeapon).width(buttonHeight).height(buttonHeight).row();
         equipTable.add(/*accessory*/).width(buttonHeight).height(buttonHeight).row();
@@ -200,7 +187,6 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
         _stage.addActor(_activeBattleSprite);
         _stage.addActor(backButton);
-        _stage.addActor(spellsTable);
         _stage.addActor(buttonTable);
         _stage.addActor(equipTable);
         _stage.addActor(spriteTable);
@@ -417,6 +403,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
             _activeWeapon.setDrawable(_inventoryUI.getWeaponSlot()._customBackgroundDecal.getDrawable());
         else
             _activeWeapon.setDrawable(_inventoryUI.getWeaponSlot().getTopInventoryItem().getDrawable());
+
+        //spell scroll
+        if (_inventoryUI.getSpellSlot().getTopInventoryItem() == null)
+            _activeSpellScroll.setDrawable(_inventoryUI.getSpellSlot()._customBackgroundDecal.getDrawable());
+        else
+            _activeSpellScroll.setDrawable(_inventoryUI.getSpellSlot().getTopInventoryItem().getDrawable());
     }
 
     @Override
