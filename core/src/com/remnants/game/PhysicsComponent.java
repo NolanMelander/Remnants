@@ -129,16 +129,16 @@ public abstract class PhysicsComponent extends ComponentSubject implements Compo
 
         switch (_currentDirection) {
             case LEFT :
-                testX -=  _velocity.x;
+                testX -=  _velocity.x * 3;
                 break;
             case RIGHT :
-                testX += _velocity.x;
+                testX += _velocity.x * 3;
                 break;
             case UP :
-                testY += _velocity.y;
+                testY += _velocity.y * 3;
                 break;
             case DOWN :
-                testY -= _velocity.y;
+                testY -= _velocity.y * 3;
                 break;
             default:
                 break;
