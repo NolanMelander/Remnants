@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -64,7 +65,7 @@ public class Entity {
 
 	public static final int FRAME_WIDTH = 16;
 	public static final int FRAME_HEIGHT = 16;
-	private static final int MAX_COMPONENTS = 5;
+	private static final int MAX_COMPONENTS = 10;
 
 	private Json _json;
 	private EntityConfig _entityConfig;
@@ -258,5 +259,5 @@ public class Entity {
 		return entity;
 	}
 
-
+	public TextureRegion getImage() { return _graphicsComponent.getCurrentFrame(); }
 }

@@ -1,0 +1,472 @@
+[
+  {
+    entityID : TAREN
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 5
+            y : 0
+          }
+
+          {
+            x: 5
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 5
+            y : 0
+          }
+
+          {
+            x: 5
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : ABELLA
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 0
+            y : 0
+          }
+
+          {
+            x: 0
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 0
+            y : 0
+          }
+
+          {
+            x: 0
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : IPO
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 3
+            y : 0
+          }
+
+          {
+            x: 3
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 3
+            y : 0
+          }
+
+          {
+            x: 3
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : TYRUS
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 9
+            y : 0
+          }
+
+          {
+            x: 9
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 9
+            y : 0
+          }
+
+          {
+            x: 9
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : KING
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 4
+            y : 0
+          }
+
+          {
+            x: 4
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 4
+            y : 0
+          }
+
+          {
+            x: 4
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : DRACONIAS
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 2
+            y : 0
+          }
+
+          {
+            x: 2
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 2
+            y : 0
+          }
+
+          {
+            x: 2
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : DRACONIAS_EVIL
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 1
+            y : 0
+          }
+
+          {
+            x: 1
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 1
+            y : 0
+          }
+
+          {
+            x: 1
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : TOWN_NPC
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 6
+            y : 0
+          }
+
+          {
+            x: 6
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 6
+            y : 0
+          }
+
+          {
+            x: 6
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : TOWN_NPC_OLD
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 7
+            y : 0
+          }
+
+          {
+            x: 7
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 7
+            y : 0
+          }
+
+          {
+            x: 7
+            y : 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    entityID : TOWN_NPC_WOMAN
+    state : IMMOBILE
+    direction : DOWN
+    conversationConfigPath : ""
+    questConfigPath : ""
+    currentQuestID : ""
+    itemTypeID : NONE
+    animationConfig: [
+      {
+        frameDuration: 1.0
+        animationType: IDLE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 8
+            y : 0
+          }
+
+          {
+            x: 8
+            y : 0
+          }
+        ]
+      }
+      {
+        frameDuration: 1.0
+        animationType: IMMOBILE
+        texturePaths: [
+          sprites/characters/worldsprites.png
+        ]
+        gridPoints: [
+          {
+            x : 8
+            y : 0
+          }
+
+          {
+            x: 8
+            y : 0
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -57,7 +57,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         if( _currentZoneLevel == 0 ) return false;
         int randomVal = MathUtils.random(1,100);
 
-        //Gdx.app.debug(TAG, "CHANGE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
+        //Gdx.app.debug(TAG, "CHANCE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
 
         //if( _chanceOfAttack > randomVal  ){
             setCurrentOpponents();
@@ -71,6 +71,8 @@ public class BattleState extends BattleSubject implements InventoryObserver {
      * FUNCTION setCurrentOpponents
      *
      * Adds new monsters for each encounter
+     *
+     * Notifies the Battle Observer with ADD_OPPONENTS
      */
     public void setCurrentOpponents(){
         Gdx.app.log(TAG, "Entered BATTLE ZONE: " + _currentZoneLevel);
@@ -82,6 +84,14 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         notify(_enemies, BattleObserver.BattleEvent.ADD_OPPONENTS);
     }
 
+    /**
+     * FUNCTION characterAttacks
+     *
+     * called when the character attacks the enemy
+     *
+     * Notifies the Battle Observer with CHARACTER_TURN_DONE if the character has enough MP
+     *    to make a magic attack
+     */
     public void characterAttacks(){
         if( _enemies == null ){
             return;
@@ -89,7 +99,6 @@ public class BattleState extends BattleSubject implements InventoryObserver {
 
         //Check for magic if used in attack; If we don't have enough MP, then return
         int mpVal = ProfileManager.getInstance().getProperty("currentPlayerMP", Integer.class);
-        //notify(_currentOpponent, BattleObserver.BattleEvent.PLAYER_TURN_START);
 
         if( _currentCharacterWandAPPoints == 0 ){
             if( !_characterAttackCalculations.isScheduled() ){

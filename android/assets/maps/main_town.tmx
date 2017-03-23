@@ -198,7 +198,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="MAP_COLLISION_LAYER">
+ <objectgroup name="MAP_COLLISION_LAYER" visible="0">
   <object id="49" x="328" y="451.667" width="111.667" height="35.75"/>
   <object id="58" x="321.091" y="452" width="6.81818" height="0.636364"/>
   <object id="59" x="322.273" y="452.636" width="4.27273" height="1.18182"/>
@@ -1511,8 +1511,9 @@
  <objectgroup name="MAP_SPAWNS_LAYER">
   <object id="39" name="PLAYER_START" x="658.334" y="437.666"/>
   <object id="1685" name="TOWN_VENDOR" x="644" y="338" width="22" height="24"/>
+  <object id="1687" name="KING" x="569" y="421" width="22" height="24"/>
  </objectgroup>
- <objectgroup name="MAP_PORTAL_LAYER">
+ <objectgroup name="MAP_PORTAL_LAYER" visible="0">
   <object id="35" name="WORLD_MAP" x="1278" y="-340" width="30" height="1318"/>
   <object id="36" name="WORLD_MAP" x="-28" y="960" width="1356" height="24"/>
  </objectgroup>

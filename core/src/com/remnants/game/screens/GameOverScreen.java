@@ -28,13 +28,15 @@ public class GameOverScreen extends GameScreen {
         _stage = new Stage();
         TextButton continueButton = new TextButton("Continue", Utility.STATUSUI_SKIN);
         TextButton mainMenuButton = new TextButton("Main Menu", Utility.STATUSUI_SKIN);
-        continueButton.getLabel().setFontScale(3);
-        mainMenuButton.getLabel().setFontScale(3);
+        continueButton.getLabel().setFontScale(6);
+        mainMenuButton.getLabel().setFontScale(6);
         Label messageLabel = new Label(DEATH_MESSAGE, Utility.STATUSUI_SKIN);
         messageLabel.setWrap(true);
+        messageLabel.setFontScale(6);
 
         Label gameOverLabel = new Label(GAMEOVER, Utility.STATUSUI_SKIN);
         gameOverLabel.setAlignment(Align.center);
+        gameOverLabel.setFontScale(6);
 
         Table table = new Table();
 

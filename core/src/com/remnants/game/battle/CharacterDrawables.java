@@ -21,8 +21,4 @@ public interface CharacterDrawables {
     TextureRegionDrawable _abellaWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/AbellaB.png")));
     TextureRegionDrawable _ipoWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/IpoB.png")));
     TextureRegionDrawable _tyrusWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TyrusB.png")));
-
-    //enemies
-    TextureRegionDrawable _enemyDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/monsters/hyena.png")));
-
 }

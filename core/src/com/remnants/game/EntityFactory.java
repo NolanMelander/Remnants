@@ -1,5 +1,6 @@
 package com.remnants.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 
@@ -20,6 +21,12 @@ public class EntityFactory {
 
     public static enum EntityName{
         PLAYER_PUPPET,
+        KING,
+        DRACONIAS,
+        DRACONIAS_EVIL,
+        TOWN_NPC,
+        TOWN_NPC_OLD,
+        TOWN_NPC_WOMAN,
         TOWN_GUARD_WALKING,
         TOWN_BLACKSMITH,
         TOWN_MAGE,
@@ -39,6 +46,7 @@ public class EntityFactory {
     public static String TOWN_FOLK_CONFIGS = "scripts/town_folk.json";
     public static String ENVIRONMENTAL_ENTITY_CONFIGS = "scripts/environmental_entities.json";
     public static String TOWN_VENDOR_CONFIG = "scripts/town_vendor1.json";
+    public static String WORLD_SPRITES_CONFIGS = "scripts/world_sprites.json";
 
     private EntityFactory(){
         _entities = new Hashtable<String, EntityConfig>();
@@ -50,6 +58,12 @@ public class EntityFactory {
 
         Array<EntityConfig> environmentalEntityConfigs = Entity.getEntityConfigs(ENVIRONMENTAL_ENTITY_CONFIGS);
         for( EntityConfig config: environmentalEntityConfigs){
+            _entities.put(config.getEntityID(), config);
+        }
+
+        Array<EntityConfig> worldSpritesConfigs = Entity.getEntityConfigs(WORLD_SPRITES_CONFIGS);
+        for (EntityConfig config : worldSpritesConfigs) {
+            Gdx.app.log(TAG, "Adding " + config.getEntityID() + " to entity factory");
             _entities.put(config.getEntityID(), config);
         }
 
@@ -93,6 +107,4 @@ public class EntityFactory {
         Entity entity = Entity.initEntity(config);
         return entity;
     }
-
-
 }

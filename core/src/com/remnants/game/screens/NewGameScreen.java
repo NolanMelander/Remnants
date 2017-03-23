@@ -31,16 +31,18 @@ public class NewGameScreen extends GameScreen {
 		_stage = new Stage();
 
 		Label profileName = new Label("Enter Profile Name: ", Utility.STATUSUI_SKIN);
+		profileName.setFontScale(4.5f);
 		_profileText  = new TextField("",Utility.STATUSUI_SKIN, "inventory");
 		_profileText.setMaxLength(20);
 
 		_overwriteDialog = new Dialog("Overwrite?", Utility.STATUSUI_SKIN, "solidbackground");
 		Label overwriteLabel = new Label("Overwrite existing profile name?", Utility.STATUSUI_SKIN);
+		overwriteLabel.setFontScale(3);
 		TextButton cancelButton = new TextButton("Cancel", Utility.STATUSUI_SKIN, "inventory");
-		cancelButton.getLabel().setFontScale(3);
+		cancelButton.getLabel().setFontScale(6);
 
 		TextButton overwriteButton = new TextButton("Overwrite", Utility.STATUSUI_SKIN, "inventory");
-		overwriteButton.getLabel().setFontScale(3);
+		overwriteButton.getLabel().setFontScale(6);
 		_overwriteDialog.setKeepWithinStage(true);
 		_overwriteDialog.setModal(true);
 		_overwriteDialog.setMovable(false);
@@ -48,8 +50,8 @@ public class NewGameScreen extends GameScreen {
 
 		TextButton startButton = new TextButton("Start", Utility.STATUSUI_SKIN);
 		TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
-		startButton.getLabel().setFontScale(3);
-		backButton.getLabel().setFontScale(3);
+		startButton.getLabel().setFontScale(6);
+		backButton.getLabel().setFontScale(6);
 
 		//Layout
 		_overwriteDialog.row();
@@ -57,16 +59,18 @@ public class NewGameScreen extends GameScreen {
 		_overwriteDialog.button(cancelButton).bottom().right();
 
 		Table topTable = new Table();
+		//topTable.setDebug(true);
 		topTable.setFillParent(true);
-		topTable.add(profileName).center();
-		topTable.add(_profileText).center();
+		topTable.add(profileName).center().padBottom(25).row();
+		topTable.add(_profileText).center().width(_stage.getWidth() / 3).height(profileName.getPrefHeight());
 
 		Table bottomTable = new Table();
+		//bottomTable.setDebug(true);
 		bottomTable.setHeight(startButton.getHeight());
 		bottomTable.setWidth(Gdx.graphics.getWidth());
 		bottomTable.center();
-		bottomTable.add(startButton).padRight(50);
-		bottomTable.add(backButton);
+		bottomTable.add(startButton).padRight(50).padBottom(100);
+		bottomTable.add(backButton).padBottom(100);
 
 		_stage.addActor(topTable);
 		_stage.addActor(bottomTable);

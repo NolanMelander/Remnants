@@ -1,5 +1,6 @@
 package com.remnants.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.remnants.game.audio.AudioObserver;
@@ -12,6 +13,8 @@ import com.remnants.game.profile.ProfileManager;
  * Version 1.1.0
  */
 public class MainTownMap extends Map {
+    private static final String TAG = MainTownMap.class.getSimpleName();
+
     private static String _mapPath = "maps/main_town.tmx";
     private Json _json;
     MainTownMap() {
@@ -21,7 +24,33 @@ public class MainTownMap extends Map {
 
         Entity vendor = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_VENDOR);
         initSpecialEntityPosition(vendor);
-        _mapEntities.add(vendor);
+       _mapEntities.add(vendor);
+
+        Entity king = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.KING);
+        initSpecialEntityPosition(king);
+        _mapEntities.add(king);
+
+        /*
+        Entity draconias = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.DRACONIAS);
+        initSpecialEntityPosition(draconias);
+        _mapEntities.add(draconias);
+
+        Entity draconias_evil = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.DRACONIAS_EVIL);
+        initSpecialEntityPosition(draconias_evil);
+        _mapEntities.add(draconias_evil);
+
+        Entity town_npc = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_NPC);
+        initSpecialEntityPosition(town_npc);
+        _mapEntities.add(town_npc);
+
+        Entity town_npc_old = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_NPC_OLD);
+        initSpecialEntityPosition(town_npc_old);
+        _mapEntities.add(town_npc_old);
+
+        Entity town_npc_woman = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_NPC_WOMAN);
+        initSpecialEntityPosition(town_npc_woman);
+        _mapEntities.add(town_npc_woman);
+        */
     }
 
     //TODO Find music for town, currently set to use the same as the world map

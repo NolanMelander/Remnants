@@ -44,11 +44,28 @@ public class MonsterFactory {
         return _instance;
     }
 
+    /**
+     * FUNCTION getMonster
+     *
+     * returns a monster entity based on a MonsterEntityType
+     *
+     * @param monsterEntityType
+     * @return new entity containing the monster
+     */
     public Entity getMonster(MonsterEntityType monsterEntityType){
         Entity entity = _entities.get(monsterEntityType.toString());
+        Gdx.app.log(TAG, "Creating monster: " + entity.getEntityConfig().getEntityID());
         return new Entity(entity);
     }
 
+    /**
+     * FUNCTION getRandomMonsters
+     *
+     * creates random number of random monsters based on the zone
+     *
+     * @param monsterZoneID - different monsters spawn in different zones
+     * @return - vector of entities containing the monsters
+     */
     public Vector<Entity> getRandomMonsters(int monsterZoneID){
         Vector<Entity> enemies = new Vector<Entity>();
 

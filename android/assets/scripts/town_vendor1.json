@@ -1,5 +1,5 @@
 {
-entityID : TOWN_VENDOR1
+entityID : TOWN_VENDOR
 state : IMMOBILE
 direction : DOWN
 conversationConfigPath : "conversations/conversation003.json"
