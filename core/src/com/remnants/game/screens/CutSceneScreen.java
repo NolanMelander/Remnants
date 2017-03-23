@@ -64,6 +64,7 @@ public class CutSceneScreen extends MainGameScreen {
 
         _label = new Label("Test", Utility.STATUSUI_SKIN);
         _label.setWrap(true);
+        _label.setFontScale(6);
 
         _messageBoxUI = new Dialog("", Utility.STATUSUI_SKIN, "solidbackground");
         _messageBoxUI.setVisible(false);

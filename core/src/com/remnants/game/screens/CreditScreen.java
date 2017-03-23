@@ -32,6 +32,7 @@ public class CreditScreen extends GameScreen {
         Label text = new Label(textString, Utility.STATUSUI_SKIN, "credits");
         text.setAlignment(Align.top | Align.center);
         text.setWrap(true);
+        text.setFontScale(6);
 
         _scrollPane = new ScrollPane(text);
         _scrollPane.addListener(new ClickListener() {

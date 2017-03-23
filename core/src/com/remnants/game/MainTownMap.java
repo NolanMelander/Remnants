@@ -22,6 +22,10 @@ public class MainTownMap extends Map {
         Entity vendor = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_VENDOR);
         initSpecialEntityPosition(vendor);
         _mapEntities.add(vendor);
+
+        Entity king = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.KING);
+        initSpecialEntityPosition(king);
+        _mapEntities.add(king);
     }
 
     //TODO Find music for town, currently set to use the same as the world map
