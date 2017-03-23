@@ -22,6 +22,11 @@ public class EntityFactory {
     public static enum EntityName{
         PLAYER_PUPPET,
         KING,
+        DRACONIAS,
+        DRACONIAS_EVIL,
+        TOWN_NPC,
+        TOWN_NPC_OLD,
+        TOWN_NPC_WOMAN,
         TOWN_GUARD_WALKING,
         TOWN_BLACKSMITH,
         TOWN_MAGE,

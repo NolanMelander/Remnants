@@ -356,6 +356,8 @@ public abstract class Map implements AudioSubject{
                 continue;
             }
 
+            Gdx.app.log(TAG, "Adjusting in map: " + objectName);
+
             //This is meant for all the special spawn locations, a catch all, so ignore known ones
             if(     objectName.equalsIgnoreCase(NPC_START) ||
                     objectName.equalsIgnoreCase(PLAYER_START) ){
