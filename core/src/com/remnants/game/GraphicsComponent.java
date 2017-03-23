@@ -1,5 +1,6 @@
 package com.remnants.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.utils.Json;
 import java.util.Hashtable;
 
 public abstract class GraphicsComponent extends ComponentSubject implements Component {
+    private static final String TAG = GraphicsComponent.class.getSimpleName();
+
     protected TextureRegion _currentFrame = null;
     protected float _frameTime = 0f;
     protected Entity.State _currentState;

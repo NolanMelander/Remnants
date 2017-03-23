@@ -24,14 +24,13 @@ public class MainTownMap extends Map {
 
         Entity vendor = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_VENDOR);
         initSpecialEntityPosition(vendor);
-        Gdx.app.log(TAG, "Vendor ID: " + vendor.getEntityConfig().getEntityID());
-        Gdx.app.log(TAG, "Vendor starting location: " + _specialNPCStartPositions.get(vendor.getEntityConfig().getEntityID()));
-        _mapEntities.add(vendor);
+       _mapEntities.add(vendor);
 
         Entity king = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.KING);
         initSpecialEntityPosition(king);
         _mapEntities.add(king);
 
+        /*
         Entity draconias = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.DRACONIAS);
         initSpecialEntityPosition(draconias);
         _mapEntities.add(draconias);
@@ -51,6 +50,7 @@ public class MainTownMap extends Map {
         Entity town_npc_woman = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.TOWN_NPC_WOMAN);
         initSpecialEntityPosition(town_npc_woman);
         _mapEntities.add(town_npc_woman);
+        */
     }
 
     //TODO Find music for town, currently set to use the same as the world map
