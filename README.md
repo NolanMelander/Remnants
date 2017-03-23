@@ -10,7 +10,7 @@ Sponsors:
 + Luke Powell
 
 Current Update (3/23/2017):  
-  Added New Map: Dungeon
+  Added New Map: Dungeon  
   New Menus: Combat, Character Screens
   
 Known Bugs:  
