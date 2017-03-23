@@ -2,18 +2,25 @@ package com.remnants.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.remnants.game.Remnants.ScreenType;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 
 public class MainMenuScreen extends GameScreen {
+	private static final String TAG = MainMenuScreen.class.getSimpleName();
 
 	private Stage _stage;
 	private Remnants _game;
@@ -26,7 +33,7 @@ public class MainMenuScreen extends GameScreen {
 		Table table = new Table();
 		table.setFillParent(true);
 
-		Image title = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("bludbourne_title"));
+		Image title = new Image(/*new TextureRegionDrawable(new TextureRegion(new Texture("skins/title.png"))));*/Utility.STATUSUI_TEXTUREATLAS.findRegion("bludbourne_title"));
 		TextButton newGameButton = new TextButton("New Game", Utility.STATUSUI_SKIN);
 		TextButton loadGameButton = new TextButton("Load Game", Utility.STATUSUI_SKIN);
 		TextButton watchIntroButton = new TextButton("Watch Intro", Utility.STATUSUI_SKIN);

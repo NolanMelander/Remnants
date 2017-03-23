@@ -142,4 +142,6 @@ public abstract class GraphicsComponent extends ComponentSubject implements Comp
     public Animation getAnimation(Entity.AnimationType type){
         return _animations.get(type);
     }
+
+    public TextureRegion getCurrentFrame() { return _currentFrame; }
 }

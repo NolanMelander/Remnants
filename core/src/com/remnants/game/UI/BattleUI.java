@@ -57,6 +57,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
     private int _currentTurn = 0;
 
+    private float _battleSpriteSize;
+    private float _enemySpriteSize;
     private final int _enemyWidth = 96;
     private final int _enemyHeight = 96;
 
@@ -100,8 +102,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _message = "Do you even Leviosa?";
 
         //TODO: come up with a good equation to measure the size of the sprites to fit any screen
-        float battleSpriteSize = gameStage.getHeight() / 3;
-        float enemySpriteSize = gameStage.getHeight() / 4;
+        _battleSpriteSize = gameStage.getHeight() / 3;
+        _enemySpriteSize = gameStage.getHeight() / 4;
         _buttonHeight = gameStage.getHeight() / 4;
         _buttonWidth = (gameStage.getWidth() - _buttonHeight) / 4;
 
@@ -124,33 +126,33 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         _runButton = new TextButton("Run", Utility.STATUSUI_SKIN, "inventory");
         _backButton = new TextButton("Back", Utility.STATUSUI_SKIN, "inventory");
 
-        float padding = battleSpriteSize * .45f;
+        float padding = _battleSpriteSize * .45f;
 
         //Enemy table
         Table enemyTable = new Table();
         //enemyTable.setDebug(true);
-        enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (enemySpriteSize * 2) - _buttonHeight) / 2));
+        enemyTable.align(Align.topLeft).setPosition(0, gameStage.getHeight() - ((gameStage.getHeight() - (_enemySpriteSize * 2) - _buttonHeight) / 2));
 
         for (int i = 0; i < 6; i++) {
             if (i < _enemyImages.size()) {
-                enemyTable.add(_enemyImages.get(i)).width(enemySpriteSize).height(enemySpriteSize);
+                enemyTable.add(_enemyImages.get(i)).width(_enemySpriteSize).height(_enemySpriteSize);
             }
             if (i == 2)
                 enemyTable.row();
             if (i > _enemyImages.size())
-                enemyTable.add().width(enemySpriteSize).height(enemySpriteSize);
+                enemyTable.add().width(_enemySpriteSize).height(_enemySpriteSize);
         }
 
         //Battle Sprite table
         //   splitting it up into two rows allows for easy displacement
         Table topRow = new Table();
         //topRow.setDebug(true);
-        topRow.add(_tarenBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
-        topRow.add(_ipoBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padRight(padding);
+        topRow.add(_tarenBattleSprite).width(_battleSpriteSize).height(_battleSpriteSize);
+        topRow.add(_ipoBattleSprite).width(_battleSpriteSize).height(_battleSpriteSize).padRight(padding);
         Table bottomRow = new Table();
         //bottomRow.setDebug(true);
-        bottomRow.add(_abellaBattleSprite).width(battleSpriteSize).height(battleSpriteSize).padLeft(padding);
-        bottomRow.add(_tyrusBattleSprite).width(battleSpriteSize).height(battleSpriteSize);
+        bottomRow.add(_abellaBattleSprite).width(_battleSpriteSize).height(_battleSpriteSize).padLeft(padding);
+        bottomRow.add(_tyrusBattleSprite).width(_battleSpriteSize).height(_battleSpriteSize);
         Table bsTable = new Table();
         //bsTable.setDebug(true);
         bsTable.align(Align.topRight);
@@ -302,7 +304,10 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 for (int i = 0; i < enemies.size(); i++) {
                     _enemyImages.get(i).setEntity(enemies.get(i));
                     _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
+                    _enemyImages.get(i).setWidth(_enemySpriteSize);
+                    _enemyImages.get(i).setHeight(_enemySpriteSize);
                 }
+
                 _message = "Oh look! An enemy!";
                 break;
 

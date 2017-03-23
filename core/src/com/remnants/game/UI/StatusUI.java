@@ -13,11 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.remnants.game.Utility;
+import com.remnants.game.audio.AudioObserver;
 import com.remnants.game.battle.LevelTable;
 
 import sun.util.resources.be.CalendarData_be;
 
-public class StatusUI extends Window implements StatusObserver, StatusSubject {
+public class StatusUI extends Window implements StatusSubject {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
     private Image _hpBar;
@@ -137,6 +138,7 @@ public class StatusUI extends Window implements StatusObserver, StatusSubject {
                 int newLevel = _level.getValue() + 1;
                 Gdx.app.log(TAG, "Setting stats for level " + newLevel);
                 setStatusForLevel(newLevel);
+                StatusUI.this.notify("", 0, StatusObserver.StatusEvent.LEVELED_UP);
             }
         });
     }
@@ -226,7 +228,7 @@ public class StatusUI extends Window implements StatusObserver, StatusSubject {
 
         updateBar(_xpBar, _xp.getValue(), _xp.getMaxValue());
 
-        notify(_xp.getStatName(), _xp.getValue(), StatusEvent.UPDATED_STAT);;
+        notify(_xp.getStatName(), _xp.getValue(), StatusObserver.StatusEvent.UPDATED_STAT);
     }
     public void addXPValue(int xpValue){
         _xp.addValue(xpValue);
@@ -437,10 +439,5 @@ public class StatusUI extends Window implements StatusObserver, StatusSubject {
         for(StatusObserver observer: _observers){
             observer.onNotify(name, value, event);
         }
-    }
-
-    @Override
-    public void onNotify(String name, int value, StatusObserver.StatusEvent event) {
-
     }
 }

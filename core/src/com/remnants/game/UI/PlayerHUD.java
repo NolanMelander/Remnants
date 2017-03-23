@@ -304,7 +304,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_PLAYER_WAND_ATTACK);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_EATING);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_DRINKING);
-        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.BATTLE_UI);
     }
 
     public Stage getStage() {
@@ -336,7 +335,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     }
 
     private void showUI() {
-        Gdx.app.log(TAG, "ShowUI entered");
         _menuButton.setVisible(true);
         _padUI.setVisible(true);
         _debugBattleUIButton.setVisible(true);
@@ -430,7 +428,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             break;
             case SAVING_PROFILE:
                 Gdx.app.log(TAG, "Saving profile...");
-                if (_menuUI.getInventoryUI().getInventorySlotTable().getChildren().size == 0)
+                /*if (_menuUI.getInventoryUI().getInventorySlotTable().getChildren().size == 0)
                     Gdx.app.log(TAG, "No children in the inventory slot table to save");
                 else {
                     Gdx.app.log(TAG, "Items in inventory slot table being saved:");
@@ -448,7 +446,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                     }
                 }
                 else
-                    Gdx.app.log(TAG, "No actors in inventory ui");
+                    Gdx.app.log(TAG, "No actors in inventory ui");*/
 
                 profileManager.setProperty("playerQuests", _questUI.getQuests());
                 profileManager.setProperty("playerInventory", InventoryUI.getInventory(_menuUI.getInventoryUI().getInventorySlotTable()));
