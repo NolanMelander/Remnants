@@ -78,7 +78,11 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         Gdx.app.log(TAG, "Entered BATTLE ZONE: " + _currentZoneLevel);
         //for only one monster
         _enemies = new Vector<Entity>();
-        _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER001));
+        //TODO: set this to the dungeon's zone level
+        if (_currentZoneLevel == 2)
+            _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER002));
+        else
+            _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER001));
         //for multiple random monsters
         //_enemies = MonsterFactory.getInstance().getRandomMonsters(_currentZoneLevel);
         notify(_enemies, BattleObserver.BattleEvent.ADD_OPPONENTS);

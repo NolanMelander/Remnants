@@ -114,8 +114,23 @@ public abstract class GraphicsComponent extends ComponentSubject implements Comp
         Utility.loadTextureAsset(secondTexture);
         Texture texture2 = Utility.getTextureAsset(secondTexture);
 
-        TextureRegion[][] texture1Frames = TextureRegion.split(texture1, Entity.FRAME_WIDTH, Entity.FRAME_HEIGHT);
-        TextureRegion[][] texture2Frames = TextureRegion.split(texture2, Entity.FRAME_WIDTH, Entity.FRAME_HEIGHT);
+        TextureRegion[][] texture1Frames;
+        TextureRegion[][] texture2Frames;
+
+        //temporary fix for larger monster images
+        //   a frame duration of 2 flags a larger image
+        if (frameDuration == 2) {
+            texture1Frames = TextureRegion.split(texture1, 64, 64);
+            texture2Frames = TextureRegion.split(texture2, 64, 64);
+        }
+        else if (frameDuration == 3) {
+            texture1Frames = TextureRegion.split(texture1, 32, 32);
+            texture2Frames = TextureRegion.split(texture2, 32, 32);
+        }
+        else{
+            texture1Frames = TextureRegion.split(texture1, Entity.FRAME_WIDTH/*16*/, Entity.FRAME_HEIGHT/*16*/);
+            texture2Frames = TextureRegion.split(texture2, Entity.FRAME_WIDTH/*16*/, Entity.FRAME_HEIGHT/*16*/);
+        }
 
         Array<TextureRegion> animationKeyFrames = new Array<TextureRegion>(2);
 

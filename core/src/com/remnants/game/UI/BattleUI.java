@@ -24,6 +24,7 @@ import com.remnants.game.Utility;
 import com.remnants.game.battle.BattleObserver;
 import com.remnants.game.battle.BattleState;
 import com.remnants.game.battle.CharacterDrawables;
+import com.remnants.game.battle.MonsterFactory;
 import com.remnants.game.sfx.ParticleEffectFactory;
 import com.remnants.game.sfx.ShakeCamera;
 
@@ -302,10 +303,20 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
 
             case ADD_OPPONENTS:
                 for (int i = 0; i < enemies.size(); i++) {
-                    _enemyImages.get(i).setEntity(enemies.get(i));
-                    _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
-                    _enemyImages.get(i).setWidth(_enemySpriteSize);
-                    _enemyImages.get(i).setHeight(_enemySpriteSize);
+                    //TODO: set this for the dragon sprite
+                    if (enemies.get(i).getEntityConfig().getEntityID().contains("MONSTER002")) {
+                        _enemyImages.get(3).setEntity(enemies.get(i));
+                        _enemyImages.get(3).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
+                        _enemyImages.get(3).setWidth(_enemySpriteSize * 2.5f);
+                        _enemyImages.get(3).setHeight(_enemySpriteSize * 2.5f);
+                        Gdx.app.log(TAG, "Increasing size");
+                    }
+                    else {
+                        _enemyImages.get(i).setEntity(enemies.get(i));
+                        _enemyImages.get(i).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
+                        _enemyImages.get(i).setWidth(_enemySpriteSize);
+                        _enemyImages.get(i).setHeight(_enemySpriteSize);
+                    }
                 }
 
                 _message = "Oh look! An enemy!";

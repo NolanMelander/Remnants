@@ -31,11 +31,11 @@ entityProperties: {
 }
 animationConfig: [
 	{
-	    frameDuration: .5
+	    frameDuration: 2
 		animationType: IDLE
 		texturePaths: [
-				sprites/characters/Demon0.png
-				sprites/characters/Demon1.png
+				sprites/monsters/hyena.png
+				sprites/monsters/hyena.png
 		]
 		gridPoints: [
 			{
@@ -50,11 +50,11 @@ animationConfig: [
 		]
 	}
 	{
-	    frameDuration: .5
+	    frameDuration: 2
 		animationType: IMMOBILE
 		texturePaths: [
-				sprites/characters/Demon0.png
-				sprites/characters/Demon1.png
+			sprites/monsters/hyena.png
+			sprites/monsters/hyena.png
 		]
 		gridPoints: [
 			{
@@ -103,40 +103,40 @@ entityProperties: {
 }
 animationConfig: [
 	{
-	    frameDuration: .5
+	    frameDuration: 3
 		animationType: IDLE
 		texturePaths: [
-				sprites/characters/Demon0.png
-				sprites/characters/Demon1.png
+				sprites/monsters/dragon.png
+			sprites/monsters/dragon.png
 		]
 		gridPoints: [
 			{
 				x: 0
-				y: 1
+				y: 0
 			}
 			
 			{
 				x: 0
-				y: 1
+				y: 0
 			}
 		]
 	}
 	{
-	    frameDuration: .5
+	    frameDuration: 3
 		animationType: IMMOBILE
 		texturePaths: [
-				sprites/characters/Demon0.png
-				sprites/characters/Demon1.png
+			sprites/monsters/dragon.png
+			sprites/monsters/dragon.png
 		]
 		gridPoints: [
 			{
 				x: 0
-				y: 1
+				y: 0
 			}
 			
 			{
 				x: 0
-				y: 1
+				y: 0
 			}
 		]
 	}
