@@ -109,7 +109,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         _APValLabel.setFontScale(3);
 
         Table labelTable = new Table();
-        labelTable.setDebug(true);
+        //labelTable.setDebug(true);
         labelTable.add(DPLabel).align(Align.left);
         labelTable.add(_DPValLabel).align(Align.center);
         labelTable.row();
@@ -169,9 +169,9 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
         _playerSlotsTable.setBackground(new Image(new NinePatch(Utility.STATUSUI_TEXTUREATLAS.createPatch("dialog"))).getDrawable());
 
-        _playerSlotsTable.setDebug(true);
-        _inventorySlotTable.setDebug(true);
-        _equipSlots.setDebug(true);
+        //_playerSlotsTable.setDebug(true);
+        //_inventorySlotTable.setDebug(true);
+        //_equipSlots.setDebug(true);
 
         //layout
         for(int i = 1; i <= _numSlots; i++){
@@ -227,7 +227,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         _playerSlotsTable.add(_equipSlots);
         _inventoryActors.add(_inventorySlotTooltip);
 
-        this.setDebug(true);
+        //this.setDebug(true);
         this.add(backButton).top().left().align(Align.topLeft).width(_slotWidth * 2).height(_slotHeight);
         this.add(_characterSprite).height(_stage.getHeight() / 2).width(_stage.getHeight() / 2);
         this.add(_playerSlotsTable).padBottom(20);

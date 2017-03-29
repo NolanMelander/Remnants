@@ -155,7 +155,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         buttonTable.add(optionButton).width(buttonWidth).height(buttonHeight).row();
 
         //equipment table layout
-        equipTable.setDebug(true);
+        //equipTable.setDebug(true);
         equipTable.top().right();
         equipTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight());
         equipTable.add(_activeSpellScroll).width(buttonHeight).height(buttonHeight).row();

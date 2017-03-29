@@ -106,7 +106,13 @@ public abstract class GraphicsComponent extends ComponentSubject implements Comp
         }
     }
 
-    //Specific to two frame animations where each frame is stored in a separate texture
+    /**
+     *     FUNCTION loadAnimation
+     *
+     *     Specific to two frame animations where each frame is stored in a separate texture
+     *
+     *     For the monsters in the Battle UI, frameDuration is used as a flag for larger image sizes. This is a temporary fix.
+     */
     protected Animation loadAnimation(String firstTexture, String secondTexture, Array<GridPoint2> points, float frameDuration){
         Utility.loadTextureAsset(firstTexture);
         Texture texture1 = Utility.getTextureAsset(firstTexture);
@@ -117,24 +123,26 @@ public abstract class GraphicsComponent extends ComponentSubject implements Comp
         TextureRegion[][] texture1Frames;
         TextureRegion[][] texture2Frames;
 
+        int width = Entity.FRAME_WIDTH/*16*/, height = Entity.FRAME_HEIGHT/*16*/;
+
+        GridPoint2 point = points.first();
+
         //temporary fix for larger monster images
-        //   a frame duration of 2 flags a larger image
+        //   longer frame durations flag a larger image
         if (frameDuration == 2) {
-            texture1Frames = TextureRegion.split(texture1, 64, 64);
-            texture2Frames = TextureRegion.split(texture2, 64, 64);
+            width = height = 64;
+            point = new GridPoint2(0,0);
         }
         else if (frameDuration == 3) {
-            texture1Frames = TextureRegion.split(texture1, 32, 32);
-            texture2Frames = TextureRegion.split(texture2, 32, 32);
+            width = height = 32;
+            point = new GridPoint2(0,0);
         }
-        else{
-            texture1Frames = TextureRegion.split(texture1, Entity.FRAME_WIDTH/*16*/, Entity.FRAME_HEIGHT/*16*/);
-            texture2Frames = TextureRegion.split(texture2, Entity.FRAME_WIDTH/*16*/, Entity.FRAME_HEIGHT/*16*/);
-        }
+
+        texture1Frames = TextureRegion.split(texture1, width, height);
+        texture2Frames = TextureRegion.split(texture2, width, height);
 
         Array<TextureRegion> animationKeyFrames = new Array<TextureRegion>(2);
 
-        GridPoint2 point = points.first();
 
         animationKeyFrames.add(texture1Frames[point.x][point.y]);
         animationKeyFrames.add(texture2Frames[point.x][point.y]);

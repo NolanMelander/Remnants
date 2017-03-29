@@ -76,15 +76,17 @@ public class BattleState extends BattleSubject implements InventoryObserver {
      */
     public void setCurrentOpponents(){
         Gdx.app.log(TAG, "Entered BATTLE ZONE: " + _currentZoneLevel);
-        //for only one monster
         _enemies = new Vector<Entity>();
         //TODO: set this to the dungeon's zone level
         if (_currentZoneLevel == 2)
-            _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER002));
-        else
-            _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER001));
-        //for multiple random monsters
-        //_enemies = MonsterFactory.getInstance().getRandomMonsters(_currentZoneLevel);
+            _enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER017));
+        else {
+            //for one enemy
+            //_enemies.add(MonsterFactory.getInstance().getMonster(MonsterFactory.MonsterEntityType.MONSTER001));
+            //for multiple random monsters
+            _enemies = MonsterFactory.getInstance().getRandomMonsters(_currentZoneLevel);
+        }
+
         notify(_enemies, BattleObserver.BattleEvent.ADD_OPPONENTS);
     }
 
@@ -191,13 +193,14 @@ public class BattleState extends BattleSubject implements InventoryObserver {
 
                 int currentOpponentAP = Integer.parseInt(_enemies.get(0).getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_ATTACK_POINTS.toString()));
                 int damage = MathUtils.clamp(currentOpponentAP - _currentCharacterDP, 0, currentOpponentAP);
+                damage = 0;
                 int hpVal = ProfileManager.getInstance().getProperty("currentPlayerHP", Integer.class);
                 hpVal = MathUtils.clamp( hpVal - damage, 0, hpVal);
                 ProfileManager.getInstance().setProperty("currentPlayerHP", hpVal);
 
-                if( damage > 0 ) {
+                //( damage > 0 ) {
                     BattleState.this.notify(_enemies, BattleObserver.BattleEvent.PLAYER_HIT_DAMAGE);
-                }
+                //}
 
                 Gdx.app.debug(TAG, "Player HIT for " + damage + " BY " + _enemies.get(0).getEntityConfig().getEntityID() + " leaving player with HP: " + hpVal);
 

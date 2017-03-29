@@ -304,7 +304,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
             case ADD_OPPONENTS:
                 for (int i = 0; i < enemies.size(); i++) {
                     //TODO: set this for the dragon sprite
-                    if (enemies.get(i).getEntityConfig().getEntityID().contains("MONSTER002")) {
+                    if (enemies.get(i).getEntityConfig().getEntityID().contains("MONSTER017")) {
                         _enemyImages.get(3).setEntity(enemies.get(i));
                         _enemyImages.get(3).setCurrentAnimation(Entity.AnimationType.IMMOBILE);
                         _enemyImages.get(3).setWidth(_enemySpriteSize * 2.5f);
@@ -347,6 +347,8 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                  _attackButton.setTouchable(Touchable.enabled);
                 _runButton.setDisabled(false);
                 _runButton.setTouchable(Touchable.enabled);
+                _currentTurn = 0;
+                _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
                 break;
 
             case OPPONENT_CRIT_ON_FLEE:
@@ -356,7 +358,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
             case CHARACTER_TURN_DONE:
                 _currentTurn++;
                 if (_currentTurn >= 4) {
-                    _currentTurn = 0;
                     _activeWorldSprite.setDrawable(null);
                     onNotify(null, BattleEvent.PLAYER_TURN_DONE);
                 }
@@ -383,6 +384,14 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                 enemies.clear();
                 _currentTurn = 0;
                 _activeWorldSprite.setDrawable(_worldSprites.getItems().get(_currentTurn));
+                break;
+
+            case PLAYER_HIT_DAMAGE:
+                if (_enemyImages.get(1).getDrawable() != null) {
+                    _message = "The enemies fight back!";
+                }
+                else
+                    _message = "The enemy fights back!";
                 break;
 
             default:

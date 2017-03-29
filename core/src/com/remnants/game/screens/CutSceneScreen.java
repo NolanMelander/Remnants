@@ -49,7 +49,7 @@ public class CutSceneScreen extends MainGameScreen {
     private AnimatedImage _animInnKeeper;
     private AnimatedImage _animMage;
     private AnimatedImage _animFire;
-    private AnimatedImage _animDemon;
+    //private AnimatedImage _animDemon;
 
     public CutSceneScreen(Remnants game) {
         super(game);
@@ -81,7 +81,7 @@ public class CutSceneScreen extends MainGameScreen {
         _animInnKeeper = getAnimatedImage(EntityFactory.EntityName.TOWN_INNKEEPER);
         _animMage = getAnimatedImage(EntityFactory.EntityName.TOWN_MAGE);
         _animFire = getAnimatedImage(EntityFactory.EntityName.FIRE);
-        _animDemon = getAnimatedImage(MonsterFactory.MonsterEntityType.MONSTER042);
+        //_animDemon = getAnimatedImage(MonsterFactory.MonsterEntityType.MONSTER017);
 
         //Actions
         _switchScreenAction = new RunnableAction(){
@@ -107,7 +107,7 @@ public class CutSceneScreen extends MainGameScreen {
                 _animInnKeeper.setPosition(12, 15);
                 _animMage.setPosition(11, 17);
 
-                _animDemon.setVisible(false);
+               // _animDemon.setVisible(false);
                 _animFire.setVisible(false);
             }
         };
@@ -132,8 +132,8 @@ public class CutSceneScreen extends MainGameScreen {
         _setupScene03 = new RunnableAction() {
             @Override
             public void run() {
-                _animDemon.setPosition(52, 28);
-                _animDemon.setVisible(true);
+                //_animDemon.setPosition(52, 28);
+                //_animDemon.setVisible(true);
                 hideMessage();
             }
         };
@@ -150,12 +150,12 @@ public class CutSceneScreen extends MainGameScreen {
                 _mapMgr.loadMap(MapFactory.MapType.TOP_WORLD);
                 _mapMgr.disableCurrentmapMusic();
 
-                _animDemon.setVisible(true);
-                _animDemon.setScale(1, 1);
-                _animDemon.setSize(16 * Map.UNIT_SCALE, 16 * Map.UNIT_SCALE);
-                _animDemon.setPosition(50, 40);
+                //_animDemon.setVisible(true);
+                //_animDemon.setScale(1, 1);
+                //_animDemon.setSize(16 * Map.UNIT_SCALE, 16 * Map.UNIT_SCALE);
+                //_animDemon.setPosition(50, 40);
 
-                followActor(_animDemon);
+                //followActor(_animDemon);
             }
         };
 
@@ -170,10 +170,10 @@ public class CutSceneScreen extends MainGameScreen {
 
                 _mapMgr.loadMap(MapFactory.MapType.CASTLE_OF_DOOM);
                 _mapMgr.disableCurrentmapMusic();
-                followActor(_animDemon);
+                //followActor(_animDemon);
 
-                _animDemon.setVisible(true);
-                _animDemon.setPosition(15, 1);
+                //_animDemon.setVisible(true);
+                //_animDemon.setPosition(15, 1);
             }
         };
 
@@ -184,7 +184,7 @@ public class CutSceneScreen extends MainGameScreen {
         _stage.addActor(_animBlackSmith);
         _stage.addActor(_animInnKeeper);
         _stage.addActor(_animFire);
-        _stage.addActor(_animDemon);
+        //_stage.addActor(_animDemon);
         _stage.addActor(_transitionActor);
 
         _UIStage.addActor(_messageBoxUI);
@@ -277,21 +277,21 @@ public class CutSceneScreen extends MainGameScreen {
                 ),
                 Actions.delay(7),
                 Actions.addAction(_setupScene03),
-                Actions.addAction(Actions.fadeOut(2), _animDemon),
+                //Actions.addAction(Actions.fadeOut(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.fadeIn(2), _animDemon),
+                //Actions.addAction(Actions.fadeIn(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.fadeOut(2), _animDemon),
+                //Actions.addAction(Actions.fadeOut(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.fadeIn(2), _animDemon),
+                //Actions.addAction(Actions.fadeIn(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.fadeOut(2), _animDemon),
+                //Actions.addAction(Actions.fadeOut(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.fadeIn(2), _animDemon),
+                //Actions.addAction(Actions.fadeIn(2), _animDemon),
                 Actions.delay(2),
-                Actions.addAction(Actions.scaleBy(40, 40, 5, Interpolation.linear), _animDemon),
+                //Actions.addAction(Actions.scaleBy(40, 40, 5, Interpolation.linear), _animDemon),
                 Actions.delay(5),
-                Actions.addAction(Actions.moveBy(20, 0), _animDemon),
+                //Actions.addAction(Actions.moveBy(20, 0), _animDemon),
                 Actions.delay(2),
                 Actions.run(
                         new Runnable() {
@@ -306,13 +306,13 @@ public class CutSceneScreen extends MainGameScreen {
                 Actions.delay(3),
                 Actions.addAction(_setupScene04),
                 Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_IN, 3), _transitionActor),
-                Actions.addAction(Actions.moveTo(54, 65, 13, Interpolation.linear), _animDemon),
+                //Actions.addAction(Actions.moveTo(54, 65, 13, Interpolation.linear), _animDemon),
                 Actions.delay(10),
                 Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_OUT, 3), _transitionActor),
                 Actions.delay(3),
                 Actions.addAction(ScreenTransitionAction.transition(ScreenTransitionAction.ScreenTransitionType.FADE_IN, 3), _transitionActor),
                 Actions.addAction(_setupScene05),
-                Actions.addAction(Actions.moveTo(15, 76, 15, Interpolation.linear), _animDemon),
+                //Actions.addAction(Actions.moveTo(15, 76, 15, Interpolation.linear), _animDemon),
                 Actions.delay(15),
                 Actions.run(
                         new Runnable() {
