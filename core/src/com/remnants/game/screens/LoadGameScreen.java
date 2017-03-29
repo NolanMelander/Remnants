@@ -3,7 +3,9 @@ package com.remnants.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
@@ -22,7 +24,7 @@ public class LoadGameScreen extends GameScreen {
     private Stage _stage;
 	private Remnants _game;
 	private List _listItems;
-	
+
 	public LoadGameScreen(Remnants game){
 		_game = game;
 
@@ -38,8 +40,11 @@ public class LoadGameScreen extends GameScreen {
 		_listItems = new List(Utility.STATUSUI_SKIN, "inventory");
 		Array<String> list = ProfileManager.getInstance().getProfileList();
 		_listItems.setItems(list);
+        //_listItems.setDebug(true);
+        _listItems.getStyle().font.getData().setScale(6);
 		ScrollPane scrollPane = new ScrollPane(_listItems);
 
+        //scrollPane.setDebug(true);
 		scrollPane.setOverscroll(false, false);
 		scrollPane.setFadeScrollBars(false);
 		scrollPane.setScrollingDisabled(true, false);
@@ -49,11 +54,13 @@ public class LoadGameScreen extends GameScreen {
 		Table bottomTable = new Table();
 
 		//Layout
+        //table.setDebug(true);
 		table.center();
 		table.setFillParent(true);
 		table.padBottom(loadButton.getHeight());
-		table.add(scrollPane).center();
+		table.add(scrollPane).center().width(_stage.getWidth() / 3).height(_stage.getHeight() / 3);
 
+        //bottomTable.setDebug(true);
 		bottomTable.setHeight(loadButton.getHeight() * 2);
 		bottomTable.setWidth(Gdx.graphics.getWidth());
 		bottomTable.center();
@@ -118,8 +125,8 @@ public class LoadGameScreen extends GameScreen {
 
 	@Override
 	public void resize(int width, int height) {
-		_stage.getViewport().setScreenSize(width, height);
-	}
+        _stage.getViewport().setScreenSize(width, height);
+    }
 
 	@Override
 	public void show() {
