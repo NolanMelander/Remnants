@@ -347,6 +347,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
             if( inventorySlot == null ) continue;
             int numItems = inventorySlot.getNumItems();
             if( numItems > 0 ){
+                Gdx.app.log(TAG, "Adding item to inventory: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString());
                 items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),

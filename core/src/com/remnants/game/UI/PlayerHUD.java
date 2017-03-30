@@ -176,7 +176,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _stage.addActor(_padUI.getGroup());
         _stage.addActor(_menuUI);
         _stage.addActor(_menuButton);
-        _stage.addActor(_clock);
+        //_stage.addActor(_clock);
         //for debugging
         _stage.addActor(_debugBattleUIButton);
 
@@ -290,7 +290,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
         _debugBattleUIButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                _battleUI.debugBattleReady = true;
+                //_battleUI.debugBattleReady = true;
                 onNotify("", ComponentEvent.PLAYER_HAS_MOVED);
             }
         });
@@ -428,26 +428,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             break;
             case SAVING_PROFILE:
                 Gdx.app.log(TAG, "Saving profile...");
-                /*if (_menuUI.getInventoryUI().getInventorySlotTable().getChildren().size == 0)
-                    Gdx.app.log(TAG, "No children in the inventory slot table to save");
-                else {
-                    Gdx.app.log(TAG, "Items in inventory slot table being saved:");
-                    for (int i = 0; i < _menuUI.getInventoryUI().getInventorySlotTable().getCells().size; i++) {
-                        Gdx.app.log(TAG, "Count: " + i);
-                        Gdx.app.log(TAG, _menuUI.getInventoryUI().getInventorySlotTable().getCells().get(i).toString());
-                    }
-                }
-
-                if (_menuUI.getInventoryUI().getInventoryActors().size >= 0) {
-                    Gdx.app.log(TAG, "Actors in Inventory UI:");
-                    for (int i = 0; i < _menuUI.getInventoryUI().getInventoryActors().size; i++) {
-                        Gdx.app.log(TAG, "Count: " + i);
-                        Gdx.app.log(TAG, _menuUI.getInventoryUI().getInventoryActors().get(i).toString());
-                    }
-                }
-                else
-                    Gdx.app.log(TAG, "No actors in inventory ui");*/
-
                 profileManager.setProperty("playerQuests", _questUI.getQuests());
                 profileManager.setProperty("playerInventory", InventoryUI.getInventory(_menuUI.getInventoryUI().getInventorySlotTable()));
                 Gdx.app.log(TAG, "Storing in playerInventory: " + InventoryUI.getInventory(_menuUI.getInventoryUI().getInventorySlotTable()).toString());
@@ -553,7 +533,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                     hideUI();
                     _battleUI.toBack();
                     _battleUI.setVisible(true);
-                    _battleUI.debugBattleReady = true;
+                    //_battleUI.debugBattleReady = true;
                 }
                 break;
             default:

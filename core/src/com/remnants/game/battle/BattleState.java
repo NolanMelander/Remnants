@@ -53,18 +53,26 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         return _currentZoneLevel;
     }
 
+    /**
+     * FUNCTION isOpponentReady
+     *
+     * determines if the enemy is ready to spawn. 25% chance of attack
+     *
+     * @return TRUE if ready to spawn
+     */
     public boolean isOpponentReady(){
+        //Monsters will not spawn in the town
         if( _currentZoneLevel == 0 ) return false;
         int randomVal = MathUtils.random(1,100);
 
-        //Gdx.app.debug(TAG, "CHANCE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
+        Gdx.app.debug(TAG, "CHANCE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
 
-        //if( _chanceOfAttack > randomVal  ){
+        if( _chanceOfAttack > randomVal ){
             setCurrentOpponents();
             return true;
-        //}else{
-            //return false;
-        //}
+        }else{
+            return false;
+        }
     }
 
     /**

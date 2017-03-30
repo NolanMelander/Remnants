@@ -90,7 +90,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
      * @param gameStage - needed for stage height and width for sizing
      */
     public BattleUI(Stage gameStage){
-        super("BATTLE", Utility.STATUSUI_SKIN, "solidbackground");
+        super("", Utility.STATUSUI_SKIN, "solidbackground");
 
         _stage = new Stage();
         _stage.setViewport(gameStage.getViewport());
@@ -232,7 +232,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         _message = "Chickening out already?";
-                        debugBattleReady = false;
+                        //debugBattleReady = false;
                         _battleState.playerRuns();
                     }
                 }
@@ -266,15 +266,15 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
      */
     public boolean isBattleReady(){
         //TODO: decide when enemies should appear
-        /*if( _battleTimer > _checkTimer ){
+        if( _battleTimer > _checkTimer ){
             _battleTimer = 0;
             return _battleState.isOpponentReady();
         }else{
             return false;
-        }*/
+        }
 
         //for debugging
-        return debugBattleReady;
+        //return debugBattleReady;
     }
 
     public BattleState getCurrentState(){

@@ -41,7 +41,7 @@ public class NewGameScreen extends GameScreen {
 		TextButton cancelButton = new TextButton("Cancel", Utility.STATUSUI_SKIN, "inventory");
 		cancelButton.getLabel().setFontScale(6);
 
-		TextButton overwriteButton = new TextButton("Overwrite", Utility.STATUSUI_SKIN, "inventory");
+		TextButton overwriteButton = new TextButton("", Utility.STATUSUI_SKIN, "inventory");
 		overwriteButton.getLabel().setFontScale(6);
 		_overwriteDialog.setKeepWithinStage(true);
 		_overwriteDialog.setModal(true);
