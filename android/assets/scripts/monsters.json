@@ -1182,11 +1182,11 @@ entityProperties: {
 }
 animationConfig: [
 	{
-	    frameDuration: 3
+	    frameDuration: 5
 		animationType: IDLE
 		texturePaths: [
-			sprites/monsters/dragon.png
-			sprites/monsters/dragon.png
+			sprites/monsters/boss.png
+			sprites/monsters/boss.png
 		]
 		gridPoints: [
 			{
@@ -1201,11 +1201,11 @@ animationConfig: [
 		]
 	}
 	{
-	    frameDuration: 3
+	    frameDuration: 5
 		animationType: IMMOBILE
 		texturePaths: [
-			sprites/monsters/dragon.png
-			sprites/monsters/dragon.png
+			sprites/monsters/boss.png
+			sprites/monsters/boss.png
 		]
 		gridPoints: [
 			{

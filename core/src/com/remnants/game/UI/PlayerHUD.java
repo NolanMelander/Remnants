@@ -62,6 +62,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
     //for debugging
     private TextButton _debugBattleUIButton;
+    private TextButton _debugEndGameScreenButton;
 
     private Dialog _messageBoxUI;
     private Json _json;
@@ -75,7 +76,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
     private static final String INVENTORY_FULL = "Your inventory is full!";
 
-    public PlayerHUD(Camera camera, Entity player, MapManager mapMgr, Remnants game) {
+    public PlayerHUD(Camera camera, Entity player, MapManager mapMgr, final Remnants game) {
         _camera = camera;
         _player = player;
         _mapMgr = mapMgr;
@@ -165,7 +166,14 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _debugBattleUIButton.getLabel().setFontScale(3);
         _debugBattleUIButton.setHeight(_stage.getHeight() / 6);
         _debugBattleUIButton.setWidth(_stage.getWidth() / 6);
-        _debugBattleUIButton.setPosition((float)(_stage.getWidth() * .5), _stage.getHeight() / 9);
+        _debugBattleUIButton.setPosition((float)(_stage.getWidth() * .6), _stage.getHeight() / 9);
+
+        _debugEndGameScreenButton = new TextButton("EndGame", Utility.STATUSUI_SKIN);
+        _debugEndGameScreenButton.getLabel().setFontScale(3);
+        _debugEndGameScreenButton.setHeight(_stage.getHeight() / 6);
+        _debugEndGameScreenButton.setWidth(_stage.getWidth() / 6);
+        _debugEndGameScreenButton.setPosition((float)(_stage.getWidth() * .4), _stage.getHeight() / 9);
+
 
         _stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
@@ -179,6 +187,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         //_stage.addActor(_clock);
         //for debugging
         _stage.addActor(_debugBattleUIButton);
+        _stage.addActor(_debugEndGameScreenButton);
 
         _battleUI.validate();
         _questUI.validate();
@@ -292,6 +301,13 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             public void clicked(InputEvent event, float x, float y) {
                 //_battleUI.debugBattleReady = true;
                 onNotify("", ComponentEvent.PLAYER_HAS_MOVED);
+            }
+        });
+
+        _debugEndGameScreenButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                PlayerHUD.this.notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_MAINTOWN);
+                game.setScreen(game.getScreenType(Remnants.ScreenType.EndGame));
             }
         });
 

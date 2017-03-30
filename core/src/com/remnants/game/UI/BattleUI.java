@@ -205,7 +205,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     public void clicked(InputEvent event, float x, float y) {
                         _message = "Preapring a physical attack";
                         _battleState.characterAttacks();
-                        //onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -215,7 +214,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
                     public void clicked(InputEvent event, float x, float y) {
                         _message = "Preparing a magical attack";
                         _battleState.characterAttacks();
-                        //onNotify(null, BattleEvent.CHARACTER_TURN_DONE);
                     }
                 }
         );
@@ -254,8 +252,6 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     public void battleZoneTriggered(int battleZoneValue){
         _battleState.setCurrentZoneLevel(battleZoneValue);
     }
-
-    public boolean debugBattleReady = false;
 
     /**
      * FUNCTION isBattleReady

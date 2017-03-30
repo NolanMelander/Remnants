@@ -35,13 +35,13 @@ public class NewGameScreen extends GameScreen {
 		_profileText  = new TextField("",Utility.STATUSUI_SKIN, "inventory");
 		_profileText.setMaxLength(20);
 
-		_overwriteDialog = new Dialog("Overwrite?", Utility.STATUSUI_SKIN, "solidbackground");
+		_overwriteDialog = new Dialog("", Utility.STATUSUI_SKIN, "solidbackground");
 		Label overwriteLabel = new Label("Overwrite existing profile name?", Utility.STATUSUI_SKIN);
 		overwriteLabel.setFontScale(3);
 		TextButton cancelButton = new TextButton("Cancel", Utility.STATUSUI_SKIN, "inventory");
 		cancelButton.getLabel().setFontScale(6);
 
-		TextButton overwriteButton = new TextButton("", Utility.STATUSUI_SKIN, "inventory");
+		TextButton overwriteButton = new TextButton("Overwrite", Utility.STATUSUI_SKIN, "inventory");
 		overwriteButton.getLabel().setFontScale(6);
 		_overwriteDialog.setKeepWithinStage(true);
 		_overwriteDialog.setModal(true);
