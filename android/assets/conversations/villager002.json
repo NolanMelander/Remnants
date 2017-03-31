@@ -1,0 +1,11 @@
+{
+conversations: {
+        1: {
+                id: 1
+                dialog: This shop always overcharges! How can anyone afford anything?
+        }
+}
+associatedChoices: {
+}
+currentConversationID: 1
+}

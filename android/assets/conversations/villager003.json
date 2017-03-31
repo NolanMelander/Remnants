@@ -1,0 +1,11 @@
+{
+conversations: {
+        1: {
+                id: 1
+                dialog: Go Away! Find your own hiding spot!
+        }
+}
+associatedChoices: {
+}
+currentConversationID: 1
+}
