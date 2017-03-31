@@ -9,7 +9,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -27,7 +27,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -56,7 +56,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -74,7 +74,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -103,7 +103,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -121,7 +121,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -150,7 +150,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -168,7 +168,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -197,7 +197,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -215,7 +215,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -244,7 +244,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -262,7 +262,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -291,7 +291,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -309,7 +309,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -338,7 +338,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -356,7 +356,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -385,7 +385,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -403,7 +403,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -432,7 +432,7 @@
     itemTypeID : NONE
     animationConfig: [
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
@@ -450,7 +450,7 @@
         ]
       }
       {
-        frameDuration: 1.0
+        frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
