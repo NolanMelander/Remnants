@@ -30,6 +30,30 @@ public class MainTownMap extends Map {
         initSpecialEntityPosition(king);
         _mapEntities.add(king);
 
+        Entity villager1 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER1);
+        initSpecialEntityPosition(villager1);
+        _mapEntities.add(villager1);
+
+        Entity villager2 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER2);
+        initSpecialEntityPosition(villager2);
+        _mapEntities.add(villager2);
+
+        Entity villager3 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER3);
+        initSpecialEntityPosition(villager3);
+        _mapEntities.add(villager3);
+
+        Entity villager4 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER4);
+        initSpecialEntityPosition(villager4);
+        _mapEntities.add(villager4);
+
+        Entity villager5 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER5);
+        initSpecialEntityPosition(villager5);
+        _mapEntities.add(villager5);
+
+        Entity villager6 = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.VILLAGER6);
+        initSpecialEntityPosition(villager6);
+        _mapEntities.add(villager6);
+
         /*
         Entity draconias = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.DRACONIAS);
         initSpecialEntityPosition(draconias);
