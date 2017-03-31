@@ -178,7 +178,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _stage.addActor(_battleUI);
         //_stage.addActor(_questUI);
         //_stage.addActor(_storeInventoryUI);
-        //_stage.addActor(_conversationUI);
+        _stage.addActor(_conversationUI);
         //_stage.addActor(_messageBoxUI);
         //_stage.addActor(_statusUI);
         _stage.addActor(_padUI.getGroup());
