@@ -347,6 +347,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     private void hideUI() {
         _menuButton.setVisible(false);
         _padUI.setVisible(false);
+        _debugEndGameScreenButton.setVisible(false);
         _debugBattleUIButton.setVisible(false);
     }
 

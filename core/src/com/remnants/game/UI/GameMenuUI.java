@@ -2,6 +2,7 @@ package com.remnants.game.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -60,6 +61,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
     private float _absX;
     private float _absY;
 
+    private float _buttonHeight;
+    private float _buttonWidth;
+
+    private BitmapFont _messageField;
+    private String _message;
+
     /**
      * CONSTRUCTOR GameMenuUI
      *
@@ -74,6 +81,8 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         _statusUI = new StatusUI();
         _inventoryUI = new InventoryUI();
         _statusUI = new StatusUI();
+        _messageField = new BitmapFont(Gdx.files.internal("fonts/SDS_6x6.fnt"), false);
+        _message = "Menu";
 
         //observers
         _observers = new Array<AudioObserver>();
@@ -118,18 +127,18 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         ImageButton tyrusSpriteButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture("skins/temp/tyrus.png"))));
 
         //set button dimensions
-        float buttonHeight = gameStage.getHeight() / 7;
-        float buttonWidth = gameStage.getWidth() / 5;
+        _buttonHeight = gameStage.getHeight() / 7;
+        _buttonWidth = gameStage.getWidth() / 5;
 
         //set active battle sprite variables
         _absSize = gameStage.getHeight() / 2;
-        _absX = buttonWidth / 2;
-        _absY = buttonHeight * 2;
+        _absX = _buttonWidth / 2;
+        _absY = _buttonHeight * 2;
 
         //back button
-        backButton.setWidth(buttonWidth);
-        backButton.setHeight(buttonHeight);
-        backButton.setPosition(0, gameStage.getHeight() - buttonHeight);
+        backButton.setWidth(_buttonWidth);
+        backButton.setHeight(_buttonHeight);
+        backButton.setPosition(0, gameStage.getHeight() - _buttonHeight);
 
         //battle sprite
         _activeBattleSprite.setHeight(_absSize);
@@ -146,39 +155,39 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         //buttonTable.setDebug(true);
         buttonTable.top().right();
         buttonTable.setPosition(gameStage.getWidth(), gameStage.getHeight());
-        buttonTable.add(spellButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(armorButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(weaponButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(accessoryButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(itemButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(saveButton).width(buttonWidth).height(buttonHeight).row();
-        buttonTable.add(optionButton).width(buttonWidth).height(buttonHeight).row();
+        buttonTable.add(spellButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(armorButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(weaponButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(accessoryButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(itemButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(saveButton).width(_buttonWidth).height(_buttonHeight).row();
+        buttonTable.add(optionButton).width(_buttonWidth).height(_buttonHeight).row();
 
         //equipment table layout
         //equipTable.setDebug(true);
         equipTable.top().right();
-        equipTable.setPosition(gameStage.getWidth() - buttonWidth, gameStage.getHeight());
-        equipTable.add(_activeSpellScroll).width(buttonHeight).height(buttonHeight).row();
-        equipTable.add(_activeArmor).width(buttonHeight).height(buttonHeight).row();
-        equipTable.add(_activeWeapon).width(buttonHeight).height(buttonHeight).row();
-        equipTable.add(/*accessory*/).width(buttonHeight).height(buttonHeight).row();
+        equipTable.setPosition(gameStage.getWidth() - _buttonWidth, gameStage.getHeight());
+        equipTable.add(_activeSpellScroll).width(_buttonHeight).height(_buttonHeight).row();
+        equipTable.add(_activeArmor).width(_buttonHeight).height(_buttonHeight).row();
+        equipTable.add(_activeWeapon).width(_buttonHeight).height(_buttonHeight).row();
+        equipTable.add(/*accessory*/).width(_buttonHeight).height(_buttonHeight).row();
 
-        float spritePadding = buttonHeight - (buttonHeight * 0.15f);
+        float spritePadding = _buttonHeight - (_buttonHeight * 0.15f);
 
         //sprite table layout
         //spriteTable.setDebug(true);
         spriteTable.left().bottom();
-        spriteTable.padBottom(buttonHeight/2).padLeft(spritePadding);
-        spriteTable.add(tarenSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(abellaSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(ipoSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
-        spriteTable.add(tyrusSpriteButton).width(buttonHeight).height(buttonHeight).padRight(spritePadding);
+        spriteTable.padBottom(_buttonHeight/2).padLeft(spritePadding);
+        spriteTable.add(tarenSpriteButton).width(_buttonHeight).height(_buttonHeight).padRight(spritePadding);
+        spriteTable.add(abellaSpriteButton).width(_buttonHeight).height(_buttonHeight).padRight(spritePadding);
+        spriteTable.add(ipoSpriteButton).width(_buttonHeight).height(_buttonHeight).padRight(spritePadding);
+        spriteTable.add(tyrusSpriteButton).width(_buttonHeight).height(_buttonHeight).padRight(spritePadding);
 
         //status ui
         _statusUI.setVisible(true);
-        _statusUI.setPosition(gameStage.getWidth() * .4f, buttonHeight * 2);
+        _statusUI.setPosition(gameStage.getWidth() * .4f, _buttonHeight * 2);
         _statusUI.setMovable(false);
-        _statusUI.setHeight(buttonHeight * 4);
+        _statusUI.setHeight(_buttonHeight * 4);
         _statusUI.setWidth(gameStage.getWidth() / 4);
 
         //inventory ui
@@ -207,7 +216,6 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
                                     @Override
                                     public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                                        //_game.setScreen(_game.getScreenType(Remnants.ScreenType.SpellScreen));
                                         if (_activeBattleSprite.getDrawable() != null) {
                                             _inventoryUI.setCharacterSprite(_activeBattleSprite);
                                             _inventoryUI.setVisible(true);
@@ -227,7 +235,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.ArmorScreen));
+                if (_activeBattleSprite.getDrawable() != null) {
+                    _inventoryUI.setCharacterSprite(_activeBattleSprite);
+                    _inventoryUI.setVisible(true);
+                    _statusUI.setVisible(false);
+                    _inventoryUI.getCurrentState().openInventory();
+                }
             }
 
 
@@ -242,8 +255,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.WeaponScreen));
+                if (_activeBattleSprite.getDrawable() != null) {
+                    _inventoryUI.setCharacterSprite(_activeBattleSprite);
+                    _inventoryUI.setVisible(true);
+                    _statusUI.setVisible(false);
+                    _inventoryUI.getCurrentState().openInventory();
+                }
             }
 
 
@@ -258,8 +275,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.AccessoryScreen));
+                if (_activeBattleSprite.getDrawable() != null) {
+                    _inventoryUI.setCharacterSprite(_activeBattleSprite);
+                    _inventoryUI.setVisible(true);
+                    _statusUI.setVisible(false);
+                    _inventoryUI.getCurrentState().openInventory();
+                }
             }
 
 
@@ -274,8 +295,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.ItemScreen));
+                if (_activeBattleSprite.getDrawable() != null) {
+                    _inventoryUI.setCharacterSprite(_activeBattleSprite);
+                    _inventoryUI.setVisible(true);
+                    _statusUI.setVisible(false);
+                    _inventoryUI.getCurrentState().openInventory();
+                }
             }
 
 
@@ -290,6 +315,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                _message = "Game saved";
                 ProfileManager.getInstance().saveProfile();
             }
         });
@@ -303,8 +329,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
-                //_game.setScreen(_game.getScreenType(Remnants.ScreenType.OptionScreen));
+                _message = "Options unavailable";
             }
 
 
@@ -314,8 +339,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.log(TAG, "Taren's sprite button clicked");
                 _activeBattleSprite.setDrawable(_tarenBattleDrawable);
-
-                //set stats to display Taren's stats
+                _message = "Taren";
             }
 
         });
@@ -324,8 +348,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.log(TAG, "Abella's sprite button clicked");
                 _activeBattleSprite.setDrawable(_abellaBattleDrawable);
-
-                //set stats to display Abella's stats
+                _message = "Abella";
             }
 
         });
@@ -334,8 +357,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.log(TAG, "Ipo's sprite button clicked");
                 _activeBattleSprite.setDrawable(_ipoBattleDrawable);
-
-                //set stats to display Ipo's stats
+                _message = "Ipo";
             }
 
         });
@@ -344,8 +366,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.log(TAG, "Tyrus's sprite button clicked");
                 _activeBattleSprite.setDrawable(_tyrusBattleDrawable);
-
-                //set stats to display Tyrus's stats
+                _message = "Tyrus";
             }
 
         });
@@ -383,6 +404,12 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
         _stage.act(delta);
         _stage.draw();
         updateItemImages();
+
+        //draw the message
+        _stage.getBatch().begin();
+        _messageField.draw(_stage.getBatch(), _message, _buttonWidth,  _stage.getHeight() - _messageField.getLineHeight());
+        _messageField.getData().setScale(4.5f);
+        _stage.getBatch().end();
     }
 
     public MenuState getCurrentState() { return _menuState; }
@@ -449,6 +476,7 @@ public class GameMenuUI extends Window implements StatusObserver, InventoryObser
                 break;
             case LEVELED_UP:
                 notify(AudioObserver.AudioCommand.MUSIC_PLAY_ONCE, AudioObserver.AudioTypeEvent.MUSIC_LEVEL_UP_FANFARE);
+                _message = "Leveled up!";
                 break;
             default:
                 break;

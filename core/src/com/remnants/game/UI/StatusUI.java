@@ -47,7 +47,7 @@ public class StatusUI extends Window implements StatusSubject {
     TextButton debugLevelUp;
 
     public StatusUI(){
-        super("stats", Utility.STATUSUI_SKIN);
+        super("", Utility.STATUSUI_SKIN);
 
         //initialize stats
         _level = new Stat("level");
