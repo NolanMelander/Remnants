@@ -1,5 +1,6 @@
 package com.remnants.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.utils.Array;
 
@@ -8,6 +9,8 @@ import com.remnants.game.Entity.AnimationType;
 import com.remnants.game.InventoryItem.ItemTypeID;
 
 public class EntityConfig {
+    private static final String TAG = EntityConfig.class.getSimpleName();
+
     private Array<AnimationConfig> animationConfig;
     private Array<ItemTypeID> inventory;
     private Entity.State state = Entity.State.IDLE;
@@ -36,6 +39,7 @@ public class EntityConfig {
     }
 
     EntityConfig(EntityConfig config){
+        //Gdx.app.log(TAG, "Setting the configurations");
         state = config.getState();
         direction = config.getDirection();
         entityID = config.getEntityID();

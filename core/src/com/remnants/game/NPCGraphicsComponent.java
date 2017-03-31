@@ -66,9 +66,7 @@ public class NPCGraphicsComponent extends GraphicsComponent {
                     if( textureNames.size == 1) {
                         animation = loadAnimation(textureNames.get(0), points, frameDuration);
                     }else if( textureNames.size == 2){
-                        if (frameDuration == 4) {
-                            Gdx.app.log(TAG, "Frame duration = 4");
-                        }
+                        //Gdx.app.log(TAG, "NPC sprite frame duration: " + frameDuration);
                         animation = loadAnimation(textureNames.get(0), textureNames.get(1), points, frameDuration);
                     }
 

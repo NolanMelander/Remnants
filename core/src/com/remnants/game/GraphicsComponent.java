@@ -139,8 +139,7 @@ public abstract class GraphicsComponent extends ComponentSubject implements Comp
         }
         else if (frameDuration == 4) {
             Gdx.app.log(TAG, "Resizing for world sprite");
-            width = height = 128;
-            point = new GridPoint2(0,0);
+            width = height = 138;
         }
         else if (frameDuration == 5) {
             //boss

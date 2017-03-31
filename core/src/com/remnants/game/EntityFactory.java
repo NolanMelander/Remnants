@@ -107,4 +107,10 @@ public class EntityFactory {
         Entity entity = Entity.initEntity(config);
         return entity;
     }
+
+    public Entity getEntityByID(String entityID) {
+        EntityConfig config = new EntityConfig(_entities.get(entityID));
+        Entity entity = Entity.initEntity(config);
+        return entity;
+    }
 }

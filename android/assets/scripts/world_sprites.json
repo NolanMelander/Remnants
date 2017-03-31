@@ -13,16 +13,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 5
-            y : 0
+            x : 1
+            y : 2
           }
 
           {
-            x: 5
-            y : 0
+            x: 1
+            y : 2
           }
         ]
       }
@@ -31,16 +32,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 5
-            y : 0
+            x : 1
+            y : 2
           }
 
           {
-            x: 5
-            y : 0
+            x: 1
+            y : 2
           }
         ]
       }
@@ -60,6 +62,7 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
@@ -77,6 +80,7 @@
         frameDuration: 4
         animationType: IMMOBILE
         texturePaths: [
+          sprites/characters/worldsprites.png
           sprites/characters/worldsprites.png
         ]
         gridPoints: [
@@ -107,16 +111,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 3
-            y : 0
+            x : 0
+            y : 1
           }
 
           {
-            x: 3
-            y : 0
+            x: 0
+            y : 1
           }
         ]
       }
@@ -125,16 +130,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 3
-            y : 0
+            x : 0
+            y : 1
           }
 
           {
-            x: 3
-            y : 0
+            x: 0
+            y : 1
           }
         ]
       }
@@ -154,16 +160,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 9
-            y : 0
+            x : 0
+            y : 3
           }
 
           {
-            x: 9
-            y : 0
+            x: 0
+            y : 3
           }
         ]
       }
@@ -172,16 +179,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 9
-            y : 0
+            x : 0
+            y : 3
           }
 
           {
-            x: 9
-            y : 0
+            x: 0
+            y : 3
           }
         ]
       }
@@ -201,16 +209,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 4
-            y : 0
+            x : 1
+            y : 1
           }
 
           {
-            x: 4
-            y : 0
+            x: 1
+            y : 1
           }
         ]
       }
@@ -219,16 +228,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 4
-            y : 0
+            x : 1
+            y : 1
           }
 
           {
-            x: 4
-            y : 0
+            x: 1
+            y : 1
           }
         ]
       }
@@ -248,15 +258,16 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 2
+            x : 1
             y : 0
           }
 
           {
-            x: 2
+            x: 1
             y : 0
           }
         ]
@@ -266,15 +277,16 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 2
+            x : 1
             y : 0
           }
 
           {
-            x: 2
+            x: 1
             y : 0
           }
         ]
@@ -295,15 +307,16 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 1
+            x : 2
             y : 0
           }
 
           {
-            x: 1
+            x: 2
             y : 0
           }
         ]
@@ -313,15 +326,16 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 1
+            x : 2
             y : 0
           }
 
           {
-            x: 1
+            x: 2
             y : 0
           }
         ]
@@ -342,16 +356,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 6
-            y : 0
+            x : 0
+            y : 2
           }
 
           {
-            x: 6
-            y : 0
+            x: 0
+            y : 2
           }
         ]
       }
@@ -360,16 +375,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 6
-            y : 0
+            x : 0
+            y : 2
           }
 
           {
-            x: 6
-            y : 0
+            x: 0
+            y : 2
           }
         ]
       }
@@ -389,16 +405,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 7
-            y : 0
+            x : 1
+            y : 2
           }
 
           {
-            x: 7
-            y : 0
+            x: 1
+            y : 2
           }
         ]
       }
@@ -407,16 +424,17 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 7
-            y : 0
+            x : 1
+            y : 2
           }
 
           {
-            x: 7
-            y : 0
+            x: 1
+            y : 2
           }
         ]
       }
@@ -436,16 +454,17 @@
         animationType: IDLE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 8
-            y : 0
+            x : 2
+            y : 2
           }
 
           {
-            x: 8
-            y : 0
+            x: 2
+            y : 2
           }
         ]
       }
@@ -454,19 +473,20 @@
         animationType: IMMOBILE
         texturePaths: [
           sprites/characters/worldsprites.png
+          sprites/characters/worldsprites.png
         ]
         gridPoints: [
           {
-            x : 8
-            y : 0
+            x : 2
+            y : 2
           }
 
           {
-            x: 8
-            y : 0
+            x: 2
+            y : 2
           }
         ]
       }
     ]
-  }
+  },
 ]

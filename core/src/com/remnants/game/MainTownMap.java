@@ -26,7 +26,9 @@ public class MainTownMap extends Map {
         initSpecialEntityPosition(vendor);
        _mapEntities.add(vendor);
 
-        Entity king = EntityFactory.getInstance().getEntityByName(EntityFactory.EntityName.KING);
+        Entity king = EntityFactory.getInstance().getEntityByID("KING");
+        Gdx.app.log(TAG, "King's entity ID: " + king.getEntityConfig().getEntityID());
+        Gdx.app.log(TAG, "King's animation info: " + king.getEntityConfig().getAnimationConfig().first().getGridPoints().toString());
         initSpecialEntityPosition(king);
         _mapEntities.add(king);
 

@@ -315,7 +315,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
             for( int index = 0; index < itemLocation.getNumberItemsAtLocation(); index++ ){
                 InventoryItem item = InventoryItemFactory.getInstance().getInventoryItem(itemTypeID);
-                Gdx.app.log(TAG, "Adding " + item.getItemTypeID() + " to inventory");
+                //Gdx.app.log(TAG, "Adding " + item.getItemTypeID() + " to inventory");
                 String itemName =  itemLocation.getItemNameProperty();
                 if( itemName == null || itemName.isEmpty() ){
                     item.setName(defaultName);
