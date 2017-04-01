@@ -1,0 +1,74 @@
+{
+conversations: {
+        1: {
+                id: 1
+                dialog: Young Travelers! I have a request to make of you. Will you help me?
+        }
+        2: {
+                id: 2
+                dialog: Of Course not! Now then. As you know I am King Azer of Reuel. 
+        }
+        3: {
+                id: 3
+                dialog: My daughter. the Princess Erwyn, has been kidnapped.
+        }
+        4: {
+                id: 4
+                dialog: My counselor. Drachonias believes she has been taken to the cave west of town.
+        }
+        5: {
+                id: 5
+                dialog: Please you must save her!
+        }
+}
+associatedChoices: {
+        1: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 1
+                        destinationId: 2
+                        choicePhrase: Do I really have a choice?
+						conversationCommandEvent: NONE
+                }
+        ]
+        2: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 2
+                        destinationId: 3
+                        choicePhrase: And I thought the golden armor gave it away.
+						conversationCommandEvent: NONE
+                }
+        ]
+        3: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 3
+                        destinationId: 4
+                        choicePhrase: The Princess Erwyn? I wanted her autograph.
+						conversationCommandEvent: NONE
+                }
+        ]
+		4: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 4
+                        destinationId: 5
+                        choicePhrase: That is not a very good-guy sort of name.
+						conversationCommandEvent: NONE
+                }
+        ]
+		5: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 5
+                        destinationId: 5
+                        choicePhrase: Off to the cave!
+						conversationCommandEvent: EXIT_CONVERSATION
+                }
+        ]
+		
+		
+}
+currentConversationID: 1
+}
