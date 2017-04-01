@@ -191,7 +191,7 @@
     entityID : KING
     state : IMMOBILE
     direction : DOWN
-    conversationConfigPath : ""
+    conversationConfigPath : "conversations/king_convo.json"
     questConfigPath : ""
     currentQuestID : ""
     itemTypeID : NONE

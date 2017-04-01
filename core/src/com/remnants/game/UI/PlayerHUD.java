@@ -119,9 +119,8 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
         _statusUI.setMovable(false);
 
         _conversationUI = new ConversationUI();
-        _conversationUI.setMovable(true);
         _conversationUI.setVisible(false);
-        _conversationUI.setPosition(_stage.getWidth() / 2, 0);
+        _conversationUI.setPosition(0, _stage.getHeight() / 2);
         _conversationUI.setWidth(_stage.getWidth() / 2);
         _conversationUI.setHeight(_stage.getHeight() / 2);
 
