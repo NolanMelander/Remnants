@@ -2,12 +2,12 @@ package com.remnants.game.audio;
 
 public interface AudioObserver {
     public static enum AudioTypeEvent{
-        MUSIC_TITLE("audio/Title Music.ogg"),
+        MUSIC_TITLE("audio/10112013.ogg"),
         MUSIC_TOWN("audio/Magic Town_0.mp3"),
         MUSIC_MAINTOWN("audio/The Adventure Begins.wav"),   //ours
         MUSIC_OVERWORLD("audio/The Adventure Begins.wav"),  //ours
         MUSIC_TOPWORLD("audio/Title Music.ogg"),
-        MUSIC_DUNGEON(""),
+        MUSIC_DUNGEON("Dungeon.ogg"),
         MUSIC_CASTLEDOOM("audio/Dark chamber.mp3"),
         MUSIC_BATTLE("audio/rpg-battle-loop-1.wav"),        //ours
         MUSIC_INTRO_CUTSCENE("audio/Takeover_5.mp3"),

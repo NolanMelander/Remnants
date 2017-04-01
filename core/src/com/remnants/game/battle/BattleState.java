@@ -65,7 +65,7 @@ public class BattleState extends BattleSubject implements InventoryObserver {
         if( _currentZoneLevel == 0 ) return false;
         int randomVal = MathUtils.random(1,100);
 
-        Gdx.app.debug(TAG, "CHANCE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
+        Gdx.app.log(TAG, "CHANCE OF ATTACK: " + _chanceOfAttack + " randomval: " + randomVal);
 
         if( _chanceOfAttack > randomVal ){
             setCurrentOpponents();

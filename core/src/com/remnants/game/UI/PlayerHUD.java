@@ -354,6 +354,7 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
     private void showUI() {
         _menuButton.setVisible(true);
         _padUI.setVisible(true);
+        _debugEndGameScreenButton.setVisible(true);
         _debugBattleUIButton.setVisible(true);
     }
 
@@ -410,7 +411,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                     Array<QuestGraph> quests = profileManager.getProperty("playerQuests", Array.class);
                     _questUI.setQuests(quests);
 
-                    //TODO: update to include all stats
                     int xpMaxVal = profileManager.getProperty("currentPlayerXPMax", Integer.class);
                     int xpVal = profileManager.getProperty("currentPlayerXP", Integer.class);
 
@@ -419,9 +419,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
                     int mpMaxVal = profileManager.getProperty("currentPlayerMPMax", Integer.class);
                     int mpVal = profileManager.getProperty("currentPlayerMP", Integer.class);
-
-                    //check if this will crash
-                    int pAtkVal = profileManager.getProperty("currentPlayerPAtkMax", Integer.class);
 
                     int levelVal = profileManager.getProperty("currentPlayerLevel", Integer.class);
 
@@ -541,6 +538,9 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
             case PLAYER_HAS_MOVED:
                 if( _battleUI.isBattleReady() ){
                     Gdx.app.log(TAG, "Entering battle mode");
+                    if (_padUI.isDown() || _padUI.isLeft() || _padUI.isRight() || _padUI.isUp()) {
+                        //reset dpad
+                    }
                     Gdx.app.log(TAG, "Setting opponents");
                     _battleUI.getCurrentState().setCurrentOpponents();
                     addTransitionToScreen();

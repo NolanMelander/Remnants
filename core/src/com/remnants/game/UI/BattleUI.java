@@ -76,7 +76,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
     private String _message;
 
     private float _battleTimer = 0;
-    private final float _checkTimer = 1;
+    private final float _checkTimer = 2;
 
     //fun to have; original Bludbourne feature
     private ShakeCamera _battleShakeCam = null;
@@ -264,6 +264,7 @@ public class BattleUI extends Window implements BattleObserver, CharacterDrawabl
         //TODO: decide when enemies should appear
         if( _battleTimer > _checkTimer ){
             _battleTimer = 0;
+            Gdx.app.log(TAG, "Battle timer is up");
             return _battleState.isOpponentReady();
         }else{
             return false;
