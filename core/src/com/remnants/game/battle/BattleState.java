@@ -10,6 +10,14 @@ import com.remnants.game.profile.ProfileManager;
 
 import java.util.Vector;
 
+/**
+ * CLASS BattleState
+ *
+ * @author bludbourne
+ * @editor brian evans
+ * @extends BattleSubject - notifies battle updates
+ * @implements InventoryObserver - updates when items are used
+ */
 public class BattleState extends BattleSubject implements InventoryObserver {
     private static final String TAG = BattleState.class.getSimpleName();
 

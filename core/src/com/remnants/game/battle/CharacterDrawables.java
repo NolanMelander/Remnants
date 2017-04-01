@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
- * Created by main on 3/7/17.
+ * Created by brian evans on 3/7/17.
  */
 
 public interface CharacterDrawables {
@@ -16,7 +16,7 @@ public interface CharacterDrawables {
     TextureRegionDrawable _tyrusBattleDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TyrusB.png")));
 
     //world sprites
-    //TODO: set image paths for world drawables
+    //not actually needed
     TextureRegionDrawable _tarenWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/TarenB.png")));
     TextureRegionDrawable _abellaWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/AbellaB.png")));
     TextureRegionDrawable _ipoWorldDrawable = new TextureRegionDrawable(new TextureRegion(new Texture("sprites/characters/IpoB.png")));

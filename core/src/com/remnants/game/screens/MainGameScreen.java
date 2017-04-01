@@ -24,6 +24,13 @@ import com.remnants.game.audio.AudioObserver;
 import com.remnants.game.profile.ProfileManager;
 import com.remnants.game.Component;
 
+/**
+ * CLASS MainGameScreen
+ *
+ * The main in-game screen. Displays everything in PlayerHUD.
+ *
+ * @extends GameScreen
+ */
 public class MainGameScreen extends GameScreen {
 	private static final String TAG = MainGameScreen.class.getSimpleName();
 

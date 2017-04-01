@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Array;
 
 
 /**
- * Created by brian on 2/17/2017.
+ * Created by brian evans on 2/17/2017.
  */
 
 public class dPadUI {

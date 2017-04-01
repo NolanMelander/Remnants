@@ -1,7 +1,7 @@
 package com.remnants.game.menu;
 
 /**
- * Created by main on 3/10/17.
+ * Created by brian evans on 3/10/17.
  */
 
 public interface MenuObserver {

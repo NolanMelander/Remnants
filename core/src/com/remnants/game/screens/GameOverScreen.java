@@ -14,7 +14,13 @@ import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 
-
+/**
+ * CLASS GameOverScreen
+ *
+ * Displays when the player dies
+ *
+ * @extends GameScreen
+ */
 public class GameOverScreen extends GameScreen {
     private Stage _stage;
     private Remnants _game;

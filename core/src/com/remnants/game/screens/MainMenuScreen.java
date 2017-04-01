@@ -19,6 +19,13 @@ import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 
+/**
+ * CLASS MainMenuScreen
+ *
+ * Main menu - first screen loaded.
+ *
+ * @extends GameScreen
+ */
 public class MainMenuScreen extends GameScreen {
 	private static final String TAG = MainMenuScreen.class.getSimpleName();
 

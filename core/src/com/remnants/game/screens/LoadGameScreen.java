@@ -19,7 +19,13 @@ import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 import com.remnants.game.profile.ProfileManager;
 
-
+/**
+ * CLASS LoadGameScreen
+ *
+ * Displays the saved game files, allowing the player to load one.
+ *
+ * @extends GameScreen
+ */
 public class LoadGameScreen extends GameScreen {
     private Stage _stage;
 	private Remnants _game;

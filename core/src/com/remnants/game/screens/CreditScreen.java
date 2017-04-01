@@ -14,6 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.remnants.game.Remnants;
 import com.remnants.game.Utility;
 
+/**
+ * CLASS CreditScreen
+ *
+ * displays the credits for the game
+ *
+ * @extends GameScreen
+ */
 public class CreditScreen extends GameScreen {
     private static String CREDITS_PATH = "licenses/credits.txt";
     private Stage _stage;

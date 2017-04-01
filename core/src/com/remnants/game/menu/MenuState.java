@@ -3,7 +3,7 @@ package com.remnants.game.menu;
 import com.badlogic.gdx.Gdx;
 
 /**
- * Created by main on 3/10/17.
+ * Created by brian evans on 3/10/17.
  */
 
 public class MenuState extends MenuSubject {

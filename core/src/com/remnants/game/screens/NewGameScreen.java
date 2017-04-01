@@ -17,6 +17,13 @@ import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 import com.remnants.game.profile.ProfileManager;
 
+/**
+ * CLASS NewGameScreen
+ *
+ * Allows the player to make a new save file. Will overwrite if necessary.
+ *
+ * @extends GameScreen
+ */
 public class NewGameScreen extends GameScreen {
 
 	private Stage _stage;

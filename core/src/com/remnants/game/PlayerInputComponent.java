@@ -4,6 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * CLASS PLayerInputComponent
+ *
+ * Handles the input received from the player
+ *
+ * @author bludbourne
+ * @editor brian evans
+ * @extends InputComponent
+ */
 public class PlayerInputComponent extends InputComponent {
 
 	private final static String TAG = PlayerInputComponent.class.getSimpleName();

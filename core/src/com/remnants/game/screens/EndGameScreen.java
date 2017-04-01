@@ -14,7 +14,7 @@ import com.remnants.game.Utility;
 import com.remnants.game.audio.AudioObserver;
 
 /**
- * Created by main on 3/30/17.
+ * Created by brian evans on 3/30/17.
  */
 
 public class EndGameScreen extends GameScreen {

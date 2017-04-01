@@ -25,7 +25,7 @@ import com.remnants.game.menu.MenuState;
 import com.remnants.game.profile.ProfileManager;
 
 /**
- * Created by brian on 2/23/2017.
+ * Created by brian evans on 2/23/2017.
  */
 
 /**

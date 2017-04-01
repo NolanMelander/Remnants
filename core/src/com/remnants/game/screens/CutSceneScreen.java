@@ -26,6 +26,7 @@ import com.remnants.game.profile.ProfileManager;
 import com.remnants.game.sfx.ScreenTransitionAction;
 import com.remnants.game.sfx.ScreenTransitionActor;
 
+//this class can be deleted
 public class CutSceneScreen extends MainGameScreen {
     private Remnants _game;
     private Stage _stage;

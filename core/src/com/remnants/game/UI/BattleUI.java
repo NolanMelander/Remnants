@@ -35,6 +35,8 @@ import java.util.Vector;
  *
  * Graphical user interface for the battle scene
  *
+ * @author bludbourne
+ * @editor brian evans
  * @extends Window - will be drawn on the screen
  * @implements BattleObserver - notifies other functions of battle updates
  *             CharacterDrawables - interface holding character sprites

@@ -18,6 +18,14 @@ import com.remnants.game.battle.LevelTable;
 
 import sun.util.resources.be.CalendarData_be;
 
+/**
+ * CLASS StatusUI
+ *
+ * @author bludbourne
+ * @editor brian evans
+ * @extends Window
+ * @implements StatusSubject - notifies status updates
+ */
 public class StatusUI extends Window implements StatusSubject {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * Created by main on 3/10/17.
+ * Created by brian evans on 3/10/17.
  */
 
 public class MenuSubject {

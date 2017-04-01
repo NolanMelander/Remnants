@@ -43,6 +43,23 @@ import com.remnants.game.sfx.ShakeCamera;
 
 import java.util.Vector;
 
+/**
+ * CLASS PlayerHUD
+ *
+ * Graphical user interface in the main game screen.
+ *
+ * @author bludbourne
+ * @editor brian evans
+ * @implements - Screen - drawn on the screen
+ *               AudioSubject - notifies for audio changes
+ *               ProfileObserver - loads and save profile information (stats and items)
+ *               ComponentObserver - for conversation updates (also activates battle)
+ *               ConversationGraphObserver - for conversation updates
+ *               StoreInventoryObserver - opens the UI for the store inventory
+ *               BattleObserver - handles transitions to and from the battle screen
+ *               dPadObserver - player moves with a dpad
+ *               MenuObserver - not sure if this is needed, but it helps when opening/closing the menu
+ */
 public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, ComponentObserver, ConversationGraphObserver, StoreInventoryObserver, BattleObserver, dPadObserver, MenuObserver {
     private static final String TAG = PlayerHUD.class.getSimpleName();
 
@@ -175,18 +192,13 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
 
 
         _stage.addActor(_battleUI);
-        //_stage.addActor(_questUI);
-        //_stage.addActor(_storeInventoryUI);
         _stage.addActor(_conversationUI);
-        //_stage.addActor(_messageBoxUI);
-        //_stage.addActor(_statusUI);
         _stage.addActor(_padUI.getGroup());
         _stage.addActor(_menuUI);
         _stage.addActor(_menuButton);
-        //_stage.addActor(_clock);
         //for debugging
-        _stage.addActor(_debugBattleUIButton);
-        _stage.addActor(_debugEndGameScreenButton);
+        //_stage.addActor(_debugBattleUIButton);
+        //_stage.addActor(_debugEndGameScreenButton);
 
         _battleUI.validate();
         _questUI.validate();
@@ -745,7 +757,6 @@ public class PlayerHUD implements Screen, AudioSubject, ProfileObserver, Compone
                 break;
             case OPPONENT_DEFEATED:
                 MainGameScreen.setGameState(MainGameScreen.GameState.RUNNING);
-                //TODO: update for multiple enemies
                 /*
                 int goldReward = Integer.parseInt(enemyEntity.getEntityConfig().getPropertyValue(EntityConfig.EntityProperties.ENTITY_GP_REWARD.toString()));
                 _statusUI.addGoldValue(goldReward);
