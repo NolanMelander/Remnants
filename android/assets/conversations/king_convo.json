@@ -2,11 +2,11 @@
   conversations: {
       1: {
           id: 1
-          dialog: KING: Please rescue the kidnapped princess!
+          dialog: KING Please rescue the kidnapped princess!
       }
       2: {
           id: 2
-          dialog: KING: Drachonias has informed me she's in the cave to the west.
+          dialog: KING Drachonias has informed me she's in the cave to the west.
       }
   }
   associatedChoices: {
