@@ -31,7 +31,7 @@ public class ConversationUI extends Window {
     private Json _json;
 
     public ConversationUI() {
-        super("dialog", Utility.STATUSUI_SKIN, "solidbackground");
+        super("", Utility.STATUSUI_SKIN, "solidbackground");
 
         _json = new Json();
         _graph = new ConversationGraph();
@@ -41,6 +41,7 @@ public class ConversationUI extends Window {
         _dialogText.setWrap(true);
         _dialogText.setAlignment(Align.center);
         _listItems = new List<ConversationChoice>(Utility.STATUSUI_SKIN);
+        _listItems.getStyle().font.getData().setScale(3);
 
         _closeButton = new TextButton("X", Utility.STATUSUI_SKIN);
 

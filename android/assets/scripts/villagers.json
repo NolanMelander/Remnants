@@ -1,0 +1,737 @@
+[
+{
+entityID : VILLAGER1
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager001.json"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 3
+				y: 0
+			}
+			
+			{
+				x: 3
+				y: 0
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 3
+				y: 0
+			}
+			
+			{
+				x: 3
+				y: 0
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER2
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager002.json"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 0
+			}
+			
+			{
+				x: 4
+				y: 0
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 0
+			}
+			
+			{
+				x: 4
+				y: 0
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER3
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager003.json"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 0
+			}
+			
+			{
+				x: 5
+				y: 0
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 0
+			}
+			
+			{
+				x: 5
+				y: 0
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER4
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager004"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 1
+			}
+			
+			{
+				x: 5
+				y: 1
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 1
+			}
+			
+			{
+				x: 5
+				y: 1
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER5
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager005"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 3
+				y: 5
+			}
+			
+			{
+				x: 3
+				y: 5
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 3
+				y: 5
+			}
+			
+			{
+				x: 3
+				y: 5
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER6
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : "conversations/villager006"
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 7
+			}
+			
+			{
+				x: 4
+				y: 7
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 7
+			}
+			
+			{
+				x: 4
+				y: 7
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER7
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 8
+				y: 7
+			}
+			
+			{
+				x: 8
+				y: 7
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 8
+				y: 7
+			}
+			
+			{
+				x: 8
+				y: 7
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER8
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 8
+				y: 0
+			}
+			
+			{
+				x: 8
+				y: 0
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 8
+				y: 0
+			}
+			
+			{
+				x: 8
+				y: 0
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER9
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 2
+			}
+			
+			{
+				x: 5
+				y: 2
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 5
+				y: 2
+			}
+			
+			{
+				x: 5
+				y: 2
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER10
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 11
+				y: 0
+			}
+			
+			{
+				x: 11
+				y: 0
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 11
+				y: 0
+			}
+			
+			{
+				x: 11
+				y: 0
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER11
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 11
+				y: 4
+			}
+			
+			{
+				x: 11
+				y: 4
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 11
+				y: 4
+			}
+			
+			{
+				x: 11
+				y: 4
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER12
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 3
+			}
+			
+			{
+				x: 4
+				y: 3
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 4
+				y: 3
+			}
+			
+			{
+				x: 4
+				y: 3
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER13
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 4
+			}
+			
+			{
+				x: 1
+				y: 4
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 4
+			}
+			
+			{
+				x: 1
+				y: 4
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER14
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 5
+			}
+			
+			{
+				x: 1
+				y: 5
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 5
+			}
+			
+			{
+				x: 1
+				y: 5
+			}
+		]
+	}
+]
+},
+{
+entityID : VILLAGER15
+state : IMMOBILE
+direction : DOWN
+conversationConfigPath : ""
+questConfigPath : ""
+currentQuestID : ""
+itemTypeID: NONE
+animationConfig: [
+	{
+	    frameDuration: 1.0
+		animationType: IDLE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 6
+			}
+			
+			{
+				x: 1
+				y: 6
+			}
+		]
+	}
+	{
+	    frameDuration: 1.0
+		animationType: IMMOBILE
+		texturePaths: [
+				sprites/characters/Player0.png
+				sprites/characters/Player1.png
+		]
+		gridPoints: [
+			{
+				x: 1
+				y: 6
+			}
+			
+			{
+				x: 1
+				y: 6
+			}
+		]
+	}
+]
+}
+]

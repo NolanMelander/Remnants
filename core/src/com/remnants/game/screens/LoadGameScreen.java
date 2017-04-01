@@ -41,7 +41,7 @@ public class LoadGameScreen extends GameScreen {
 		Array<String> list = ProfileManager.getInstance().getProfileList();
 		_listItems.setItems(list);
         //_listItems.setDebug(true);
-        _listItems.getStyle().font.getData().setScale(6);
+        _listItems.getStyle().font.getData().setScale(4);
 		ScrollPane scrollPane = new ScrollPane(_listItems);
 
         //scrollPane.setDebug(true);

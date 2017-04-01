@@ -1,0 +1,11 @@
+{
+conversations: {
+        1: {
+                id: 1
+                dialog: Have you seen my son? He better not be hiding again!
+        }
+}
+associatedChoices: {
+}
+currentConversationID: 1
+}

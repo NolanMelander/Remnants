@@ -1,0 +1,11 @@
+{
+conversations: {
+        1: {
+                id: 1
+                dialog: I feel like someone is watching us!
+        }
+}
+associatedChoices: {
+}
+currentConversationID: 1
+}

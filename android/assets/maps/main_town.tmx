@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" nextobjectid="1691">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" nextobjectid="1709">
  <tileset firstgid="1" name="PathAndObjects" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../sprites/objects/PathAndObjects.png" width="512" height="512"/>
  </tileset>
@@ -1508,13 +1508,21 @@
   <object id="1688" x="685" y="332.5" width="2" height="19"/>
   <object id="1690" x="625" y="332" width="3" height="19.5"/>
  </objectgroup>
- <objectgroup name="MAP_SPAWNS_LAYER">
+ <objectgroup name="MAP_SPAWNS_LAYER" visible="0">
   <object id="39" name="PLAYER_START" x="658.334" y="437.666"/>
   <object id="1685" name="TOWN_VENDOR" x="644" y="338" width="22" height="24"/>
   <object id="1687" name="KING" x="569" y="421" width="22" height="24"/>
+  <object id="1691" name="VILLAGER1" x="754" y="422" width="26" height="26"/>
+  <object id="1694" name="VILLAGER2" x="581" y="336" width="26" height="26"/>
+  <object id="1696" name="VILLAGER3" x="290" y="430" width="26" height="26"/>
+  <object id="1697" name="VILLAGER4" x="294" y="498" width="26" height="26"/>
+  <object id="1698" name="VILLAGER5" x="637" y="602" width="26" height="26"/>
+  <object id="1699" name="VILLAGER6" x="185" y="727" width="26" height="26"/>
  </objectgroup>
- <objectgroup name="MAP_PORTAL_LAYER" visible="0">
-  <object id="35" name="WORLD_MAP" x="1278" y="-340" width="30" height="1318"/>
-  <object id="36" name="WORLD_MAP" x="-28" y="960" width="1356" height="24"/>
+ <objectgroup name="MAP_PORTAL_LAYER">
+  <object id="1704" name="WORLD_MAP" x="1258" y="-14" width="38" height="988"/>
+  <object id="1706" name="WORLD_MAP" x="-32" y="-14" width="40" height="980"/>
+  <object id="1707" name="WORLD_MAP" x="-90" y="-20" width="1402" height="36"/>
+  <object id="1708" name="WORLD_MAP" x="-62" y="940" width="1372" height="40"/>
  </objectgroup>
 </map>
