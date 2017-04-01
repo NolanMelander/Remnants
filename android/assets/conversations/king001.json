@@ -6,19 +6,23 @@ conversations: {
         }
         2: {
                 id: 2
-                dialog: Of Course not! Now then. As you know I am King Azer of Reuel. 
+                dialog: Of course not! Now then. As you know I am King Azer of Reuel.
         }
         3: {
                 id: 3
-                dialog: My daughter. the Princess Erwyn, has been kidnapped.
+                dialog: My daughter - the Princess Erwyn - has been kidnapped.
         }
         4: {
                 id: 4
-                dialog: My counselor. Drachonias believes she has been taken to the cave west of town.
+                dialog: My counselor Drachonias believes she has been taken to the cave west of town.
         }
         5: {
                 id: 5
-                dialog: Please you must save her!
+                dialog: Drachonias has been my counselor for years. I trust him with my life.
+        }
+        6: {
+                id: 6
+                dialog: Please - you must save my daughter!
         }
 }
 associatedChoices: {
@@ -36,7 +40,7 @@ associatedChoices: {
                         class: com.remnants.game.dialog.ConversationChoice
                         sourceId: 2
                         destinationId: 3
-                        choicePhrase: And I thought the golden armor gave it away.
+                        choicePhrase: Everyone knows that.
 						conversationCommandEvent: NONE
                 }
         ]
@@ -45,7 +49,7 @@ associatedChoices: {
                         class: com.remnants.game.dialog.ConversationChoice
                         sourceId: 3
                         destinationId: 4
-                        choicePhrase: The Princess Erwyn? I wanted her autograph.
+                        choicePhrase: THE Princess Erwyn???
 						conversationCommandEvent: NONE
                 }
         ]
@@ -54,7 +58,7 @@ associatedChoices: {
                         class: com.remnants.game.dialog.ConversationChoice
                         sourceId: 4
                         destinationId: 5
-                        choicePhrase: That is not a very good-guy sort of name.
+                        choicePhrase: Drachonias? Sounds evil.
 						conversationCommandEvent: NONE
                 }
         ]
@@ -62,9 +66,18 @@ associatedChoices: {
                 {
                         class: com.remnants.game.dialog.ConversationChoice
                         sourceId: 5
-                        destinationId: 5
+                        destinationId: 6
+                        choicePhrase: Dramatic irony?
+						conversationCommandEvent: NONE
+                }
+        ]
+        6: [
+                {
+                        class: com.remnants.game.dialog.ConversationChoice
+                        sourceId: 6
+                        destinationId: 6
                         choicePhrase: Off to the cave!
-						conversationCommandEvent: EXIT_CONVERSATION
+                        conversationCommandEvent: EXIT_CONVERSATION
                 }
         ]
 		
