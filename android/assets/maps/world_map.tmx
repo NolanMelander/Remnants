@@ -365,7 +365,6 @@
  </objectgroup>
  <objectgroup name="MAP_SPAWNS_LAYER">
   <object id="5" name="PLAYER_START" x="422.667" y="209.667"/>
-  <object id="9" name="PLAYER_START" x="439.667" y="367"/>
   <object id="216" name="PLAYER_START" x="304.364" y="224.545" width="15.4545" height="15.4545"/>
  </objectgroup>
  <objectgroup name="MAP_PORTAL_LAYER">
