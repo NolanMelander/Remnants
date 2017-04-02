@@ -18,8 +18,26 @@ Amber Martinez
 Sound
 Nolan Melander
 
+Special Thanks:
+We wish to thank Patrick Hoey for his book "Mastering LibGdx" Game Development
+without his book, we wouldn't of been able to come up with what we have or learned
+the Libgdx library as quickly as we did.
 
 Art Copyright Notice
+
+Title: SNES - Chrono Trigger - Map Tiles
+Author (Various)
+Website: opengameart.org
+Date: March 23, 2017
+License: Non-Comercial Open Source
+Filename: SNES - Chrono Trigger -Map TIles
+
+Title: DungeonCraw_ProjectUtumno Tileset
+Author: (To many to list)
+Website: opengameart.org
+Date: March 23, 2017
+License: Opensource
+Filename: DungeonCraw_ProjectUtomnoTileset.png
 
 Title: "FWM-Game Assets"
 Author: Georg Eckert
