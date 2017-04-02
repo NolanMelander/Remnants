@@ -20,7 +20,7 @@ public class DungeonMap extends Map {
 
         _json = new Json();
     }
-    //TODO FIND MUSIC TO USE FOR DUNGEON, CURRENTLY USES MAINTOWN
+
     @Override
     public void unloadMusic(){
         notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_MAINTOWN);
