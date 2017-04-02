@@ -43,13 +43,11 @@ public class MainMenuScreen extends GameScreen {
 		Image title = new Image(/*new TextureRegionDrawable(new TextureRegion(new Texture("skins/title.png"))));*/Utility.STATUSUI_TEXTUREATLAS.findRegion("bludbourne_title"));
 		TextButton newGameButton = new TextButton("New Game", Utility.STATUSUI_SKIN);
 		TextButton loadGameButton = new TextButton("Load Game", Utility.STATUSUI_SKIN);
-		TextButton watchIntroButton = new TextButton("Watch Intro", Utility.STATUSUI_SKIN);
 		TextButton creditsButton = new TextButton("Credits", Utility.STATUSUI_SKIN);
 		TextButton exitButton = new TextButton("Exit",Utility.STATUSUI_SKIN);
 
 		newGameButton.getLabel().setFontScale(6);
 		loadGameButton.getLabel().setFontScale(6);
-		watchIntroButton.getLabel().setFontScale(6);
 		creditsButton.getLabel().setFontScale(6);
 		exitButton.getLabel().setFontScale(6);
 
@@ -57,7 +55,6 @@ public class MainMenuScreen extends GameScreen {
 		table.add(title).spaceBottom(75).row();
 		table.add(newGameButton).spaceBottom(10).row();
 		table.add(loadGameButton).spaceBottom(10).row();
-		table.add(watchIntroButton).spaceBottom(10).row();
 		table.add(creditsButton).spaceBottom(10).row();
 		table.add(exitButton).spaceBottom(10).row();
 
@@ -104,21 +101,6 @@ public class MainMenuScreen extends GameScreen {
 								   }
 
 							   }
-		);
-
-		watchIntroButton.addListener(new ClickListener() {
-
-										 @Override
-										 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-											 return true;
-										 }
-
-										 @Override
-										 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-											 MainMenuScreen.this.notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
-											 _game.setScreen(_game.getScreenType(ScreenType.WatchIntro));
-										 }
-									 }
 		);
 
 		creditsButton.addListener(new ClickListener() {
