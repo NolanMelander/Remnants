@@ -23,12 +23,12 @@ public class DungeonMap extends Map {
 
     @Override
     public void unloadMusic(){
-        notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_MAINTOWN);
+        notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_DUNGEON);
     }
 
     @Override
     public void loadMusic(){
-        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_DUNGEON);
+        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_DUNGEON);//MUSIC_DUNGEON);
         notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_DUNGEON);
     }
 }

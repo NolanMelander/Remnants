@@ -7,7 +7,7 @@ public interface AudioObserver {
         MUSIC_MAINTOWN("audio/The Adventure Begins.wav"),   //ours
         MUSIC_OVERWORLD("audio/The Adventure Begins.wav"),  //ours
         MUSIC_TOPWORLD("audio/Title Music.ogg"),
-        MUSIC_DUNGEON("Dungeon.ogg"),
+        MUSIC_DUNGEON("audio/Takeover_5.mp3"),
         MUSIC_CASTLEDOOM("audio/Dark chamber.mp3"),
         MUSIC_BATTLE("audio/rpg-battle-loop-1.wav"),        //ours
         MUSIC_INTRO_CUTSCENE("audio/Takeover_5.mp3"),
