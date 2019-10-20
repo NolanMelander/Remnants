@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="54" tilewidth="32" tileheight="32" nextobjectid="97">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="54" tilewidth="32" tileheight="32" nextobjectid="99">
  <tileset firstgid="1" name="DungeonCrawl_ProjectUtumnoTileset" tilewidth="32" tileheight="32" tilecount="3072" columns="64">
   <image source="../sprites/objects/DungeonCrawl_ProjectUtumnoTileset.png" width="2048" height="1536"/>
  </tileset>
@@ -61,7 +61,7 @@
 2684355416,856,856,856,856,856,856,856,856,856,856,856,856,856,856,856,856,856,856,856,857,857,857,857,857,857,857,857,857,1155,1155,1155,1155,856,856,856,856,856,856,856,856,856,856,855,855,855,855,855,855,855,855,855,855,855,855,855,855,855,855,2684355415
 </data>
  </layer>
- <layer name="Ground_Layer" width="60" height="54">
+ <layer name="Ground_Layer" width="60" height="54" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -119,7 +119,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Decoration_Layer" width="60" height="54">
+ <layer name="Decoration_Layer" width="60" height="54" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -260,11 +260,12 @@
   <object id="88" x="1697" y="714" width="21" height="22"/>
   <object id="89" x="1730" y="713" width="21" height="23"/>
   <object id="95" x="64" y="191" width="32" height="35"/>
+  <object id="98" x="97" y="96.5" width="255" height="255.5"/>
  </objectgroup>
- <objectgroup name="MAP_SPAWNS_LAYER">
+ <objectgroup name="MAP_SPAWNS_LAYER" visible="0">
   <object id="91" name="PLAYER_START" x="961" y="1663" width="64" height="35"/>
  </objectgroup>
- <objectgroup name="MAP_PORTAL_LAYER">
+ <objectgroup name="MAP_PORTAL_LAYER" visible="0">
   <object id="93" name="WORLD_MAP" x="929" y="1705" width="126" height="21"/>
  </objectgroup>
 </map>

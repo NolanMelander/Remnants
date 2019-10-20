@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "25.0.2"
-    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
+    compileSdkVersion 26
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -12,7 +12,7 @@ android {
             jniLibs.srcDirs = ['libs']
         }
 
-        instrumentTest.setRoot('tests')
+        androidTest.setRoot('tests')
     }
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId "com.remnants.game"
         minSdkVersion 9
-        targetSdkVersion 25
+        targetSdkVersion 26
     }
 }
 // called every time gradle gets executed, takes the native dependencies of

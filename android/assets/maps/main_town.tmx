@@ -1508,7 +1508,7 @@
   <object id="1688" x="685" y="332.5" width="2" height="19"/>
   <object id="1690" x="625" y="332" width="3" height="19.5"/>
  </objectgroup>
- <objectgroup name="MAP_SPAWNS_LAYER" visible="0">
+ <objectgroup name="MAP_SPAWNS_LAYER">
   <object id="39" name="PLAYER_START" x="658.334" y="437.666"/>
   <object id="1685" name="TOWN_VENDOR" x="644" y="338" width="22" height="24"/>
   <object id="1687" name="KING" x="569" y="421" width="22" height="24"/>
